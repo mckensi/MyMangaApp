@@ -14,6 +14,7 @@
 		4E75C5F72B3247D3001CACF4 /* MyMangaAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E75C5F62B3247D3001CACF4 /* MyMangaAppTests.swift */; };
 		4E75C6012B3247D3001CACF4 /* MyMangaAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E75C6002B3247D3001CACF4 /* MyMangaAppUITests.swift */; };
 		4E75C6032B3247D3001CACF4 /* MyMangaAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E75C6022B3247D3001CACF4 /* MyMangaAppUITestsLaunchTests.swift */; };
+		4E75C6142B324C16001CACF4 /* MangaListDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E75C6132B324C16001CACF4 /* MangaListDto.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		4E75C5FC2B3247D3001CACF4 /* MyMangaAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyMangaAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E75C6002B3247D3001CACF4 /* MyMangaAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMangaAppUITests.swift; sourceTree = "<group>"; };
 		4E75C6022B3247D3001CACF4 /* MyMangaAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMangaAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4E75C6132B324C16001CACF4 /* MangaListDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaListDto.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +97,10 @@
 		4E75C5E32B3247D2001CACF4 /* MyMangaApp */ = {
 			isa = PBXGroup;
 			children = (
-				4E75C5E42B3247D2001CACF4 /* MyMangaAppApp.swift */,
-				4E75C5E62B3247D2001CACF4 /* ContentView.swift */,
+				4E75C6122B324B20001CACF4 /* Model */,
+				4E75C6112B324B16001CACF4 /* Interactor */,
+				4E75C6102B324AF4001CACF4 /* ViewModel */,
+				4E75C60F2B324AD8001CACF4 /* View */,
 				4E75C5E82B3247D3001CACF4 /* Assets.xcassets */,
 				4E75C5EA2B3247D3001CACF4 /* MyMangaApp.entitlements */,
 				4E75C5EB2B3247D3001CACF4 /* Preview Content */,
@@ -127,6 +131,37 @@
 				4E75C6022B3247D3001CACF4 /* MyMangaAppUITestsLaunchTests.swift */,
 			);
 			path = MyMangaAppUITests;
+			sourceTree = "<group>";
+		};
+		4E75C60F2B324AD8001CACF4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4E75C5E42B3247D2001CACF4 /* MyMangaAppApp.swift */,
+				4E75C5E62B3247D2001CACF4 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4E75C6102B324AF4001CACF4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4E75C6112B324B16001CACF4 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		4E75C6122B324B20001CACF4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4E75C6132B324C16001CACF4 /* MangaListDto.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E75C6142B324C16001CACF4 /* MangaListDto.swift in Sources */,
 				4E75C5E72B3247D2001CACF4 /* ContentView.swift in Sources */,
 				4E75C5E52B3247D2001CACF4 /* MyMangaAppApp.swift in Sources */,
 			);
