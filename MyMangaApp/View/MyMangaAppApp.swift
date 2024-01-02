@@ -9,9 +9,18 @@ import SwiftUI
 
 @main
 struct MyMangaAppApp: App {
+    @State var mangaListVM = MangaListVM()
+    @State var accountVM = AccountVM()
+    @State var mangaDetailVM = MangaDetailVM()
+    @State var userMangaCollectionVM = UserMangaCollectionVM()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MangaMainView()
+                .environment(mangaListVM)
+                .environment(accountVM)
+                .environment(mangaDetailVM)
+                .environment(userMangaCollectionVM)
         }
     }
 }
