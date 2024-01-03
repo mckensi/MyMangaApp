@@ -8,19 +8,30 @@
 import Foundation
 
 struct DataTest: DataInteractor {
-    func getUserCollection(token: String) async throws -> [MangaItem] {
-        let url = Bundle.main.url(forResource: "userCollectionTest", withExtension: "json")!
+    func getMangaDictionaryByGenre(page: Int, per: Int, genres: [String]) async throws -> [MangaItem] {
+        let url = Bundle.main.url(forResource: "listMangas", withExtension: "json")!
+        let data = try Data(contentsOf: url)
+        let listRes = try JSONDecoder().decode(MangaListDto.self, from: data)
+        return listRes.items.map { $0.toPresentation }
+    }
+    
+    func getMangeGenres() async throws -> [String] {
+        return ["Action", "Adventure"]
+    }
+    
+    func getMangaListByGenre(page: Int, per: Int, genre: String) async throws -> [MangaItem] {
+        let url = Bundle.main.url(forResource: "listMangas", withExtension: "json")!
         let data = try Data(contentsOf: url)
         let listRes = try JSONDecoder().decode(MangaListDto.self, from: data)
         return listRes.items.map { $0.toPresentation }
     }
     
     func postCollectionManga(token: String, manga: UserMangaCollectionRequest) async throws {
-        
+        print("collection agregada")
     }
     
     func login(email: String, password: String) async throws -> String {
-        return ""
+        return "1234token"
     }
     
     func createUser(email: String, password: String) async throws {}
@@ -31,4 +42,65 @@ struct DataTest: DataInteractor {
         let listRes = try JSONDecoder().decode(MangaListDto.self, from: data)
         return listRes.items.map { $0.toPresentation }
     }
+    
+    func getUserCollection() async throws -> [MangaItem] {
+        let url = Bundle.main.url(forResource: "userCollectionTest", withExtension: "json")!
+        let data = try Data(contentsOf: url)
+        let listRes = try JSONDecoder().decode([UserCollectionListDto].self, from: data)
+        var mangas: [MangaItem] = []
+        
+        listRes.forEach { collection in
+            mangas.append(collection.manga.toPresentation)
+        }
+        
+        return mangas
+    }
+    
 }
+
+struct UserDataTestLogin: UserInteractor {
+    func getCredentials() -> String? {
+        "Hola 1234"
+    }
+    
+    func saveToken(token: String, account: String) throws {
+        print("1234")
+    }
+    
+    func getToken() throws -> String? {
+        "1234"
+    }
+    
+    func closeSession() throws {
+        print("close test session")
+    }
+    
+    func isUserLogged() -> Bool {
+        true
+    }
+}
+
+
+struct UserDataTestAnonimous: UserInteractor {
+    func getCredentials() -> String? {
+        ""
+    }
+    
+    func saveToken(token: String, account: String) throws {
+        print("")
+    }
+    
+    func getToken() throws -> String? {
+        ""
+    }
+    
+    func closeSession() throws {
+        print("close test session")
+    }
+    
+    func isUserLogged() -> Bool {
+        false
+    }
+    
+}
+

@@ -20,6 +20,7 @@ final class AccountVM {
     init(network: DataInteractor = Network(), user: UserInteractor = User()) {
         self.network = network
         self.user = user
+        isUserLogged = user.isUserLogged()
     }
     
     

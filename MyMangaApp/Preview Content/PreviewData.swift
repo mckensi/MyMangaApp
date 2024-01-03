@@ -49,5 +49,10 @@ extension MangaDetailVM {
 }
 
 extension UserMangaCollectionVM {
-    static let test = UserMangaCollectionVM(network: DataTest())
+    static let test = UserMangaCollectionVM(network: DataTest(), user: UserDataTestLogin())
+}
+
+extension AccountVM {
+    static let testLogin = AccountVM(network: DataTest(), user: UserDataTestLogin())
+    static let testAnonimous = AccountVM(network: DataTest(), user: UserDataTestAnonimous())
 }

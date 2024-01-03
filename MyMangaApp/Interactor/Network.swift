@@ -8,11 +8,14 @@
 import SwiftUI
 
 protocol DataInteractor {
+    func getMangeGenres() async throws -> [String]
     func getMangaList(page: Int, per: Int) async throws -> [MangaItem]
     func createUser(email: String, password: String) async throws
     func login(email: String, password: String) async throws -> String
     func postCollectionManga(token: String, manga: UserMangaCollectionRequest) async throws
-    func getUserCollection(token: String)  async throws -> [MangaItem]
+    func getUserCollection()  async throws -> [MangaItem]
+    func getMangaListByGenre(page: Int, per: Int, genre: String) async throws -> [MangaItem]
+    func getMangaDictionaryByGenre(page: Int, per: Int, genres: [String]) async throws -> [MangaItem]
 }
 
 public struct Network: DataInteractor {
@@ -64,6 +67,10 @@ public struct Network: DataInteractor {
             throw NetworkError.status(response.statusCode)
         }
     }
+    
+    func getMangeGenres() async throws -> [String] {
+        try await getJSON(request: .get(url: .getMangasGenres()), type: [String].self)
+    }
 
     func getMangaList(page: Int, per: Int) async throws -> [MangaItem] {
         let mangaList = try await getJSON(request: .get(url: .getMangaList(page: page, per: per)), type: MangaListDto.self)
@@ -75,6 +82,41 @@ public struct Network: DataInteractor {
         return result
     }
     
+    func getMangaListByGenre(page: Int, per: Int, genre: String) async throws -> [MangaItem] {
+        
+        let mangaListByGenre = try await getJSON(request: .get(url: .getMangaListByGenre(page: page, per: per, genre: genre)), type: MangaListDto.self)
+        
+        var result: [MangaItem] = []
+        for manga in mangaListByGenre.items {
+            result.append(manga.toPresentation)
+        }
+        
+        return result
+    }
+    
+    
+    func getMangaDictionaryByGenre(page: Int, per: Int, genres: [String]) async throws -> [MangaItem] {
+        return await withTaskGroup(of: [MangaItem]?.self, returning: [MangaItem].self) { group in
+            var result: [MangaItem] = []
+            for genre in genres {
+                group.addTask {
+                    do {
+                        let mangas = try await getMangaListByGenre(page: page, per: per, genre: genre)
+                        return mangas
+                    } catch {
+                        print(error)
+                        return nil
+                    }
+                }
+            }
+            
+            for await mangasByGenre in group.compactMap({ $0 }) {
+                result.append(contentsOf: mangasByGenre)
+            }
+            
+            return result
+        }
+    }
     
     func createUser(email: String, password: String)  async throws {
         try await post(request: .post(url: .postCreateUser(), data: CreateUser(email: email, password: password), appToken: "sLGH38NhEJ0_anlIWwhsz1-LarClEohiAHQqayF0FY"), status: 201)
@@ -95,7 +137,8 @@ public struct Network: DataInteractor {
         try await post(request: .post(url: .postCollectionManga(), data: manga, appToken: "sLGH38NhEJ0_anlIWwhsz1-LarClEohiAHQqayF0FY", token: token), status: 201)
     }
     
-    func getUserCollection(token: String)  async throws -> [MangaItem] {
+    func getUserCollection()  async throws -> [MangaItem] {
+        guard let token = try User.shared.getToken() else { throw UserError.errorGetToken }
         let userMangaCollection = try await getJSON(request: .get(url: .getUserMangaCollection(), appToken: "sLGH38NhEJ0_anlIWwhsz1-LarClEohiAHQqayF0FY", token: token), type: [UserCollectionListDto].self)
         
         var result: [MangaItem] = []

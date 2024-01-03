@@ -24,10 +24,13 @@ final class MangaListVM {
     
     private func getData() async {
         do {
-            let mangasDownloaded = try await network.getMangaList(page: 0, per: 20)
+            let genres = try await network.getMangeGenres()
+  
+            let mangasDownloaded = try await network.getMangaDictionaryByGenre(page: 0, per: 10, genres: genres)
             await MainActor.run {
-                self.mangasLogic.mangas = mangasDownloaded.sorted { $0.id < $1.id }
+                self.mangasLogic.mangas = mangasDownloaded
             }
+            
         } catch {
             print(error)
             await MainActor.run {

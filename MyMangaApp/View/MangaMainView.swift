@@ -26,7 +26,7 @@ struct MangaMainView: View {
 #Preview {
     MangaMainView()
         .environment(MangaListVM.test)
-        .environment(AccountVM())
+        .environment(AccountVM.testLogin)
         .environment(MangaDetailVM.test)
         .environment(UserMangaCollectionVM.test)
 }

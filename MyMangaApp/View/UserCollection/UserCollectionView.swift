@@ -18,7 +18,7 @@ struct UserCollectionView: View {
         
         NavigationStack {
             if accountVm.isUserLogged {
-                ExtractedView(mangas: vm.mangasLogic.mangas, showAccountView: $showAccountView)
+                MangaUserCollectionItem(mangas: vm.mangasLogic.mangas, showAccountView: $showAccountView)
             } else {
                 Text("Inicia sesión para ver tu biblioteca")
                     .toolbar {
@@ -56,10 +56,10 @@ struct UserCollectionView: View {
 #Preview {
     UserCollectionView()
         .environment(UserMangaCollectionVM.test)
-        .environment(AccountVM())
+        .environment(AccountVM.testLogin)
 }
 
-struct ExtractedView: View {
+struct MangaUserCollectionItem: View {
     var mangas: [MangaItem]
     @Binding var showAccountView: Bool
     var body: some View {

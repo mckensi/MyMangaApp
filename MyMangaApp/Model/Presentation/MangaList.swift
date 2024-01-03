@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - ItemDto
+// MARK: - MangaItem
 struct MangaItem: Identifiable, Hashable {
     let volumes: Int?
     let url: URL?

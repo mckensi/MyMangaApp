@@ -11,18 +11,40 @@ struct MangaListMainView: View {
     
     @Environment(MangaListVM.self) var vm
     @State var showAccountView = false
+    let itemAdaptativeTypes = GridItem(.adaptive(minimum: 240))
     var body: some View {
         @Bindable var bvm = vm
         
         NavigationStack {
             ScrollView {
                 VStack {
-                    ForEach(vm.mangasLogic.mangas) { manga in
-                        NavigationLink(value: manga) {
-                            MangaListItemView(manga: manga)
+                    ForEach(
+                        vm.mangasLogic.getGenres(
+                            mangas: vm.mangasLogic.mangas
+                        )
+                    ) { genre in
+                        HStack {
+                            Text(genre.genre)
+                                .font(.title2)
+                            .bold()
+                            Spacer()
                         }
-        
+                        ScrollView(.horizontal) {
+                            LazyHGrid(rows: [itemAdaptativeTypes], spacing: 20) {
+                                ForEach(
+                                    vm.mangasLogic.getMangasByGenre(
+                                        genre: genre.genre
+                                    )
+                                ) { manga in
+                                    NavigationLink(value: manga) {
+                                        MangaListItemView(manga: manga)
+                                    }
+                                }
+                            }
+                        }
+                     
                     }
+
                 }
                 .padding()
             }
@@ -65,16 +87,20 @@ struct MangaListItemView: View {
             AsyncImage(url: manga.mainPicture) { cover in
                 cover
                     .resizable()
-                    .scaledToFit()
-                    .frame(height: 150)
-                
+                    .aspectRatio(contentMode: .fit)
+                    .scaledToFill()
+                    .frame(height: 200)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .shadow(radius: 4)
             } placeholder: {
                 Image(systemName: "book")
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 150)
+                    .frame(height: 200)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
             }
-            Text(manga.title)
         }
+        .frame(width: 140, height: 240)
+        .padding()
     }
 }

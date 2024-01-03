@@ -45,6 +45,20 @@ extension URL {
     static func getUserMangaCollection() -> URL {
         api.appending(path: "collection/manga")
     }
+    
+    static func getMangasGenres() -> URL {
+        api.appending(path: "list/genres")
+    }
+    
+    static func getMangaListByGenre(page: Int = 0, per: Int = 20, genre: String) -> URL {
+        api.appending(path: "list/mangaByGenre/\(genre)")
+            .appending(
+                queryItems: [
+                    URLQueryItem(name: "page", value: "\(page)"),
+                    URLQueryItem(name: "per", value: "\(per)")
+                ]
+            )
+    }
 }
 
 

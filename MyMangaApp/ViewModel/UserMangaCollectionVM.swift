@@ -28,8 +28,7 @@ final class UserMangaCollectionVM {
             return
         }
         do {
-            guard let token = try User.shared.getToken() else { throw UserError.errorGetToken }
-            let mangasDownloaded = try await network.getUserCollection(token: token)
+            let mangasDownloaded = try await network.getUserCollection()
             await MainActor.run {
                 self.mangasLogic.mangas = mangasDownloaded.sorted { $0.id < $1.id }
             }
