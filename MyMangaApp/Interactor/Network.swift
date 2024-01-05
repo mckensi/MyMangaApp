@@ -16,6 +16,7 @@ protocol DataInteractor {
     func getUserCollection()  async throws -> [MangaItem]
     func getMangaListByGenre(page: Int, per: Int, genre: String) async throws -> [MangaItem]
     func getMangaDictionaryByGenre(page: Int, per: Int, genres: [String]) async throws -> [MangaItem]
+    func getUserManga(id: Int) async throws -> UserCollectionManga
 }
 
 public struct Network: DataInteractor {
@@ -137,7 +138,7 @@ public struct Network: DataInteractor {
         try await post(request: .post(url: .postCollectionManga(), data: manga, appToken: "sLGH38NhEJ0_anlIWwhsz1-LarClEohiAHQqayF0FY", token: token), status: 201)
     }
     
-    func getUserCollection()  async throws -> [MangaItem] {
+    func getUserCollection() async throws -> [MangaItem] {
         guard let token = try User.shared.getToken() else { throw UserError.errorGetToken }
         let userMangaCollection = try await getJSON(request: .get(url: .getUserMangaCollection(), appToken: "sLGH38NhEJ0_anlIWwhsz1-LarClEohiAHQqayF0FY", token: token), type: [UserCollectionListDto].self)
         
@@ -148,4 +149,10 @@ public struct Network: DataInteractor {
         return result
     }
     
+    func getUserManga(id: Int) async throws -> UserCollectionManga {
+        guard let token = try User.shared.getToken() else { throw UserError.errorGetToken }
+        let userManga = try await getJSON(request: .get(url: .getUserManga(id: id), appToken: "sLGH38NhEJ0_anlIWwhsz1-LarClEohiAHQqayF0FY", token: token), type: UserCollectionMangaDto.self)
+        
+        return userManga.toPresentation
+    }
 }

@@ -13,7 +13,7 @@ struct UserCollectionListDto: Codable {
     let volumesOwned: [Int]
     let completeCollection: Bool
     let readingVolume: Int
-    let manga: ItemDto
+    let manga: MangaDto
     let id: String
 }
 

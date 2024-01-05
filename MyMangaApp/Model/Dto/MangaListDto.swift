@@ -10,11 +10,11 @@ import Foundation
 // MARK: - MangaListDto
 struct MangaListDto: Codable {
     let metadata: MetadataDto
-    let items: [ItemDto]
+    let items: [MangaDto]
 }
 
 // MARK: - ItemDto
-struct ItemDto: Codable {
+struct MangaDto: Codable {
     let volumes: Int?
     let url, title: String
     let endDate: String?
@@ -24,7 +24,7 @@ struct ItemDto: Codable {
     let sypnosis, background: String?
     let demographics: [DemographicDto]
     let startDate: String?
-    let titleJapanese: String
+    let titleJapanese: String?
     let status: String
     let mainPicture: String
     let genres: [GenreDto]
@@ -54,7 +54,7 @@ struct ThemeDto: Codable {
     let id, theme: String
 }
 
-extension ItemDto {
+extension MangaDto {
     var toPresentation: MangaItem {
         MangaItem(
             volumes: volumes, 

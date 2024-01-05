@@ -56,3 +56,11 @@ extension AccountVM {
     static let testLogin = AccountVM(network: DataTest(), user: UserDataTestLogin())
     static let testAnonimous = AccountVM(network: DataTest(), user: UserDataTestAnonimous())
 }
+
+extension UserCollectionManga {
+    static let preview = UserCollectionManga(manga: MangaItem.test, id: 1, readingVolume: 2, volumesOwned: [1, 2, 3], user: UserCollection(id: "1234"), completeCollection: false)
+}
+
+extension UserMangaDetailVM {
+    static let test = UserMangaDetailVM(id: 1, network: DataTest())
+}

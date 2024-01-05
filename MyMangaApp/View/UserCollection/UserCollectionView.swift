@@ -17,21 +17,22 @@ struct UserCollectionView: View {
         @Bindable var bvm = vm
         
         NavigationStack {
-            if accountVm.isUserLogged {
-                MangaUserCollectionItem(mangas: vm.mangasLogic.mangas, showAccountView: $showAccountView)
-            } else {
-                Text("Inicia sesión para ver tu biblioteca")
-                    .toolbar {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Image(systemName: "person")
-                                .font(.title)
-                                .onTapGesture {
-                                    showAccountView.toggle()
-                                }
-                        }
-                    }
+            Group {
+                if accountVm.isUserLogged {
+                    MangaUserCollectionItems(mangas: vm.mangasLogic.mangas, showAccountView: $showAccountView)
+                } else {
+                    Text("Inicia sesión para ver tu biblioteca")
+                }
             }
-   
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Image(systemName: "person")
+                        .font(.title)
+                        .onTapGesture {
+                            showAccountView.toggle()
+                        }
+                }
+            }
         }
         .navigationTitle("Librería")
         .alert("App Alert", isPresented: $bvm.showAlert) {}
@@ -59,7 +60,7 @@ struct UserCollectionView: View {
         .environment(AccountVM.testLogin)
 }
 
-struct MangaUserCollectionItem: View {
+struct MangaUserCollectionItems: View {
     var mangas: [MangaItem]
     @Binding var showAccountView: Bool
     var body: some View {
@@ -74,17 +75,8 @@ struct MangaUserCollectionItem: View {
             }
             .padding()
         }
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Image(systemName: "person")
-                    .font(.title)
-                    .onTapGesture {
-                        showAccountView.toggle()
-                    }
-            }
-        }
         .navigationDestination(for: MangaItem.self) { manga in
-            MangaDetailView(manga: manga)
+            UserMangaDetailView(vm: UserMangaDetailVM(id: manga.id))
         }
     }
 }

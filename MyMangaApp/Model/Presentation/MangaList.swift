@@ -19,7 +19,7 @@ struct MangaItem: Identifiable, Hashable {
     let sypnosis, background: String?
     let demographics: [Demographic]
     let startDate: String?
-    let titleJapanese: String
+    let titleJapanese: String?
     let status: String
     let mainPicture: URL?
     let genres: [Genre]

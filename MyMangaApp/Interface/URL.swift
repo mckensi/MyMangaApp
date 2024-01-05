@@ -59,6 +59,10 @@ extension URL {
                 ]
             )
     }
+    
+    static func getUserManga(id: Int) -> URL {
+        api.appending(path: "collection/manga/\(id)")
+    }
 }
 
 

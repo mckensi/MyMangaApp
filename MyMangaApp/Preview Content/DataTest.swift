@@ -8,6 +8,7 @@
 import Foundation
 
 struct DataTest: DataInteractor {
+
     func getMangaDictionaryByGenre(page: Int, per: Int, genres: [String]) async throws -> [MangaItem] {
         let url = Bundle.main.url(forResource: "listMangas", withExtension: "json")!
         let data = try Data(contentsOf: url)
@@ -54,6 +55,13 @@ struct DataTest: DataInteractor {
         }
         
         return mangas
+    }
+    
+    func getUserManga(id: Int) async throws -> UserCollectionManga {
+        let url = Bundle.main.url(forResource: "userManga", withExtension: "json")!
+        let data = try Data(contentsOf: url)
+        let mangaDto = try JSONDecoder().decode(UserCollectionMangaDto.self, from: data)
+        return mangaDto.toPresentation
     }
     
 }
