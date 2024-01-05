@@ -17,6 +17,7 @@ protocol DataInteractor {
     func getMangaListByGenre(page: Int, per: Int, genre: String) async throws -> [MangaItem]
     func getMangaDictionaryByGenre(page: Int, per: Int, genres: [String]) async throws -> [MangaItem]
     func getUserManga(id: Int) async throws -> UserCollectionManga
+    func deleteUserManga(id: Int) async throws
 }
 
 public struct Network: DataInteractor {
@@ -32,6 +33,13 @@ public struct Network: DataInteractor {
                 throw NetworkError.json(error)
             }
         } else {
+            throw NetworkError.status(response.statusCode)
+        }
+    }
+    
+    func get(request: URLRequest) async throws {
+        let (_, response) = try await URLSession.shared.getData(for: request)
+        if response.statusCode != 200 {
             throw NetworkError.status(response.statusCode)
         }
     }
@@ -154,5 +162,10 @@ public struct Network: DataInteractor {
         let userManga = try await getJSON(request: .get(url: .getUserManga(id: id), appToken: "sLGH38NhEJ0_anlIWwhsz1-LarClEohiAHQqayF0FY", token: token), type: UserCollectionMangaDto.self)
         
         return userManga.toPresentation
+    }
+    
+    func deleteUserManga(id: Int) async throws {
+        guard let token = try User.shared.getToken() else { throw UserError.errorGetToken }
+        try await get(request: .delete(url: .deleteUserManga(id: id), appToken: "sLGH38NhEJ0_anlIWwhsz1-LarClEohiAHQqayF0FY", token: token))
     }
 }

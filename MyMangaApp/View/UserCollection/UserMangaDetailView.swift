@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserMangaDetailView: View {
-
+    @Environment(\.dismiss) var dismiss
     var vm: UserMangaDetailVM
     
     var body: some View {
@@ -30,7 +30,9 @@ struct UserMangaDetailView: View {
                 Text(vm.userManga?.manga.title ?? "")
                 Button("Borrar de la biblioteca", role: .destructive) {
                     Task {
-                        print("borrando")
+                        vm.removeUserManga {
+                            dismiss()
+                        }
                     }
                 }
             }

@@ -20,6 +20,18 @@ extension URLRequest {
         return request
     }
     
+    static func delete(url: URL, appToken: String? = nil, token: String? = nil) -> URLRequest {
+        var request = URLRequest(url: url)
+        request.timeoutInterval = 60
+        request.httpMethod = "DELETE"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue(appToken, forHTTPHeaderField: "App-Token")
+        if let token = token {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+        return request
+    }
+    
     static func post<JSON>(url: URL, data: JSON, method: String = "POST", appToken: String? = nil, credentials: String? = nil, token: String? = nil) -> URLRequest where JSON: Codable {
         var request = URLRequest(url: url)
         request.timeoutInterval = 60

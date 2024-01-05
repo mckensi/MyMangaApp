@@ -92,10 +92,42 @@
             filePath = "MyMangaApp/Interactor/Network.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "getJSON(request:type:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DB1C06A4-638E-4BB9-9FE3-56F77881E02E - 4600e2bfe7d1f6a2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for MyMangaApp.Network.getJSON&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(request: Foundation.URLRequest, type: &#x3c4;_0_0.Type) async throws -&gt; &#x3c4;_0_0"
+                  moduleName = "MyMangaApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurcia/Documents/MyMangaApp/MyMangaApp/Interactor/Network.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "724">
+               </Location>
+               <Location
+                  uuid = "DB1C06A4-638E-4BB9-9FE3-56F77881E02E - 4600e2bfe7d1f68d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for MyMangaApp.Network.getJSON&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(request: Foundation.URLRequest, type: &#x3c4;_0_0.Type) async throws -&gt; &#x3c4;_0_0"
+                  moduleName = "MyMangaApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurcia/Documents/MyMangaApp/MyMangaApp/Interactor/Network.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "724">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -108,10 +140,42 @@
             filePath = "MyMangaApp/Interactor/Network.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "getJSON(request:type:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D4158C42-B1F1-4B0A-BCD5-8B021A64141A - 4600e2bfe7d1f6cf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for MyMangaApp.Network.getJSON&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(request: Foundation.URLRequest, type: &#x3c4;_0_0.Type) async throws -&gt; &#x3c4;_0_0"
+                  moduleName = "MyMangaApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurcia/Documents/MyMangaApp/MyMangaApp/Interactor/Network.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "492">
+               </Location>
+               <Location
+                  uuid = "D4158C42-B1F1-4B0A-BCD5-8B021A64141A - 4600e2bfe7d1f72e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for MyMangaApp.Network.getJSON&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(request: Foundation.URLRequest, type: &#x3c4;_0_0.Type) async throws -&gt; &#x3c4;_0_0"
+                  moduleName = "MyMangaApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurcia/Documents/MyMangaApp/MyMangaApp/Interactor/Network.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "492">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

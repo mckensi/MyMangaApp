@@ -8,6 +8,10 @@
 import Foundation
 
 struct DataTest: DataInteractor {
+    func deleteUserManga(id: Int) async throws {
+        print("Manga deleted")
+    }
+    
 
     func getMangaDictionaryByGenre(page: Int, per: Int, genres: [String]) async throws -> [MangaItem] {
         let url = Bundle.main.url(forResource: "listMangas", withExtension: "json")!

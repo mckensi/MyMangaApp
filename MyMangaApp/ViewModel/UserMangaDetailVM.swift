@@ -39,8 +39,19 @@ final class UserMangaDetailVM {
         }
     }
     
-    func removeUserManga() {
-        
+    func removeUserManga(success: @escaping () -> Void) {
+        Task {
+            do {
+                try await network.deleteUserManga(id: id)
+                await MainActor.run {
+                    success()
+                }
+            } catch {
+                alertMsg = error.localizedDescription
+                showAlert.toggle()
+            }
+        }
+   
     }
 }
 
