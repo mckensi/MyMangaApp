@@ -14,14 +14,30 @@ struct AccountView: View {
         NavigationStack {
             Group {
                 if vm.isUserLogged {
-                    ScrollView {
-                        VStack {
-                            Image(systemName: "person")
+                    List {
+                        HStack(spacing: 20) {
+                            Image("userProfile")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 100, height: 100)
+                            .clipShape(Circle())
                             Text(vm.getEmail())
-                            Button("Cerrar sesión", role: .destructive) {
-                                vm.closeSession {
-                                    dismiss()
-                                }
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        }
+                        HStack(spacing: 10) {
+                            Image(systemName: "book")
+                            NavigationLink {
+                                UserCollectionView()
+                            } label: {
+                                Text("Libros")
+                            }
+
+                            
+                        }
+                        Button("Cerrar sesión", role: .destructive) {
+                            vm.closeSession {
+                                dismiss()
                             }
                         }
                     }
@@ -51,6 +67,8 @@ struct AccountView: View {
 #Preview {
     NavigationView {
         AccountView()
-            .environment(AccountVM())
+            .environment(AccountVM.testLogin)
+            .environment(UserMangaCollectionVM.test)
+        
     }
 }

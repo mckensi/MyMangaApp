@@ -32,6 +32,17 @@ public struct Network: DataInteractor {
             } catch {
                 throw NetworkError.json(error)
             }
+        } else if response.statusCode == 401 {
+            let errorResponse = try JSONDecoder().decode(ErrorResponseDto.self, from: data)
+            if errorResponse.error == "Users not authenticated." {
+                let errorResponse = try JSONDecoder().decode(ErrorResponseDto.self, from: data)
+                let token = try await renewUser()
+                let account = try User.shared.getEmail() ?? ""
+                try User.shared.saveToken(token: token, account: account)
+                return try await getJSON(request: request, type: type)
+            } else {
+                throw NetworkError.status(response.statusCode)
+            }
         } else {
             throw NetworkError.status(response.statusCode)
         }
@@ -72,6 +83,12 @@ public struct Network: DataInteractor {
             } catch {
                 throw NetworkError.json(error)
             }
+        } else if response.statusCode == 401 {
+            let errorResponse = try JSONDecoder().decode(ErrorResponseDto.self, from: data)
+            let token = try await renewUser()
+            let account = try User.shared.getEmail() ?? ""
+            try User.shared.saveToken(token: token, account: account)
+            return try await postJSON(request: request, type: type, status: status)
         } else {
             throw NetworkError.status(response.statusCode)
         }
@@ -140,6 +157,11 @@ public struct Network: DataInteractor {
         } else {
             throw NetworkError.unknown
         }
+    }
+    
+    func renewUser() async throws -> String {
+        guard let token = try User.shared.getToken() else { throw UserError.errorGetToken }
+        return try await postString(request: .post(url: .postRenew()), status: 200)
     }
     
     func postCollectionManga(token: String, manga: UserMangaCollectionRequest) async throws {

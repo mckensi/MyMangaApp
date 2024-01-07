@@ -38,6 +38,10 @@ extension URL {
         api.appending(path: "users/login")
     }
     
+    static func postRenew() -> URL {
+        api.appending(path: "users/renew")
+    }
+    
     static func postCollectionManga() -> URL {
         api.appending(path: "collection/manga")
     }

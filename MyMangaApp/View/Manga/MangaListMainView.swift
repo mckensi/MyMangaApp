@@ -10,6 +10,7 @@ import SwiftUI
 struct MangaListMainView: View {
     
     @Environment(MangaListVM.self) var vm
+    @Environment(AccountVM.self) var accountVm
     @State var showAccountView = false
     let itemAdaptativeTypes = GridItem(.adaptive(minimum: 240))
     var body: some View {
@@ -50,11 +51,25 @@ struct MangaListMainView: View {
             }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Image(systemName: "person")
-                    .font(.title)
-                    .onTapGesture {
-                        showAccountView.toggle()
-                    }
+                if accountVm.isUserLogged {
+                    Image("userProfile")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
+                        .clipShape(Circle())
+                        .onTapGesture {
+                            showAccountView.toggle()
+                        }
+                } else {
+                    Image(systemName: "person")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
+                        .font(.title)
+                        .onTapGesture {
+                            showAccountView.toggle()
+                        }
+                }
             }
         }
         .navigationDestination(for: MangaItem.self) { manga in
@@ -76,6 +91,6 @@ struct MangaListMainView: View {
 #Preview {
     MangaListMainView()
         .environment(MangaListVM.test)
-        .environment(AccountVM())
+        .environment(AccountVM.testLogin)
         .environment(MangaDetailVM.test)
 }

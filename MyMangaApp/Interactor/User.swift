@@ -14,6 +14,7 @@ protocol UserInteractor {
     func getToken() throws -> String?
     func closeSession() throws
     func isUserLogged() -> Bool
+    func getEmail() throws -> String
 }
 
 public struct User: UserInteractor {
@@ -155,5 +156,9 @@ public struct User: UserInteractor {
             return false
         }
    
+    }
+    
+    func getEmail() throws -> String {
+        try User.shared.getEmail() ?? ""
     }
 }

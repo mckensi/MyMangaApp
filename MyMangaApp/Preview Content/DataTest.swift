@@ -71,6 +71,10 @@ struct DataTest: DataInteractor {
 }
 
 struct UserDataTestLogin: UserInteractor {
+    func getEmail() throws -> String {
+        "daniel@gmail.com"
+    }
+    
     func getCredentials() -> String? {
         "Hola 1234"
     }
@@ -94,6 +98,10 @@ struct UserDataTestLogin: UserInteractor {
 
 
 struct UserDataTestAnonimous: UserInteractor {
+    func getEmail() throws -> String {
+        ""
+    }
+    
     func getCredentials() -> String? {
         ""
     }

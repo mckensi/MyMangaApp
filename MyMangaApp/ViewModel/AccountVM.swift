@@ -70,7 +70,7 @@ final class AccountVM {
     
     func getEmail() -> String {
         do {
-            return try User.shared.getEmail() ?? ""
+            return try user.getEmail()
         } catch {
             print(error.localizedDescription)
             self.alertMsg = "\(error)"

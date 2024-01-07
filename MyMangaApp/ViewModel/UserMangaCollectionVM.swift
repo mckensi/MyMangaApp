@@ -34,6 +34,7 @@ final class UserMangaCollectionVM {
             }
         } catch {
             print(error)
+            
             await MainActor.run {
                 self.alertMsg = "\(error)"
                 self.showAlert.toggle()

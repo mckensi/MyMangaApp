@@ -26,11 +26,25 @@ struct UserCollectionView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Image(systemName: "person")
-                        .font(.title)
-                        .onTapGesture {
-                            showAccountView.toggle()
-                        }
+                    if accountVm.isUserLogged {
+                        Image("userProfile")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
+                            .clipShape(Circle())
+                            .onTapGesture {
+                                showAccountView.toggle()
+                            }
+                    } else {
+                        Image(systemName: "person")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
+                            .font(.title)
+                            .onTapGesture {
+                                showAccountView.toggle()
+                            }
+                    }
                 }
             }
         }
