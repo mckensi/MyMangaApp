@@ -28,7 +28,7 @@ final class MangaListVM {
   
             let mangasDownloaded = try await network.getMangaDictionaryByGenre(page: 0, per: 10, genres: genres)
             await MainActor.run {
-                self.mangasLogic.mangas = mangasDownloaded
+                self.mangasLogic.mangas = Array(Set(mangasDownloaded))
             }
             
         } catch {

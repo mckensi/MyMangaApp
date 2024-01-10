@@ -8,6 +8,13 @@
 import Foundation
 
 struct DataTest: DataInteractor {
+    func getMangasByAuthor(id: String) async throws -> [MangaItem] {
+        let url = Bundle.main.url(forResource: "listMangas", withExtension: "json")!
+        let data = try Data(contentsOf: url)
+        let listRes = try JSONDecoder().decode(MangaListDto.self, from: data)
+        return listRes.items.map { $0.toPresentation }
+    }
+    
     func deleteUserManga(id: Int) async throws {
         print("Manga deleted")
     }

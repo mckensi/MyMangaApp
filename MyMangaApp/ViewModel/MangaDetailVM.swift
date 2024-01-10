@@ -15,6 +15,8 @@ final class MangaDetailVM {
     var showAlert: Bool = false
     
     var showSuccessAddedMangaAlert: Bool = false
+    var authorBooks: [MangaItem] = []
+
     init(network: DataInteractor = Network()) {
         self.network = network
     }
@@ -38,6 +40,23 @@ final class MangaDetailVM {
             await MainActor.run {
                 self.alertMsg = "\(error)"
                 self.showAlert.toggle()
+            }
+        }
+    }
+    
+    func getBooksByAuthor(id: String) {
+        Task {
+            do {
+                let mangas = try await network.getMangasByAuthor(id: id)
+                await MainActor.run {
+                    self.authorBooks = mangas
+                }
+            } catch {
+                print(error)
+                await MainActor.run {
+                    self.alertMsg = "\(error)"
+                    self.showAlert.toggle()
+                }
             }
         }
     }

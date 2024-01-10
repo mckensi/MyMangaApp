@@ -24,12 +24,7 @@ struct MangaListMainView: View {
                             mangas: vm.mangasLogic.mangas
                         )
                     ) { genre in
-                        HStack {
-                            Text(genre.genre)
-                                .font(.title2)
-                            .bold()
-                            Spacer()
-                        }
+                        CategoryTitleView(genre: genre)
                         ScrollView(.horizontal) {
                             LazyHGrid(rows: [itemAdaptativeTypes], spacing: 20) {
                                 ForEach(
@@ -43,11 +38,14 @@ struct MangaListMainView: View {
                                 }
                             }
                         }
-                     
                     }
-
+                
                 }
+                
                 .padding()
+                }
+            .navigationDestination(for: MangaItem.self) { manga in
+                MangaDetailView(manga: manga)
             }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -72,9 +70,6 @@ struct MangaListMainView: View {
                 }
             }
         }
-        .navigationDestination(for: MangaItem.self) { manga in
-            MangaDetailView(manga: manga)
-        }
         }
         .navigationTitle("Librería")
         .alert("App Alert", isPresented: $bvm.showAlert) {}
@@ -93,4 +88,16 @@ struct MangaListMainView: View {
         .environment(MangaListVM.test)
         .environment(AccountVM.testLogin)
         .environment(MangaDetailVM.test)
+}
+
+struct CategoryTitleView: View {
+    let genre: Genre
+    var body: some View {
+        HStack {
+            Text(genre.genre)
+                .font(.title2)
+                .bold()
+            Spacer()
+        }
+    }
 }

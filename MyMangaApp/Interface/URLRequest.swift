@@ -54,7 +54,7 @@ extension URLRequest {
         return request
     }
     
-    static func post(url: URL, method: String = "POST", appToken: String? = nil, credentials: String? = nil) -> URLRequest {
+    static func post(url: URL, method: String = "POST", appToken: String? = nil, credentials: String? = nil, token: String? = nil) -> URLRequest {
         var request = URLRequest(url: url)
         request.timeoutInterval = 60
         request.httpMethod = method
@@ -63,6 +63,9 @@ extension URLRequest {
         request.setValue(appToken, forHTTPHeaderField: "App-Token")
         if let credentials = credentials {
             request.setValue(credentials, forHTTPHeaderField: "Authorization")
+        }
+        if let token = token {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
      
         return request

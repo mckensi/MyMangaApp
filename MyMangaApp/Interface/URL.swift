@@ -71,6 +71,16 @@ extension URL {
     static func deleteUserManga(id: Int) -> URL {
         api.appending(path: "collection/manga/\(id)")
     }
+    
+    static func getMangasByAuthorId(id: String, page: Int = 0, per: Int = 20) -> URL {
+        api.appending(path: "list/mangaByAuthor/\(id)")
+            .appending(
+                queryItems: [
+                    URLQueryItem(name: "page", value: "\(page)"),
+                    URLQueryItem(name: "per", value: "\(per)")
+                ]
+            )
+    }
 }
 
 

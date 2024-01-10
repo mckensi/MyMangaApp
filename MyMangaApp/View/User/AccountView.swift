@@ -59,7 +59,7 @@ struct AccountView: View {
                 }
             }
             .navigationTitle("Cuenta")
-        .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

@@ -11,7 +11,7 @@ struct MangaTextField: View {
     let label: String
     @Binding var text: String
     var validator: (String) -> String? = Validators.shared.isEmpty
-    var keyType: UIKeyboardType = UIKeyboardType.default
+    var keyType: UITextContentType?
     
     @State private var errorMessage = ""
     
@@ -23,7 +23,7 @@ struct MangaTextField: View {
                 .padding(.leading, 10)
             HStack {
                 TextField("Enter the \(localized.lowercased())", text: $text)
-                    .keyboardType(keyType)
+                    .textContentType(.emailAddress)
                     .autocorrectionDisabled()
                 Button {
                     text = ""

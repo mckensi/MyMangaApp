@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MangaListItemView: View {
+    var showDescription: Bool = false
     var manga: MangaItem
     var body: some View {
         VStack {
@@ -25,6 +26,20 @@ struct MangaListItemView: View {
                     .scaledToFit()
                     .frame(height: 200)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
+            }
+            if showDescription {
+                VStack(alignment: .leading) {
+                    Text(manga.title)
+                        .font(.subheadline)
+                        .fontWeight(.bold)
+                    HStack {
+                        Text("\(manga.authors.first?.firstName ?? "") \(manga.authors.first?.lastName ?? "")")
+                            .font(.caption)
+                        .foregroundStyle(.secondary)
+                        Spacer()
+                    }
+                }
+           
             }
         }
         .frame(width: 140, height: 240)
