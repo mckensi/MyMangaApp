@@ -39,46 +39,45 @@ struct MangaListMainView: View {
                             }
                         }
                     }
-                
+                    
                 }
-                
                 .padding()
-                }
+            }
             .navigationDestination(for: MangaItem.self) { manga in
                 MangaDetailView(manga: manga)
             }
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                if accountVm.isUserLogged {
-                    Image("userProfile")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 40, height: 40)
-                        .clipShape(Circle())
-                        .onTapGesture {
-                            showAccountView.toggle()
-                        }
-                } else {
-                    Image(systemName: "person")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 40, height: 40)
-                        .font(.title)
-                        .onTapGesture {
-                            showAccountView.toggle()
-                        }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    if accountVm.isUserLogged {
+                        Image("userProfile")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
+                            .clipShape(Circle())
+                            .onTapGesture {
+                                showAccountView.toggle()
+                            }
+                    } else {
+                        Image(systemName: "person")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
+                            .font(.title)
+                            .onTapGesture {
+                                showAccountView.toggle()
+                            }
+                    }
                 }
             }
         }
-        }
         .navigationTitle("Librería")
         .alert("App Alert", isPresented: $bvm.showAlert) {}
-        message: {
-            Text(vm.alertMsg)
-        }
-        .sheet(isPresented: $showAccountView, content: {
-            AccountView()
-        })
+    message: {
+        Text(vm.alertMsg)
+    }
+    .sheet(isPresented: $showAccountView, content: {
+        AccountView()
+    })
     }
     
 }

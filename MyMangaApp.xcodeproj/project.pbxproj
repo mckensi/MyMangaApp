@@ -52,6 +52,7 @@
 		4E83D8D02B476B1F004D7CEB /* UserMangaDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E83D8CF2B476B1F004D7CEB /* UserMangaDetailVM.swift */; };
 		4E83D8D22B47723B004D7CEB /* userManga.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E83D8D12B47723B004D7CEB /* userManga.json */; };
 		4ED6ED182B3CEAB0009E67EF /* MangaMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED6ED172B3CEAB0009E67EF /* MangaMainView.swift */; };
+		8CB576642B4F02C20060C5FD /* MangaAuthor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB576632B4F02C20060C5FD /* MangaAuthor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,7 @@
 		4E83D8CF2B476B1F004D7CEB /* UserMangaDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMangaDetailVM.swift; sourceTree = "<group>"; };
 		4E83D8D12B47723B004D7CEB /* userManga.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userManga.json; sourceTree = "<group>"; };
 		4ED6ED172B3CEAB0009E67EF /* MangaMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaMainView.swift; sourceTree = "<group>"; };
+		8CB576632B4F02C20060C5FD /* MangaAuthor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaAuthor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 				4E5674D62B325CA700CE7BF3 /* MangaList.swift */,
 				4E6C2D312B3CDF6900987086 /* Profile.swift */,
 				4E83D8CD2B475882004D7CEB /* UserCollectionManga.swift */,
+				8CB576632B4F02C20060C5FD /* MangaAuthor.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				4E5674FE2B34B38300CE7BF3 /* AccountView.swift in Sources */,
 				4E83D8C02B3F6A6B004D7CEB /* UserCollectionView.swift in Sources */,
 				4E5674F32B3495CA00CE7BF3 /* User.swift in Sources */,
+				8CB576642B4F02C20060C5FD /* MangaAuthor.swift in Sources */,
 				4E56750C2B3B439200CE7BF3 /* LoginView.swift in Sources */,
 				4E5675042B3B391100CE7BF3 /* MangaTextField.swift in Sources */,
 				4E5675132B3C962900CE7BF3 /* MangaDetailView.swift in Sources */,

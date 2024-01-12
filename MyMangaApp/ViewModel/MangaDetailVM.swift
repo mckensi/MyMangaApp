@@ -16,6 +16,7 @@ final class MangaDetailVM {
     
     var showSuccessAddedMangaAlert: Bool = false
     var authorBooks: [MangaItem] = []
+    var authorsAndBooks: [MangaAuthor] = []
 
     init(network: DataInteractor = Network()) {
         self.network = network
@@ -59,5 +60,34 @@ final class MangaDetailVM {
                 }
             }
         }
+    }
+    
+    func getBooksAllAuthors(authors: [Author]) {
+        Task {
+            let mangas = await withTaskGroup(of: MangaAuthor?.self, returning: [MangaAuthor].self) { group in
+                var result: [MangaAuthor] = []
+                for author in authors {
+                    group.addTask {
+                        do {
+                            let mangas = try await self.network.getMangasByAuthor(id: author.id)
+                            let mangasAndAuthor = MangaAuthor(author: author, mangas: mangas)
+                            return mangasAndAuthor
+                        } catch {
+                            print(error)
+                            return nil
+                        }
+                    }
+                }
+                
+                for await mangasByAuthor in group.compactMap({ $0 }) {
+                    result.append(mangasByAuthor)
+                }
+                
+                return result
+            }
+            
+            authorsAndBooks = mangas
+        }
+      
     }
 }
