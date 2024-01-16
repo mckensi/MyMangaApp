@@ -24,5 +24,4 @@ final class MangasLogic {
 
         return Array(uniqueGenres)
     }
-
 }

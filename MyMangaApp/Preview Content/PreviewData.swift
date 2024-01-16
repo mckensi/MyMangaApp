@@ -64,3 +64,7 @@ extension UserCollectionManga {
 extension UserMangaDetailVM {
     static let test = UserMangaDetailVM(id: 1, network: DataTest())
 }
+
+extension MangasByCategoryVM {
+    static let test = MangasByCategoryVM(network: DataTest(), genre: "Avant Garde")
+}

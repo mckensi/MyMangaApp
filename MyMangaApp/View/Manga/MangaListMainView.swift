@@ -24,7 +24,9 @@ struct MangaListMainView: View {
                             mangas: vm.mangasLogic.mangas
                         )
                     ) { genre in
-                        CategoryTitleView(genre: genre)
+                        NavigationLink(value: genre) {
+                            CategoryTitleView(genre: genre)
+                        }
                         ScrollView(.horizontal) {
                             LazyHGrid(rows: [itemAdaptativeTypes], spacing: 20) {
                                 ForEach(
@@ -45,6 +47,9 @@ struct MangaListMainView: View {
             }
             .navigationDestination(for: MangaItem.self) { manga in
                 MangaDetailView(manga: manga)
+            }
+            .navigationDestination(for: Genre.self) { genre in
+                MangasByCategoryView(vm: MangasByCategoryVM(network: Network(), genre: genre.genre))
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -69,8 +74,10 @@ struct MangaListMainView: View {
                     }
                 }
             }
+            .navigationTitle(
+                "Librería"
+            )
         }
-        .navigationTitle("Librería")
         .alert("App Alert", isPresented: $bvm.showAlert) {}
     message: {
         Text(vm.alertMsg)
