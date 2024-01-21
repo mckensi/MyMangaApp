@@ -48,9 +48,9 @@ final class MangaDetailVM {
     func getBooksByAuthor(id: String) {
         Task {
             do {
-                let mangas = try await network.getMangasByAuthor(id: id)
+                let mangas = try await network.getMangasByAuthor(id: id, page: 0, per: 10)
                 await MainActor.run {
-                    self.authorBooks = mangas
+                    self.authorBooks = mangas.0
                 }
             } catch {
                 print(error)
@@ -69,7 +69,7 @@ final class MangaDetailVM {
                 for author in authors {
                     group.addTask {
                         do {
-                            let mangas = try await self.network.getMangasByAuthor(id: author.id)
+                            let mangas = try await self.network.getMangasByAuthor(id: author.id, page: 0, per: 10).0
                             let mangasAndAuthor = MangaAuthor(author: author, mangas: mangas)
                             return mangasAndAuthor
                         } catch {

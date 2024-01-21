@@ -26,7 +26,7 @@ struct MangaDto: Codable {
     let startDate: String?
     let titleJapanese: String?
     let status: String
-    let mainPicture: String
+    let mainPicture: String?
     let genres: [GenreDto]
     let id: Int
     let chapters: Int?
@@ -70,11 +70,17 @@ extension MangaDto {
             startDate: startDate,
             titleJapanese: titleJapanese,
             status: status,
-            mainPicture: URL(string: mainPicture.trimmingCharacters(in: CharacterSet(charactersIn: "\""))),
+            mainPicture: URL(string: mainPicture?.trimmingCharacters(in: CharacterSet(charactersIn: "\"")) ?? ""),
             genres: genres.map { Genre(id: $0.id, genre: $0.genre) },
             id: id,
             chapters: chapters,
             authors: authors.map { Author(id: $0.id, lastName: $0.lastName, firstName: $0.firstName, role: $0.role) }
         )
+    }
+}
+
+extension AuthorDto {
+    var toPresentation: Author {
+        Author(id: id, lastName: lastName, firstName: firstName, role: role)
     }
 }

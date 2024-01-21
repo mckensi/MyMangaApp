@@ -81,6 +81,21 @@ extension URL {
                 ]
             )
     }
+    
+    static func searchMangaContains(search: String, page: Int, per: Int) -> URL {
+        api.appending(path: "search/mangasContains/\(search)")
+            .appending(
+                queryItems: [
+                    URLQueryItem(name: "page", value: "\(page)"),
+                    URLQueryItem(name: "per", value: "\(per)")
+                ]
+            )
+    }
+
+    static func searchAuthor(search: String) -> URL {
+        api.appending(path: "search/author/\(search)")
+    }
+    
 }
 
 

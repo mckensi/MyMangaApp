@@ -45,7 +45,9 @@ struct MangaDetailView: View {
     .navigationDestination(for: MangaItem.self) { manga in
         MangaDetailView(manga: manga)
     }
-        
+    .navigationDestination(for: Author.self) { author in
+        MangasByAuthorView(vm: MangasByAuthorVM(author: author))
+    }
     }
 }
 
@@ -163,33 +165,6 @@ struct BookCollectionDetails: View {
     }
 }
 
-struct MoreBooksAuthorGrid: View {
-    
-    let gridItem = GridItem(.adaptive(minimum: 240))
-    @Environment(MangaDetailVM.self) var vm
-    let manga: MangaItem
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text("Mas libros de \(manga.authors.first?.firstName ?? "")")
-                .font(.headline)
-            ScrollView(.horizontal) {
-                LazyHGrid(rows: [gridItem], spacing: 20) {
-                    ForEach(
-                        vm.authorBooks
-                    ) { manga in
-                        NavigationLink(value: manga) {
-                            MangaListItemView(showDescription: true, manga: manga)
-                        }
-                    }
-                }
-            }
-        }
-        .padding(.horizontal)
-    }
-}
-
-
 struct MoreBooksAuthorsGrid: View {
     
     let gridItem = GridItem(.adaptive(minimum: 240))
@@ -199,8 +174,17 @@ struct MoreBooksAuthorsGrid: View {
     var body: some View {
         VStack(alignment: .leading) {
             ForEach(vm.authorsAndBooks) { authorAndManga in
-                Text("Mas libros de \(authorAndManga.author.firstName) \(authorAndManga.author.lastName)")
-                    .font(.headline)
+                NavigationLink(value: authorAndManga.author) {
+                    HStack {
+                        Text("Mas de \(authorAndManga.author.firstName) \(authorAndManga.author.lastName)")
+                            .font(.headline)
+                        Image(systemName: "chevron.right")
+                            .fontWeight(.bold)
+                            .foregroundStyle(.secondary)
+                    }
+            
+                }
+                .tint(.black)
                 ScrollView(.horizontal) {
                     LazyHGrid(rows: [gridItem], spacing: 20) {
                         ForEach(
@@ -212,6 +196,7 @@ struct MoreBooksAuthorsGrid: View {
                         }
                     }
                 }
+                .tint(.black)
             }
           
    

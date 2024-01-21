@@ -9,16 +9,19 @@ import SwiftUI
 
 struct MangasByCategoryView: View {
     var vm: MangasByCategoryVM
-    let itemAdaptativeTypes = GridItem(.adaptive(minimum: 240))
+    let itemAdaptativeTypes = GridItem(.adaptive(minimum: 190), spacing: 8)
     
     var body: some View {
         ScrollView(.vertical) {
-            LazyHGrid(rows: [itemAdaptativeTypes], spacing: 20) {
+            LazyVGrid(columns: [itemAdaptativeTypes], spacing: 8) {
                 ForEach(
                     vm.mangasLogic.mangas
                 ) { manga in
                     NavigationLink(value: manga) {
                         MangaListItemView(manga: manga)
+                            .onAppear {
+                                vm.getNextPage(idManga: manga.id)
+                            }
                     }
                 }
             }

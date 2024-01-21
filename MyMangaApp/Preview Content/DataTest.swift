@@ -8,11 +8,26 @@
 import Foundation
 
 struct DataTest: DataInteractor {
-    func getMangasByAuthor(id: String) async throws -> [MangaItem] {
+    func searchMangaContains(searchText: String, page: Int, per: Int) async throws -> ([MangaItem], Int) {
+        let url = Bundle.main.url(forResource: "searchMangaContains", withExtension: "json")!
+        let data = try Data(contentsOf: url)
+        let listRes = try JSONDecoder().decode(MangaListDto.self, from: data)
+        return (listRes.items.map { $0.toPresentation }, listRes.metadata.total)
+    }
+    
+    func searchAuthor(text: String) async throws -> [Author] {
+        let url = Bundle.main.url(forResource: "searchAuthor", withExtension: "json")!
+        let data = try Data(contentsOf: url)
+        let listRes = try JSONDecoder().decode([AuthorDto].self, from: data)
+        return listRes.map { $0.toPresentation }
+    }
+    
+    
+    func getMangasByAuthor(id: String, page: Int, per: Int) async throws -> ([MangaItem], Int) {
         let url = Bundle.main.url(forResource: "listMangas", withExtension: "json")!
         let data = try Data(contentsOf: url)
         let listRes = try JSONDecoder().decode(MangaListDto.self, from: data)
-        return listRes.items.map { $0.toPresentation }
+        return (listRes.items.map { $0.toPresentation }, listRes.metadata.total)
     }
     
     func deleteUserManga(id: Int) async throws {
@@ -31,11 +46,11 @@ struct DataTest: DataInteractor {
         return ["Action", "Adventure"]
     }
     
-    func getMangaListByGenre(page: Int, per: Int, genre: String) async throws -> [MangaItem] {
+    func getMangaListByGenre(page: Int, per: Int, genre: String) async throws -> ([MangaItem], Int) {
         let url = Bundle.main.url(forResource: "listMangas", withExtension: "json")!
         let data = try Data(contentsOf: url)
         let listRes = try JSONDecoder().decode(MangaListDto.self, from: data)
-        return listRes.items.map { $0.toPresentation }
+        return (listRes.items.map { $0.toPresentation }, listRes.metadata.total)
     }
     
     func postCollectionManga(token: String, manga: UserMangaCollectionRequest) async throws {

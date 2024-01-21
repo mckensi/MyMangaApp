@@ -68,3 +68,7 @@ extension UserMangaDetailVM {
 extension MangasByCategoryVM {
     static let test = MangasByCategoryVM(network: DataTest(), genre: "Avant Garde")
 }
+
+extension Author {
+    static let test = Author(id: "1", lastName: "Murcia", firstName: "Daniel", role: "Escritor")
+}

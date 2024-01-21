@@ -17,14 +17,14 @@ struct MangaListItemView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .scaledToFill()
-                    .frame(height: 200)
+                    .frame(width: 160, height: 240)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .shadow(radius: 4)
             } placeholder: {
                 Image(systemName: "book")
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 200)
+                    .frame(width: 160, height: 240)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
             if showDescription {
@@ -42,7 +42,7 @@ struct MangaListItemView: View {
            
             }
         }
-        .frame(width: 140, height: 240)
+        .frame(width: 160, height: 240)
         .padding()
     }
 }

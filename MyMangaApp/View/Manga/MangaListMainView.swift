@@ -18,14 +18,16 @@ struct MangaListMainView: View {
         
         NavigationStack {
             ScrollView {
-                VStack {
+                LazyVStack {
                     ForEach(
                         vm.mangasLogic.getGenres(
                             mangas: vm.mangasLogic.mangas
                         )
                     ) { genre in
                         NavigationLink(value: genre) {
-                            CategoryTitleView(genre: genre)
+                            HStack {
+                                CategoryTitleView(genre: genre)
+                            }
                         }
                         ScrollView(.horizontal) {
                             LazyHGrid(rows: [itemAdaptativeTypes], spacing: 20) {
@@ -43,6 +45,7 @@ struct MangaListMainView: View {
                     }
                     
                 }
+                .tint(.black)
                 .padding()
             }
             .navigationDestination(for: MangaItem.self) { manga in
@@ -103,6 +106,9 @@ struct CategoryTitleView: View {
             Text(genre.genre)
                 .font(.title2)
                 .bold()
+            Image(systemName: "chevron.right")
+                .fontWeight(.bold)
+                .foregroundStyle(.secondary)
             Spacer()
         }
     }

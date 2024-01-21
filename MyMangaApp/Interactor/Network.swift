@@ -14,11 +14,13 @@ protocol DataInteractor {
     func login(email: String, password: String) async throws -> String
     func postCollectionManga(token: String, manga: UserMangaCollectionRequest) async throws
     func getUserCollection()  async throws -> [MangaItem]
-    func getMangaListByGenre(page: Int, per: Int, genre: String) async throws -> [MangaItem]
+    func getMangaListByGenre(page: Int, per: Int, genre: String) async throws -> ([MangaItem], Int)
     func getMangaDictionaryByGenre(page: Int, per: Int, genres: [String]) async throws -> [MangaItem]
     func getUserManga(id: Int) async throws -> UserCollectionManga
     func deleteUserManga(id: Int) async throws
-    func getMangasByAuthor(id: String) async throws -> [MangaItem]
+    func getMangasByAuthor(id: String, page: Int, per: Int) async throws -> ([MangaItem], Int)
+    func searchMangaContains(searchText: String, page: Int, per: Int) async throws -> ([MangaItem], Int)
+    func searchAuthor(text: String) async throws -> [Author]
 }
 
 public struct Network: DataInteractor {
@@ -107,7 +109,7 @@ public struct Network: DataInteractor {
         return result
     }
     
-    func getMangaListByGenre(page: Int, per: Int, genre: String) async throws -> [MangaItem] {
+    func getMangaListByGenre(page: Int, per: Int, genre: String) async throws -> ([MangaItem], Int) {
         
         let mangaListByGenre = try await getJSON(request: .get(url: .getMangaListByGenre(page: page, per: per, genre: genre)), type: MangaListDto.self)
         
@@ -116,7 +118,7 @@ public struct Network: DataInteractor {
             result.append(manga.toPresentation)
         }
         
-        return result
+        return (result, mangaListByGenre.metadata.total)
     }
     
     
@@ -126,7 +128,7 @@ public struct Network: DataInteractor {
             for genre in genres {
                 group.addTask {
                     do {
-                        let mangas = try await getMangaListByGenre(page: page, per: per, genre: genre)
+                        let mangas = try await getMangaListByGenre(page: page, per: per, genre: genre).0
                         return mangas
                     } catch {
                         print(error)
@@ -190,12 +192,38 @@ public struct Network: DataInteractor {
         try await get(request: .delete(url: .deleteUserManga(id: id), appToken: "sLGH38NhEJ0_anlIWwhsz1-LarClEohiAHQqayF0FY", token: token))
     }
     
-    func getMangasByAuthor(id: String) async throws -> [MangaItem] {
-        let mangaList = try await getJSON(request: .get(url: .getMangasByAuthorId(id: id)), type: MangaListDto.self)
+    func getMangasByAuthor(id: String, page: Int, per: Int) async throws -> ([MangaItem], Int){
+        let mangaList = try await getJSON(request: .get(url: .getMangasByAuthorId(id: id, page: page, per: per)), type: MangaListDto.self)
         var mangaItems: [MangaItem] = []
         for item in mangaList.items {
             mangaItems.append(item.toPresentation)
         }
-        return mangaItems
+        return (mangaItems, mangaList.metadata.total)
     }
+    
+    func searchMangaContains(searchText: String, page: Int, per: Int) async throws -> ([MangaItem], Int) {
+        let mangaList = try await getJSON(request: .get(url: .searchMangaContains(search: searchText, page: page, per: per)), type: MangaListDto.self)
+        var mangas:[MangaItem] = []
+        
+        mangaList.items.forEach { manga in
+            mangas.append(manga.toPresentation)
+        }
+        
+        return (mangas, mangaList.metadata.total)
+    }
+
+    
+    
+    func searchAuthor(text: String) async throws -> [Author] {
+        let authorList = try await getJSON(request: .get(url: .searchAuthor(search: text)), type: [AuthorDto].self)
+        var authors:[Author] = []
+        
+        authorList.forEach { author in
+            authors.append(author.toPresentation)
+        }
+        
+        return authors
+    }
+    
+    
 }

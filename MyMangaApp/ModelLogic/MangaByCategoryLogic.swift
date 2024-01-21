@@ -10,5 +10,6 @@ import Foundation
 @Observable
 final class MangaByCategoryLogic {
     var mangas: [MangaItem] = []
-    var page: Int = 0
+    var page: Int = 1
+    var total: Int = 0
 }

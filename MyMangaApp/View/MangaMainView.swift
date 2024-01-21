@@ -18,7 +18,10 @@ struct MangaMainView: View {
                 .tabItem {
                     Label("Libreria", systemImage: "books.vertical")
                 }
-            
+            MangasSearchView(vm: MangasSearchVM())
+                .tabItem {
+                    Label("Buscar", systemImage: "magnifyingglass")
+                }
         }
     }
 }
