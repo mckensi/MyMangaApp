@@ -24,18 +24,21 @@ final class MangasByAuthorVM {
         self.network = network
         self.author = author
         
-        Task { await getData() }
+        Task { 
+            await getData()
+            mangasLogic.mangas = mangasLogic.mangasWithoutFilters
+        }
     }
     
     private func getData() async {
         do {
             let mangasDownloaded = try await network.getMangasByAuthor(id: author.id, page: mangasLogic.page, per: 20)
             let filteredArray = mangasDownloaded.0.filter { manga in
-                !mangasLogic.mangas.contains(manga)
+                !mangasLogic.mangasWithoutFilters.contains(manga)
             }
 
             await MainActor.run {
-                mangasLogic.mangas.append(contentsOf: filteredArray)
+                mangasLogic.mangasWithoutFilters.append(contentsOf: filteredArray)
                 mangasLogic.total = mangasDownloaded.1
                 mangasLogic.page += 1
             }
@@ -49,8 +52,8 @@ final class MangasByAuthorVM {
     }
     
     func getNextPage(idManga: Int) {
-        guard idManga == mangasLogic.mangas.last?.id else { return }
-        if mangasLogic.mangas.count < mangasLogic.total {
+        guard idManga == mangasLogic.mangasWithoutFilters.last?.id else { return }
+        if mangasLogic.mangasWithoutFilters.count < mangasLogic.total {
             Task {
                 await getData()
             }

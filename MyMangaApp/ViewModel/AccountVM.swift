@@ -44,6 +44,7 @@ final class AccountVM {
                 let token = try await network.login(email: email, password: password)
                 try User.shared.saveToken(token: token, account: email)
                 try User.shared.saveEmail(email: email)
+                try User.shared.savePassword(password: password)
                 isUserLogged = true
                 success()
             } catch {

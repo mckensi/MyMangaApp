@@ -13,6 +13,9 @@ public enum UserError: Error, CustomStringConvertible {
     case errorSaveToken
     case errorGetToken
     case errorGetEmail
+    case errorSavePassword
+    case errorGetPassword
+    case errorDeletePassword
     case unknown
     
     public var description: String {
@@ -29,6 +32,12 @@ public enum UserError: Error, CustomStringConvertible {
             "Error obteniendo el email"
         case .errorDeleteEmail:
             "Error borrando el email"
+        case .errorSavePassword:
+            "Error borrando el password"
+        case .errorGetPassword:
+            "Error borrando obteniendo el password"
+        case .errorDeletePassword:
+            "Error borrando el password"
         }
     }
 }

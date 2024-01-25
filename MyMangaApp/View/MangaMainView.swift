@@ -14,7 +14,7 @@ struct MangaMainView: View {
                 .tabItem {
                     Label("Lee ahora", systemImage: "book")
                 }
-            UserCollectionView()
+            UserMangaCollectionView()
                 .tabItem {
                     Label("Libreria", systemImage: "books.vertical")
                 }

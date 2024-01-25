@@ -38,9 +38,16 @@ public struct Network: DataInteractor {
         } else if response.statusCode == 401 {
             let errorResponse = try JSONDecoder().decode(ErrorResponseDto.self, from: data)
             if errorResponse.reason == "Users not authenticated." {
-                let token = try await renewUser()
-                let account = try User.shared.getEmail() ?? ""
-                try User.shared.saveToken(token: token, account: account)
+                guard let email = try User.shared.getEmail() else {
+                    throw NetworkError.unknown
+                }
+                guard let password = try User.shared.getPassword() else {
+                    throw NetworkError.unknown
+                }
+                
+                let token = try await login(email: email, password: password)
+                try User.shared.saveToken(token: token, account: email)
+
                 return try await getJSON(request: request, type: type)
             } else {
                 throw NetworkError.status(response.statusCode)

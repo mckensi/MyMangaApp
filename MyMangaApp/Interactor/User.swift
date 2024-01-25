@@ -85,6 +85,58 @@ public struct User: UserInteractor {
             throw UserError.errorGetEmail
         }
     }
+    
+    
+    func savePassword(password: String) throws {
+        if let data = password.data(using: .utf8) {
+            let query: [String: Any] = [
+                kSecClass as String: kSecClassGenericPassword,
+                kSecAttrService as String: service,
+                kSecAttrAccount as String: "password",
+                kSecValueData as String: data
+            ]
+
+            SecItemDelete(query as CFDictionary)
+
+            let status = SecItemAdd(query as CFDictionary, nil)
+            if status != errSecSuccess {
+                throw UserError.errorSavePassword
+            }
+        }
+    }
+    
+    
+    func deletePassword() throws {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: service,
+            kSecAttrAccount as String: "password"
+        ]
+
+        let status = SecItemDelete(query as CFDictionary)
+        if status != errSecSuccess {
+            throw UserError.errorDeletePassword
+        }
+    }
+    
+    func getPassword() throws -> String? {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: service,
+            kSecAttrAccount as String: "password",
+            kSecReturnData as String: kCFBooleanTrue!,
+            kSecMatchLimit as String: kSecMatchLimitOne
+        ]
+
+        var dataTypeRef: AnyObject?
+        let status = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
+
+        if status == errSecSuccess, let retrievedData = dataTypeRef as? Data {
+            return String(data: retrievedData, encoding: .utf8)
+        } else {
+            throw UserError.errorGetPassword
+        }
+    }
 
     func saveToken(token: String, account: String) throws {
         if let data = token.data(using: .utf8) {
@@ -142,6 +194,7 @@ public struct User: UserInteractor {
         
         try deleteToken(account: email)
         try deleteEmail()
+        try deletePassword()
     }
     
     func isUserLogged() -> Bool {

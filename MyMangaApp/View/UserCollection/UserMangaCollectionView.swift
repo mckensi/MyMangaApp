@@ -77,17 +77,20 @@ struct UserMangaCollectionView: View {
 struct MangaUserCollectionItems: View {
     var mangas: [MangaItem]
     @Binding var showAccountView: Bool
+    let itemAdaptativeTypes = GridItem(.adaptive(minimum: 190), spacing: 8)
+    
+    
     var body: some View {
         ScrollView {
-            VStack {
-                ForEach(mangas) { manga in
+            LazyVGrid(columns: [itemAdaptativeTypes], spacing: 8) {
+                ForEach(
+                    mangas
+                ) { manga in
                     NavigationLink(value: manga) {
                         MangaListItemView(manga: manga)
                     }
-                    
                 }
             }
-            .padding()
         }
         .navigationDestination(for: MangaItem.self) { manga in
             UserMangaDetailView(vm: UserMangaDetailVM(id: manga.id))

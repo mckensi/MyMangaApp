@@ -28,7 +28,7 @@ struct AccountView: View {
                         HStack(spacing: 10) {
                             Image(systemName: "book")
                             NavigationLink {
-                                UserCollectionView()
+                                UserMangaCollectionView()
                             } label: {
                                 Text("Libros")
                             }
