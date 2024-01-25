@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct UserCollectionView: View {
+struct UserMangaCollectionView: View {
     @Environment(UserMangaCollectionVM.self) var vm
     @Environment(AccountVM.self) var accountVm
     
@@ -69,7 +69,7 @@ struct UserCollectionView: View {
 }
 
 #Preview {
-    UserCollectionView()
+    UserMangaCollectionView()
         .environment(UserMangaCollectionVM.test)
         .environment(AccountVM.testLogin)
 }
