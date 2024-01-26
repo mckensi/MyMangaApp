@@ -26,6 +26,7 @@ struct MangasByCategoryView: View {
                 }
             }
         }
+        .navigationTitle(vm.genre)
         .toolbar(content: {
             Menu {
                 Section("Temas") {

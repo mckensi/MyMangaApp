@@ -42,7 +42,7 @@ struct MangaListItemView: View {
            
             }
         }
-        .frame(width: 160, height: 240)
+        .frame(width: 160, height: 280)
         .padding()
     }
 }

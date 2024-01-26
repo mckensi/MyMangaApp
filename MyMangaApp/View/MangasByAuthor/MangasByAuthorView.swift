@@ -26,7 +26,7 @@ struct MangasByAuthorView: View {
                 }
             }
         }
-        .navigationTitle(vm.author.firstName)
+        .navigationTitle("\(vm.author.firstName) \(vm.author.lastName)")
         .toolbar(content: {
             Menu {
                 Section("Temas") {

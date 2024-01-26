@@ -30,7 +30,7 @@ struct SelectableHStack: View {
                 ForEach(0..<items.count, id: \.self) { index in
                     Text(items[index])
                         .frame(width: itemWidth, height: itemHeight)
-                        .foregroundColor(selected == index ? .white : .black)
+                        .foregroundColor(selected == index ? .white : .primary)
                         .background(Color.clear)
                         .font(.footnote)
                         .fontWeight(.bold)
