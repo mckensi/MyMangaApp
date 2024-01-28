@@ -32,6 +32,10 @@ struct MangaItem: Identifiable, Hashable {
 struct Author: Identifiable, Hashable {
     let id, lastName, firstName: String
     let role: String
+    
+    func getFullName() -> String {
+        "\(firstName) \(lastName)"
+    }
 }
 
 // MARK: - Demographic

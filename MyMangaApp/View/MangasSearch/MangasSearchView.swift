@@ -104,7 +104,7 @@ struct MangaSearchItemView: View {
                 cover
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 60)
+                    .frame(width: 40, height: 60)
                     .clipShape(RoundedRectangle(cornerRadius: 4))
                     .shadow(radius: 1)
                 
@@ -112,12 +112,12 @@ struct MangaSearchItemView: View {
                 Image(systemName: "book")
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 60)
+                    .frame(width: 40, height: 60)
             }
             VStack(alignment: .leading) {
                 Text(manga.title)
                     .font(.caption)
-                Text(manga.title)
+                Text(manga.authors.first?.getFullName() ?? "")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             }

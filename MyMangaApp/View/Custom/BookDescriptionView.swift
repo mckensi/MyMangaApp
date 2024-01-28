@@ -14,6 +14,7 @@ struct BookDescriptionView: View {
             Text("Descripción")
                 .font(.headline)
             Text(manga.sypnosis ?? "")
+                .font(.caption)
         }
         .padding()
     }
