@@ -9,7 +9,7 @@ import Foundation
 
 @Observable
 final class MangasVolumeSelectionVM {
-    let mangasLogic =  MangaVolumeSelectionLogic()
+    let mangasLogic =  MangasVolumeSelectionLogic()
     
     var alertMsg: String = ""
     var showAlert: Bool = false
@@ -29,6 +29,6 @@ final class MangasVolumeSelectionVM {
     }
     
     func isEnabledButton() -> Bool {
-        return mangasLogic.mangasSelected.isEmpty && mangasLogic.mangaReading != nil
+        return !mangasLogic.mangasSelected.isEmpty && mangasLogic.mangaReading != nil
     }
 }

@@ -22,7 +22,7 @@ final class MangaDetailVM {
         self.network = network
     }
     
-    func addMangaToLibrary(manga: MangaItem) async {
+    func addMangaToLibrary(manga: MangaItem, volumesOwned: [Int], readingVolume: Int) async {
         let mangaRequest = UserMangaCollectionRequest(
             manga: manga.id,
             completeCollection: false,

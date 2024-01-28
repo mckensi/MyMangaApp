@@ -10,6 +10,7 @@ import SwiftUI
 struct UserMangaDetailView: View {
     @Environment(\.dismiss) var dismiss
     var vm: UserMangaDetailVM
+    var deleteComplation: () -> Void
     
     var body: some View {
         @Bindable var bvm = vm
@@ -32,6 +33,7 @@ struct UserMangaDetailView: View {
                     Task {
                         vm.removeUserManga {
                             dismiss()
+                            deleteComplation()
                         }
                     }
                 }
@@ -44,7 +46,6 @@ struct UserMangaDetailView: View {
             Text(vm.alertMsg)
         }
         .alert("Manga agregado.", isPresented: $bvm.showSuccessAddedMangaAlert) {
-            
         }
         message: {
             Text("El Manga ha sido agregado a tu colección.")
@@ -53,5 +54,5 @@ struct UserMangaDetailView: View {
 }
 
 #Preview {
-    UserMangaDetailView(vm: UserMangaDetailVM.test)
+    UserMangaDetailView(vm: UserMangaDetailVM.test, deleteComplation: {})
 }

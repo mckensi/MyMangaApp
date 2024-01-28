@@ -19,7 +19,9 @@ struct UserMangaCollectionView: View {
         NavigationStack {
             Group {
                 if accountVm.isUserLogged {
-                    MangaUserCollectionItems(mangas: vm.mangasLogic.mangas, showAccountView: $showAccountView)
+                    MangaUserCollectionItems(mangas: vm.mangasLogic.mangas, deleteComplation: {
+                        Task { await vm.getData() }
+                    }, showAccountView: $showAccountView)
                 } else {
                     Text("Inicia sesión para ver tu biblioteca")
                 }
@@ -76,6 +78,7 @@ struct UserMangaCollectionView: View {
 
 struct MangaUserCollectionItems: View {
     var mangas: [MangaItem]
+    var deleteComplation: () -> Void
     @Binding var showAccountView: Bool
     let itemAdaptativeTypes = GridItem(.adaptive(minimum: 190), spacing: 8)
     
@@ -93,7 +96,9 @@ struct MangaUserCollectionItems: View {
             }
         }
         .navigationDestination(for: MangaItem.self) { manga in
-            UserMangaDetailView(vm: UserMangaDetailVM(id: manga.id))
+            UserMangaDetailView(vm: UserMangaDetailVM(id: manga.id), deleteComplation: {
+                deleteComplation()
+            })
         }
     }
 }

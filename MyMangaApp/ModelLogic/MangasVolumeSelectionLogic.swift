@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-final class MangaVolumeSelectionLogic {
+final class MangasVolumeSelectionLogic {
     var mangasSelected: [Int] = []
     var mangaReading: Int?
 }

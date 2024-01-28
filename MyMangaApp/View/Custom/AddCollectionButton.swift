@@ -8,14 +8,8 @@
 import SwiftUI
 
 struct AddCollectionButton: View {
-    @Environment(MangaDetailVM.self) var vm
-    let manga: MangaItem
     var body: some View {
-        Button("Agregar", role: .none) {
-            Task {
-                await vm.addMangaToLibrary(manga: manga)
-            }
-        }
+       Text("Agregar")
         .foregroundStyle(.background)
         .fontWeight(.bold)
         .frame(width: 300, height: 52)
@@ -26,6 +20,5 @@ struct AddCollectionButton: View {
 }
 
 #Preview {
-    AddCollectionButton(manga: .test)
-        .environment(MangaDetailVM.test)
+    AddCollectionButton()
 }

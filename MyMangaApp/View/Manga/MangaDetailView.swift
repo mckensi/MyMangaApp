@@ -12,6 +12,7 @@ struct MangaDetailView: View {
     var manga: MangaItem
     
     @Environment(MangaDetailVM.self) var vm
+    @State var showAccountView = false
     
     var body: some View {
         @Bindable var bvm = vm
@@ -20,7 +21,17 @@ struct MangaDetailView: View {
             LazyVStack {
                 BookImage(url: manga.mainPicture)
                 BookTitleRatingAuthorView(manga: manga)
-                AddCollectionButton(manga: manga)
+                Button {
+                    if manga.volumes != nil {
+                        showAccountView.toggle()
+                    } else {
+                        Task {
+                            await vm.addMangaToLibrary(manga: manga, volumesOwned: [1], readingVolume: 1)
+                        }
+                    }
+                } label: {
+                    AddCollectionButton()
+                }
                 BookDescriptionView(manga: manga)
                 BookCollectionDetailsView(manga: manga)
                 MoreBooksAuthorsGridView(manga: manga)
@@ -33,7 +44,6 @@ struct MangaDetailView: View {
         Text(vm.alertMsg)
     }
     .alert("Manga agregado.", isPresented: $bvm.showSuccessAddedMangaAlert) {
-        
     }
     message: {
         Text("El Manga ha sido agregado a tu colección.")
@@ -47,6 +57,9 @@ struct MangaDetailView: View {
     .navigationDestination(for: Author.self) { author in
         MangasByAuthorView(vm: MangasByAuthorVM(author: author))
     }
+    .sheet(isPresented: $showAccountView, content: {
+        MangasVolumeSelectionView(manga: manga)
+    })
     }
 }
 
