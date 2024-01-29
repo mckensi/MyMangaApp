@@ -16,26 +16,32 @@ struct UserMangaDetailView: View {
         @Bindable var bvm = vm
         ScrollView {
             VStack {
-                AsyncImage(url: vm.userManga?.manga.mainPicture) { cover in
-                    cover
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 300)
-                    
-                } placeholder: {
-                    Image(systemName: "book")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 150)
-                }
-                Text(vm.userManga?.manga.title ?? "")
-                Button("Borrar de la biblioteca", role: .destructive) {
-                    Task {
-                        vm.removeUserManga {
-                            dismiss()
-                            deleteComplation()
+                if let userManga = vm.userManga {
+                    BookImage(url: userManga.manga.mainPicture)
+                    BookTitleRatingAuthorView(manga: userManga.manga)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Volumenes")
+                            .font(.caption)
+                            .fontWeight(.bold)
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(userManga.volumesOwned, id: \.self) { volume in
+                                    Text("\(volume)")
+                                        .font(.caption2)
+                                        .foregroundStyle(userManga.readingVolume == volume ? .primary : .secondary)
+                                }
+                            }
                         }
                     }
+                    .padding(.top, 4)
+                    .padding(.horizontal)
+                    Divider()
+                        .padding(.top)
+                        .padding(.horizontal)
+                    BookDescriptionView(manga: userManga.manga)
+                    Divider()
+                        .padding(.horizontal)
+                    BookCollectionDetailsView(manga: userManga.manga)
                 }
             }
         }
@@ -50,9 +56,27 @@ struct UserMangaDetailView: View {
         message: {
             Text("El Manga ha sido agregado a tu colección.")
         }
+        .toolbar(content: {
+            Menu {
+                Button("Borrar de la biblioteca", role: .destructive) {
+                    Task {
+                        vm.removeUserManga {
+                            dismiss()
+                            deleteComplation()
+                        }
+                    }
+                }
+            }
+        label: {
+            Image(systemName: "ellipsis.circle.fill")
+                .imageScale(.large)
+        }
+        })
     }
 }
 
 #Preview {
-    UserMangaDetailView(vm: UserMangaDetailVM.test, deleteComplation: {})
+    NavigationView(content: {
+        UserMangaDetailView(vm: UserMangaDetailVM.test, deleteComplation: {})
+    })
 }

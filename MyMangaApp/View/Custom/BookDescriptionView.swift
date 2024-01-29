@@ -12,7 +12,7 @@ struct BookDescriptionView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Descripción")
-                .font(.headline)
+                .fontWeight(.bold)
             Text(manga.sypnosis ?? "")
                 .font(.caption)
         }

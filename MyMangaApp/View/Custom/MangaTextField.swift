@@ -12,6 +12,8 @@ struct MangaTextField: View {
     @Binding var text: String
     var validator: (String) -> String? = Validators.shared.isEmpty
     var keyType: UITextContentType?
+    var isSecureField: Bool = false
+    @State var showPassword: Bool = false
     
     @State private var errorMessage = ""
     
@@ -22,18 +24,37 @@ struct MangaTextField: View {
                 .font(.headline)
                 .padding(.leading, 10)
             HStack {
-                TextField("Enter the \(localized.lowercased())", text: $text)
-                    .textContentType(.emailAddress)
-                    .autocorrectionDisabled()
-                Button {
-                    text = ""
-                } label: {
-                    Image(systemName: "xmark")
-                        .symbolVariant(.fill)
-                        .symbolVariant(.circle)
+                if isSecureField && !showPassword {
+                    SecureField("Enter the \(localized.lowercased())", text: $text)
+                        .textContentType(keyType)
+                        .autocorrectionDisabled()
+                } else {
+                    TextField("Enter the \(localized.lowercased())", text: $text)
+                        .textContentType(keyType)
+                        .autocorrectionDisabled()
                 }
-                .buttonStyle(.plain)
-                .opacity(text.isEmpty ? 0.0 : 0.5)
+                if isSecureField {
+                    Button {
+                        showPassword.toggle()
+                    } label: {
+                        Image(systemName: showPassword ? "eye.slash" : "eye")
+                            .symbolVariant(.fill)
+                            .symbolVariant(.circle)
+                    }
+                    .buttonStyle(.plain)
+                    .opacity(text.isEmpty ? 0.0 : 0.5)
+                } else {
+                    Button {
+                        text = ""
+                    } label: {
+                        Image(systemName: "xmark")
+                            .symbolVariant(.fill)
+                            .symbolVariant(.circle)
+                    }
+                    .buttonStyle(.plain)
+                    .opacity(text.isEmpty ? 0.0 : 0.5)
+                }
+          
             }
             .padding(10)
             .background {

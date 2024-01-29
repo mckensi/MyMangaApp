@@ -26,8 +26,8 @@ final class MangaDetailVM {
         let mangaRequest = UserMangaCollectionRequest(
             manga: manga.id,
             completeCollection: false,
-            volumesOwned: [1, 2, 3],
-            readingVolume: 1
+            volumesOwned: volumesOwned,
+            readingVolume: readingVolume
         )
         
         do {

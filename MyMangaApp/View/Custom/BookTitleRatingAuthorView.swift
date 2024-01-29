@@ -10,16 +10,27 @@ import SwiftUI
 struct BookTitleRatingAuthorView: View {
     let manga: MangaItem
     var body: some View {
-        VStack(alignment: .center) {
+        VStack(alignment: .center, spacing: 0) {
             Text(manga.title)
-                .font(.title2)
+                .font(.title)
                 .fontWeight(.bold)
             ForEach(manga.authors) { author in
                 Text("\(author.firstName) \(author.lastName)")
+                    .font(.subheadline)
             }
-            Text("Calificación: \(Int(manga.score))/10")
-                .foregroundStyle(.secondary)
-                .font(.caption)
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Calificación")
+                        .font(.caption)
+                        .fontWeight(.bold)
+                    Text("\(Int(manga.score))/10")
+                        .foregroundStyle(.secondary)
+                        .font(.caption2)
+                }
+                Spacer()
+            }
+            .padding(.horizontal)
+            .padding(.vertical, 12)
         }
         .frame(maxWidth: .infinity)
     }

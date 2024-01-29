@@ -22,7 +22,9 @@ struct LoginView: View {
         ScrollView {
             VStack {
                 MangaTextField(label: "Correo", text: $email, validator: Validators.shared.validEmail(_:), keyType: .emailAddress)
-                MangaTextField(label: "Contraseña", text: $password, validator: Validators.shared.greaterThan4(_:))
+                MangaTextField(label: "Contraseña", text: $password, validator: Validators.shared.greaterThan4(_:), keyType: .password,
+                    isSecureField: true
+                )
                 Button(role: .none) {
                     if isValid {
                         vm.loginUser(email: email, password: password) {

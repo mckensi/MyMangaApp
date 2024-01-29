@@ -34,6 +34,9 @@ struct MangasVolumeSelectionView: View {
                                     .foregroundStyle(.red)
                                     .multilineTextAlignment(.trailing)
                                     .padding(.bottom, 30)
+                                    .onTapGesture {
+                                        vm.selectAllVolumes(volumes: manga.volumes ?? 1)
+                                    }
                             }
                         }
                         VolumesListView(vm: vm, volumes: manga.volumes ?? 0)
@@ -83,7 +86,7 @@ struct VolumesListView: View {
     let volumes: Int
     var body: some View {
         VStack {
-            ForEach(1..<(volumes) + 1) { volume in
+            ForEach(1..<(volumes) + 1, id: \.self) { volume in
                 VStack {
                     HStack {
                         Text("\(volume)")
@@ -110,7 +113,7 @@ struct VolumeReadingListView: View {
     
     var body: some View {
         VStack {
-            ForEach(1..<(volumes) + 1) { volume in
+            ForEach(1..<(volumes) + 1, id: \.self) { volume in
                 VStack {
                     HStack {
                         Text("\(volume)")
@@ -118,6 +121,9 @@ struct VolumeReadingListView: View {
                         Image(systemName: vm.mangasLogic.mangaReading == volume ? "checkmark.circle.fill" : "circle")
                             .onTapGesture {
                                 vm.selectReadingVolume(volume: volume)
+                                if !vm.mangasLogic.mangasSelected.contains(volume) {
+                                    vm.addVolume(volume: volume)
+                                }
                             }
                     }
                     if volume != volumes {
