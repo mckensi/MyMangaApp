@@ -23,23 +23,30 @@ struct MangasSearchIpadView: View {
                 ScrollView {
                     LazyVStack {
                         ForEach(vm.mangasLogic.mangas) { manga in
-                            MangaSearchItemIpadView(manga: manga)
-                                .onAppear {
-                                    vm.searchMangaNextPage(idManga: manga.id)
-                                }
+                            NavigationLink(value: manga) {
+                                MangaSearchItemIpadView(manga: manga)
+                                    .onAppear {
+                                        vm.searchMangaNextPage(idManga: manga.id)
+                                    }
+                            }
                         }
                     }
-                }
                 .padding()
+    
+                }
             } else {
                 ScrollView {
                     LazyVStack {
                         ForEach(vm.mangasLogic.authors) { author in
-                            AuthorSearchItemView(author: author)
+                            NavigationLink(value: author) {
+                                AuthorSearchItemView(author: author)
+                            }
                         }
                     }
+        
                 }
                 .padding()
+           
             }
         }
         .onChange(of: textToSearch) { oldValue, newValue in
@@ -77,5 +84,5 @@ struct MangasSearchIpadView: View {
 }
 
 #Preview {
-    MangasSearchIpadView(vm: MangasSearchVM(network: DataTest()), textToSearch: .constant(""))
+    MangasSearchIpadView(vm: MangasSearchVM(network: DataTest()), textToSearch: .constant("s"))
 }

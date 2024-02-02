@@ -18,6 +18,7 @@ struct BookDescriptionView: View {
                     .font(.title)
                     .fontWeight(.bold)
                 Text(manga.sypnosis ?? "")
+                    .font(.callout)
             default:
                 Text("Descripción")
                     .fontWeight(.bold)

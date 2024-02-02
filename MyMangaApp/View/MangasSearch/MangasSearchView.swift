@@ -14,10 +14,11 @@ struct MangasSearchView: View {
     @State var textToSearch = ""
     let items = ["Mangas", "Autores"]
     @State var selectedOption = 0
+    let deviceIdiom = UIDevice.current.userInterfaceIdiom
     
     var body: some View {
         @Bindable var bvm = vm
-        NavigationView {
+        NavigationStack {
             VStack {
                 SelectableHStack(items: items, selected: $selectedOption)
                     .padding(.horizontal)
@@ -25,10 +26,13 @@ struct MangasSearchView: View {
                         ScrollView {
                             LazyVStack {
                                 ForEach(vm.mangasLogic.mangas) { manga in
-                                    MangaSearchItemView(manga: manga)
-                                        .onAppear {
-                                            vm.searchMangaNextPage(idManga: manga.id)
-                                        }
+                                    NavigationLink(value: manga) {
+                                        MangaSearchItemView(manga: manga)
+                                            .onAppear {
+                                                vm.searchMangaNextPage(idManga: manga.id)
+                                            }
+                                    }
+                                    .tint(.primary)
                                 }
                             }
                         }
@@ -37,12 +41,21 @@ struct MangasSearchView: View {
                         ScrollView {
                             LazyVStack {
                                 ForEach(vm.mangasLogic.authors) { author in
-                                    AuthorSearchItemView(author: author)
+                                    NavigationLink(value: author) {
+                                        AuthorSearchItemView(author: author)
+                                    }
+                                    .tint(.primary)
                                 }
                             }
                         }
                         .padding()
                     }
+            }
+            .navigationDestination(for: MangaItem.self) { manga in
+                MangaDetailView(manga: manga)
+            }
+            .navigationDestination(for: Author.self) { author in
+                MangasByAuthorView(vm: MangasByAuthorVM(author: author))
             }
             .searchable(text: $textToSearch)
             .onSubmit(of: .search) {

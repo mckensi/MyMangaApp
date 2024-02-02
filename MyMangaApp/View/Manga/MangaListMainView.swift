@@ -61,6 +61,9 @@ struct MangaListMainView: View {
                 }
                
             }
+            .navigationDestination(for: Author.self) { author in
+                MangasByAuthorView(vm: MangasByAuthorVM(author: author))
+            }
             .navigationDestination(for: Genre.self) { genre in
                 MangasByCategoryView(vm: MangasByCategoryVM(network: Network(), genre: genre.genre))
             }

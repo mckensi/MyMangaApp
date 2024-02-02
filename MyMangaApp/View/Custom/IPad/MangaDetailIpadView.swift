@@ -58,12 +58,6 @@ struct MangaDetailIpadView: View {
     .onAppear {
         vm.getBooksAllAuthors(authors: manga.authors)
     }
-    .navigationDestination(for: MangaItem.self) { manga in
-        MangaDetailView(manga: manga)
-    }
-    .navigationDestination(for: Author.self) { author in
-        MangasByAuthorView(vm: MangasByAuthorVM(author: author))
-    }
     .sheet(isPresented: $showAccountView, content: {
         MangasVolumeSelectionView(manga: manga)
     })
