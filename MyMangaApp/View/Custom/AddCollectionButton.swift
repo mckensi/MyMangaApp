@@ -8,13 +8,26 @@
 import SwiftUI
 
 struct AddCollectionButton: View {
+    let deviceIdiom = UIDevice.current.userInterfaceIdiom
+    
     var body: some View {
-       Text("Agregar")
-        .foregroundStyle(.background)
-        .fontWeight(.bold)
-        .frame(width: 300, height: 52)
-        .background {
-            RoundedRectangle(cornerRadius: 26)
+        switch deviceIdiom {
+        case .pad:
+            Text("Agregar")
+             .foregroundStyle(.background)
+             .fontWeight(.bold)
+             .frame(width: 200, height: 52)
+             .background {
+                 RoundedRectangle(cornerRadius: 12)
+             }
+        default:
+            Text("Agregar")
+             .foregroundStyle(.background)
+             .fontWeight(.bold)
+             .frame(width: 300, height: 52)
+             .background {
+                 RoundedRectangle(cornerRadius: 26)
+             }
         }
     }
 }

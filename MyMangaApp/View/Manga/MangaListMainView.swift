@@ -9,10 +9,14 @@ import SwiftUI
 
 struct MangaListMainView: View {
     
+    
     @Environment(MangaListVM.self) var vm
     @Environment(AccountVM.self) var accountVm
     @State var showAccountView = false
     let itemAdaptativeTypes = GridItem(.adaptive(minimum: 240))
+    let deviceIdiom = UIDevice.current.userInterfaceIdiom
+    
+    
     var body: some View {
         @Bindable var bvm = vm
         
@@ -49,7 +53,13 @@ struct MangaListMainView: View {
                 .padding()
             }
             .navigationDestination(for: MangaItem.self) { manga in
-                MangaDetailView(manga: manga)
+                switch deviceIdiom {
+                case .pad:
+                    MangaDetailIpadView(manga: manga)
+                default:
+                    MangaDetailView(manga: manga)
+                }
+               
             }
             .navigationDestination(for: Genre.self) { genre in
                 MangasByCategoryView(vm: MangasByCategoryVM(network: Network(), genre: genre.genre))

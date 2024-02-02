@@ -74,6 +74,10 @@
 		8C5C32932B64058700EDF1D7 /* BookCollectionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5C32922B64058700EDF1D7 /* BookCollectionDetailsView.swift */; };
 		8C5C32952B6405C000EDF1D7 /* MoreBooksAuthorsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5C32942B6405C000EDF1D7 /* MoreBooksAuthorsGridView.swift */; };
 		8CB576642B4F02C20060C5FD /* MangaAuthor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB576632B4F02C20060C5FD /* MangaAuthor.swift */; };
+		8CCA63352B6C7B3200C798C7 /* MangasSearchIpadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA63342B6C7B3200C798C7 /* MangasSearchIpadView.swift */; };
+		8CCA63372B6C80F500C798C7 /* MangaSearchItemIpadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA63362B6C80F500C798C7 /* MangaSearchItemIpadView.swift */; };
+		8CCA633A2B6C824D00C798C7 /* MangaDetailIpadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA63392B6C824D00C798C7 /* MangaDetailIpadView.swift */; };
+		8CCA633C2B6C82F200C798C7 /* BookTitleRatingAuthorIpadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA633B2B6C82F200C798C7 /* BookTitleRatingAuthorIpadView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +169,10 @@
 		8C5C32922B64058700EDF1D7 /* BookCollectionDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionDetailsView.swift; sourceTree = "<group>"; };
 		8C5C32942B6405C000EDF1D7 /* MoreBooksAuthorsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreBooksAuthorsGridView.swift; sourceTree = "<group>"; };
 		8CB576632B4F02C20060C5FD /* MangaAuthor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaAuthor.swift; sourceTree = "<group>"; };
+		8CCA63342B6C7B3200C798C7 /* MangasSearchIpadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangasSearchIpadView.swift; sourceTree = "<group>"; };
+		8CCA63362B6C80F500C798C7 /* MangaSearchItemIpadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaSearchItemIpadView.swift; sourceTree = "<group>"; };
+		8CCA63392B6C824D00C798C7 /* MangaDetailIpadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaDetailIpadView.swift; sourceTree = "<group>"; };
+		8CCA633B2B6C82F200C798C7 /* BookTitleRatingAuthorIpadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTitleRatingAuthorIpadView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +268,7 @@
 		4E5675022B3B390000CE7BF3 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				8CCA63382B6C815800C798C7 /* IPad */,
 				4E5675032B3B391100CE7BF3 /* MangaTextField.swift */,
 				4E83D8C72B475553004D7CEB /* MangaListItemView.swift */,
 				4EF006772B5C531F00473889 /* SelectableHStack.swift */,
@@ -441,6 +450,7 @@
 			isa = PBXGroup;
 			children = (
 				4EF006732B5C4DF000473889 /* MangasSearchView.swift */,
+				8CCA63342B6C7B3200C798C7 /* MangasSearchIpadView.swift */,
 			);
 			path = MangasSearch;
 			sourceTree = "<group>";
@@ -451,6 +461,16 @@
 				8C0F70F22B6540B200659BCC /* MangasVolumeSelectionView.swift */,
 			);
 			path = MangaVolumeSelection;
+			sourceTree = "<group>";
+		};
+		8CCA63382B6C815800C798C7 /* IPad */ = {
+			isa = PBXGroup;
+			children = (
+				8CCA63362B6C80F500C798C7 /* MangaSearchItemIpadView.swift */,
+				8CCA63392B6C824D00C798C7 /* MangaDetailIpadView.swift */,
+				8CCA633B2B6C82F200C798C7 /* BookTitleRatingAuthorIpadView.swift */,
+			);
+			path = IPad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -613,12 +633,14 @@
 				8CB576642B4F02C20060C5FD /* MangaAuthor.swift in Sources */,
 				4E56750C2B3B439200CE7BF3 /* LoginView.swift in Sources */,
 				4E5675042B3B391100CE7BF3 /* MangaTextField.swift in Sources */,
+				8CCA63352B6C7B3200C798C7 /* MangasSearchIpadView.swift in Sources */,
 				4E5675132B3C962900CE7BF3 /* MangaDetailView.swift in Sources */,
 				4E75C6142B324C16001CACF4 /* MangaListDto.swift in Sources */,
 				4ED6ED182B3CEAB0009E67EF /* MangaMainView.swift in Sources */,
 				4E5674F52B34A0B700CE7BF3 /* UserError.swift in Sources */,
 				8C5C328F2B64051200EDF1D7 /* AddCollectionButton.swift in Sources */,
 				4ED5A42A2B530482002BF013 /* MangaByCategoryLogic.swift in Sources */,
+				8CCA63372B6C80F500C798C7 /* MangaSearchItemIpadView.swift in Sources */,
 				4E83D8C82B475553004D7CEB /* MangaListItemView.swift in Sources */,
 				4E5675012B34B52F00CE7BF3 /* CreateUserView.swift in Sources */,
 				8C5C328B2B64048E00EDF1D7 /* BookImage.swift in Sources */,
@@ -634,6 +656,7 @@
 				4E5675102B3C8A6400CE7BF3 /* UserMangaCollectionRequest.swift in Sources */,
 				4E5674E42B326B8900CE7BF3 /* MangaListVM.swift in Sources */,
 				4E5674FA2B34AB9A00CE7BF3 /* CreateUser.swift in Sources */,
+				8CCA633A2B6C824D00C798C7 /* MangaDetailIpadView.swift in Sources */,
 				8C5C32932B64058700EDF1D7 /* BookCollectionDetailsView.swift in Sources */,
 				4E5675082B3B395E00CE7BF3 /* DataValidators.swift in Sources */,
 				4E5674F72B34A69600CE7BF3 /* AccountVM.swift in Sources */,
@@ -643,6 +666,7 @@
 				4EF006762B5C4F5500473889 /* MangasSearchLogic.swift in Sources */,
 				8C5C328D2B6404D900EDF1D7 /* BookTitleRatingAuthorView.swift in Sources */,
 				4E6C2D322B3CDF6900987086 /* Profile.swift in Sources */,
+				8CCA633C2B6C82F200C798C7 /* BookTitleRatingAuthorIpadView.swift in Sources */,
 				4E5674DA2B32635500CE7BF3 /* URL.swift in Sources */,
 				4EF0067A2B5C5CE100473889 /* MangasSearchVM.swift in Sources */,
 			);

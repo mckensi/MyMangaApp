@@ -9,12 +9,21 @@ import SwiftUI
 
 struct BookDescriptionView: View {
     let manga: MangaItem
+    let deviceIdiom = UIDevice.current.userInterfaceIdiom
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Descripción")
-                .fontWeight(.bold)
-            Text(manga.sypnosis ?? "")
-                .font(.caption)
+            switch deviceIdiom {
+            case .pad:
+                Text("Descripción")
+                    .font(.title)
+                    .fontWeight(.bold)
+                Text(manga.sypnosis ?? "")
+            default:
+                Text("Descripción")
+                    .fontWeight(.bold)
+                Text(manga.sypnosis ?? "")
+                    .font(.caption)
+            }
         }
         .padding()
     }
