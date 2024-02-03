@@ -11,6 +11,7 @@ public enum UserError: Error, CustomStringConvertible {
     case errorDeleteToken
     case errorDeleteEmail
     case errorSaveToken
+    case errorUpdatingToken
     case errorGetToken
     case errorGetEmail
     case errorSavePassword
@@ -38,6 +39,8 @@ public enum UserError: Error, CustomStringConvertible {
             "Error borrando obteniendo el password"
         case .errorDeletePassword:
             "Error borrando el password"
+        case .errorUpdatingToken:
+            "Error actualizando el token"
         }
     }
 }

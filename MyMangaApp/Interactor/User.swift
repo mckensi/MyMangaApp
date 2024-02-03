@@ -155,6 +155,26 @@ public struct User: UserInteractor {
             }
         }
     }
+    
+    func updateToken(token: String, account: String) throws {
+        if let data = token.data(using: .utf8) {
+            let query: [String: Any] = [
+                kSecClass as String: kSecClassGenericPassword,
+                kSecAttrService as String: service,
+                kSecAttrAccount as String: account
+            ]
+
+            let attributesToUpdate: [String: Any] = [
+                kSecValueData as String: data
+            ]
+
+            let status = SecItemUpdate(query as CFDictionary, attributesToUpdate as CFDictionary)
+
+            if status != errSecSuccess {
+                throw UserError.errorUpdatingToken
+            }
+        }
+    }
 
     func getToken() throws -> String? {
         guard let account = try getEmail() else { return nil }

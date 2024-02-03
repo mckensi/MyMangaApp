@@ -46,7 +46,7 @@ public struct Network: DataInteractor {
                 }
                 
                 let token = try await login(email: email, password: password)
-                try User.shared.saveToken(token: token, account: email)
+                try User.shared.updateToken(token: token, account: email)
 
                 return try await getJSON(request: request, type: type)
             } else {
