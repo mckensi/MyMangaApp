@@ -299,14 +299,13 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		4E5675112B3C95D000CE7BF3 /* Manga */ = {
+		4E5675112B3C95D000CE7BF3 /* MangaListMain */ = {
 			isa = PBXGroup;
 			children = (
-				4E82EA752B6EE31200506322 /* VisionOS */,
+				4E82EA7B2B6EEFD000506322 /* MangaDetail */,
 				4E75C5E62B3247D2001CACF4 /* MangaListMainView.swift */,
-				4E5675122B3C962900CE7BF3 /* MangaDetailView.swift */,
 			);
-			path = Manga;
+			path = MangaListMain;
 			sourceTree = "<group>";
 		};
 		4E75C5D82B3247D2001CACF4 = {
@@ -387,7 +386,7 @@
 				4EF0066B2B5C3D1200473889 /* MangasByAuthor */,
 				4ED5A4222B530221002BF013 /* MangasByCategory */,
 				4E83D8BE2B3F6A59004D7CEB /* UserCollection */,
-				4E5675112B3C95D000CE7BF3 /* Manga */,
+				4E5675112B3C95D000CE7BF3 /* MangaListMain */,
 				4E5675022B3B390000CE7BF3 /* Custom */,
 				4E5674FF2B34B52500CE7BF3 /* User */,
 				4E75C5E42B3247D2001CACF4 /* MyMangaAppApp.swift */,
@@ -441,18 +440,28 @@
 			path = MainContentView;
 			sourceTree = "<group>";
 		};
-		4E82EA752B6EE31200506322 /* VisionOS */ = {
+		4E82EA7A2B6EEF9900506322 /* UserMangaDetail */ = {
 			isa = PBXGroup;
 			children = (
+				4E83D8C92B475670004D7CEB /* UserMangaDetailView.swift */,
 			);
-			path = VisionOS;
+			path = UserMangaDetail;
+			sourceTree = "<group>";
+		};
+		4E82EA7B2B6EEFD000506322 /* MangaDetail */ = {
+			isa = PBXGroup;
+			children = (
+				4E5675122B3C962900CE7BF3 /* MangaDetailView.swift */,
+				8CCA63392B6C824D00C798C7 /* MangaDetailIpadView.swift */,
+			);
+			path = MangaDetail;
 			sourceTree = "<group>";
 		};
 		4E83D8BE2B3F6A59004D7CEB /* UserCollection */ = {
 			isa = PBXGroup;
 			children = (
+				4E82EA7A2B6EEF9900506322 /* UserMangaDetail */,
 				4E83D8BF2B3F6A6B004D7CEB /* UserMangaCollectionView.swift */,
-				4E83D8C92B475670004D7CEB /* UserMangaDetailView.swift */,
 			);
 			path = UserCollection;
 			sourceTree = "<group>";
@@ -494,7 +503,6 @@
 			isa = PBXGroup;
 			children = (
 				8CCA63362B6C80F500C798C7 /* MangaSearchItemIpadView.swift */,
-				8CCA63392B6C824D00C798C7 /* MangaDetailIpadView.swift */,
 				8CCA633B2B6C82F200C798C7 /* BookTitleRatingAuthorIpadView.swift */,
 				4E82EA712B6EE0DD00506322 /* CategoryTitleView.swift */,
 			);

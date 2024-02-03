@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MangaListItemView: View {
-    var showDescription: Bool = false
+    var showDescription: Bool = true
     var manga: MangaItem
     var body: some View {
         VStack {
@@ -43,6 +43,7 @@ struct MangaListItemView: View {
         }
         .frame(width: 160, height: 280)
         .padding()
+        .hoverEffect()
     }
 }
 

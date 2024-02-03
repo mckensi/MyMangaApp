@@ -29,6 +29,8 @@ struct MangaListMainView: View {
                         NavigationLink(value: genre) {
                             CategoryTitleView(title: genre.genre)
                         }
+                        .buttonStyle(.plain)
+                        .hoverEffect()
                         ScrollView(.horizontal) {
                             LazyHGrid(rows: [itemAdaptativeTypes], spacing: 20) {
                                 ForEach(
@@ -42,7 +44,6 @@ struct MangaListMainView: View {
                                     .buttonStyle(.plain)
                                 }
                             }
-                            
                         }
                     }
                 }

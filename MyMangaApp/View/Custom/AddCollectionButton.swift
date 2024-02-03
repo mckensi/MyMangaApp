@@ -23,11 +23,7 @@ struct AddCollectionButton: View {
         case .vision:
             Text("Agregar")
              .fontWeight(.bold)
-             .foregroundStyle(.black)
              .frame(width: 200, height: 52)
-             .background {
-                 RoundedRectangle(cornerRadius: 12)
-             }
         default:
             Text("Agregar")
              .fontWeight(.bold)

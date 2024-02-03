@@ -39,6 +39,7 @@ struct MangasVolumeSelectionView: View {
                     }
                 }
                 .tint(.red)
+                .disabled(!vm.isEnabledButton())
             }
             .navigationTitle("Volumenes")
             .toolbar {
@@ -125,10 +126,13 @@ struct VolumesListView: View {
                     HStack {
                         Text("\(volume)")
                         Spacer()
-                        Image(systemName: vm.mangasLogic.mangasSelected.contains(volume) ? "checkmark.circle.fill" : "circle")
-                            .onTapGesture {
-                                vm.addVolume(volume: volume)
-                            }
+                        Button {
+                            vm.addVolume(volume: volume)
+                        } label: {
+                            Image(systemName: vm.mangasLogic.mangasSelected.contains(volume) ? "checkmark.circle.fill" : "circle")
+                        }
+                        .hoverEffect()
+                        .buttonStyle(.plain)
                     }
                     if volume != volumes {
                         Rectangle()
@@ -152,13 +156,16 @@ struct VolumeReadingListView: View {
                     HStack {
                         Text("\(volume)")
                         Spacer()
-                        Image(systemName: vm.mangasLogic.mangaReading == volume ? "checkmark.circle.fill" : "circle")
-                            .onTapGesture {
-                                vm.selectReadingVolume(volume: volume)
-                                if !vm.mangasLogic.mangasSelected.contains(volume) {
-                                    vm.addVolume(volume: volume)
-                                }
+                        Button {
+                            vm.selectReadingVolume(volume: volume)
+                            if !vm.mangasLogic.mangasSelected.contains(volume) {
+                                vm.addVolume(volume: volume)
                             }
+                        } label: {
+                            Image(systemName: vm.mangasLogic.mangaReading == volume ? "checkmark.circle.fill" : "circle")
+                        }
+                        .hoverEffect()
+                        .buttonStyle(.plain)
                     }
                     if volume != volumes {
                         Rectangle()

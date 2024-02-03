@@ -23,6 +23,7 @@ struct MangasByCategoryView: View {
                                 vm.getNextPage(idManga: manga.id)
                             }
                     }
+                    .buttonStyle(.plain)
                 }
             }
         }

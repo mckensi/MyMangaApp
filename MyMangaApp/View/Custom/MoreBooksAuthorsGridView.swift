@@ -12,6 +12,7 @@ struct MoreBooksAuthorsGridView: View {
     let gridItem = GridItem(.adaptive(minimum: 280))
     @Environment(MangaDetailVM.self) var vm
     let manga: MangaItem
+    let deviceIdiom = UIDevice.current.userInterfaceIdiom
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -24,8 +25,9 @@ struct MoreBooksAuthorsGridView: View {
                             .fontWeight(.bold)
                             .foregroundStyle(.secondary)
                     }
-            
                 }
+                .buttonStyle(.plain)
+                .hoverEffect()
                 ScrollView(.horizontal) {
                     LazyHGrid(rows: [gridItem], spacing: 20) {
                         ForEach(

@@ -33,6 +33,7 @@ struct MangasSearchView: View {
                                             }
                                             .hoverEffect()
                                     }
+                                    .buttonStyle(.plain)
                                 }
                             }
                         }
@@ -45,6 +46,7 @@ struct MangasSearchView: View {
                                         AuthorSearchItemView(author: author)
                                             .hoverEffect()
                                     }
+                                    .buttonStyle(.plain)
                                 }
                             }
                         }

@@ -28,15 +28,18 @@ struct SelectableHStack: View {
             // HStack con elementos seleccionables
             HStack(spacing: itemSpace) { // Define espaciado entre elementos
                 ForEach(0..<items.count, id: \.self) { index in
-                    Text(items[index])
-                        .frame(width: itemWidth, height: itemHeight)
-                        .foregroundColor(selected == index ? .white : .primary)
-                        .background(Color.clear)
-                        .font(.footnote)
-                        .fontWeight(.bold)
-                        .onTapGesture {
-                            self.selected = index
-                        }
+                    Button {
+                        self.selected = index
+                    } label: {
+                        Text(items[index])
+                            .frame(width: itemWidth, height: itemHeight)
+                            .foregroundColor(selected == index ? .white : .primary)
+                            .background(Color.clear)
+                            .font(.footnote)
+                            .fontWeight(.bold)
+                    }
+                    .buttonStyle(.plain)
+                    .hoverEffect()
                 }
                 Spacer()
             }
