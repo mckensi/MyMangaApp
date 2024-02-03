@@ -26,7 +26,6 @@ struct MoreBooksAuthorsGridView: View {
                     }
             
                 }
-                .tint(.black)
                 ScrollView(.horizontal) {
                     LazyHGrid(rows: [gridItem], spacing: 20) {
                         ForEach(
@@ -35,10 +34,12 @@ struct MoreBooksAuthorsGridView: View {
                             NavigationLink(value: manga) {
                                 MangaListItemView(showDescription: true, manga: manga)
                             }
+                            .buttonStyle(.plain)
+                            .hoverEffect()
                         }
                     }
                 }
-                .tint(.black)
+                .tint(.primary)
             }
           
    

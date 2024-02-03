@@ -18,30 +18,7 @@ struct MangasVolumeSelectionView: View {
         @Bindable var bvm = detailVm
         NavigationView(content: {
             List {
-                Section {
-                    VStack(alignment: .leading) {
-                        Text("Que volumenes quieres?")
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .padding(.vertical, 10)
-                        HStack {
-                            Spacer()
-                            Button(role: .none) {
-                                print()
-                            } label: {
-                                Text("Seleccionar todos")
-                                    .font(.caption)
-                                    .foregroundStyle(.red)
-                                    .multilineTextAlignment(.trailing)
-                                    .padding(.bottom, 30)
-                                    .onTapGesture {
-                                        vm.selectAllVolumes(volumes: manga.volumes ?? 1)
-                                    }
-                            }
-                        }
-                        VolumesListView(vm: vm, volumes: manga.volumes ?? 0)
-                    }
-                }
+                ExtractedView(manga: manga, vm: vm)
                 Section {
                     VStack(alignment: .leading) {
                         Text("Que volumen estas leyendo?")
@@ -63,16 +40,73 @@ struct MangasVolumeSelectionView: View {
                 }
                 .tint(.red)
             }
+            .navigationTitle("Volumenes")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .symbolVariant(.circle)
+                        .frame(width: 20, height: 20)
+                        .onTapGesture {
+                            dismiss()
+                        }
+                        .hoverEffect()
+                }
+            }
         })
         .alert("Manga agregado.", isPresented: $bvm.showSuccessAddedMangaAlert) {
-            Button("Aceptar", role: .none) {
-                dismiss()
-            }
+            List {
+                    Section {
+                        VStack(alignment: .leading) {
+                            Text("Que volumenes quieres?")
+                                .font(.title)
+                                .fontWeight(.bold)
+                                .padding(.vertical, 10)
+                            HStack {
+                                Spacer()
+                                Button(role: .none) {
+                                    print()
+                                } label: {
+                                    Text("Seleccionar todos")
+                                        .font(.caption)
+                                        .foregroundStyle(.red)
+                                        .multilineTextAlignment(.trailing)
+                                        .padding(.bottom, 30)
+                                        .onTapGesture {
+                                            vm.selectAllVolumes(volumes: manga.volumes ?? 1)
+                                        }
+                                }
+                            }
+                            VolumesListView(vm: vm, volumes: manga.volumes ?? 0)
+                        }
+                    }
+                    Section {
+                        VStack(alignment: .leading) {
+                            Text("Que volumen estas leyendo?")
+                                .font(.title)
+                                .fontWeight(.bold)
+                                .padding(.vertical, 10)
+                            VolumeReadingListView(vm: vm, volumes: manga.volumes ?? 0)
+                        }
+                    }
+                    Button("Añadir", role: .none) {
+                        if vm.isEnabledButton() {
+                            Task {
+                                await detailVm.addMangaToLibrary(
+                                    manga: manga,
+                                    volumesOwned: vm.mangasLogic.mangasSelected, readingVolume: vm.mangasLogic.mangaReading ?? 1
+                                )
+                            }
+                        }
+                    }
+                    .tint(.red)
+                }
+            .alert("Manga agregado.", isPresented: $bvm.showSuccessAddedMangaAlert) {
+                Button("Aceptar", role: .none) {
+                    dismiss()
+                }
         }
-        message: {
-            Text("El Manga ha sido agregado a tu colección.")
         }
-        
     }
 }
 
@@ -132,6 +166,37 @@ struct VolumeReadingListView: View {
                             .foregroundStyle(Color.primary.opacity(0.1))
                     }
                 }
+            }
+        }
+    }
+}
+
+struct ExtractedView: View {
+    let manga: MangaItem
+    var vm: MangasVolumeSelectionVM
+    var body: some View {
+        Section {
+            VStack(alignment: .leading) {
+                Text("Que volumenes quieres?")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .padding(.vertical, 10)
+                HStack {
+                    Spacer()
+                    Button(role: .none) {
+                        print()
+                    } label: {
+                        Text("Seleccionar todos")
+                            .font(.caption)
+                            .foregroundStyle(.red)
+                            .multilineTextAlignment(.trailing)
+                            .padding(.bottom, 30)
+                            .onTapGesture {
+                                vm.selectAllVolumes(volumes: manga.volumes ?? 1)
+                            }
+                    }
+                }
+                VolumesListView(vm: vm, volumes: manga.volumes ?? 0)
             }
         }
     }

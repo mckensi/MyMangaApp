@@ -92,6 +92,7 @@ struct MangaUserCollectionItems: View {
                     NavigationLink(value: manga) {
                         MangaListItemView(manga: manga)
                     }
+                    .buttonStyle(.plain)
                 }
             }
         }

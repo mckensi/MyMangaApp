@@ -34,6 +34,7 @@ struct MangaDetailIpadView: View {
                             }
                         } label: {
                             AddCollectionButton()
+                                .hoverEffect()
                         }
                         .tint(.primary)
                     }

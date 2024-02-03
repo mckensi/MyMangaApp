@@ -32,6 +32,8 @@ struct MangaDetailView: View {
                 } label: {
                     AddCollectionButton()
                 }
+                .buttonStyle(.plain)
+                .hoverEffect()
                 BookDescriptionView(manga: manga)
                 BookCollectionDetailsView(manga: manga)
                 MoreBooksAuthorsGridView(manga: manga)

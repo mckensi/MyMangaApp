@@ -60,6 +60,18 @@ struct AccountView: View {
             }
             .navigationTitle("Cuenta")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .symbolVariant(.circle)
+                        .frame(width: 20, height: 20)
+                        .onTapGesture {
+                            dismiss()
+                        }
+                        .hoverEffect()
+                }
+            }
         }
     }
 }

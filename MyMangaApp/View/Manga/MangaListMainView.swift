@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MangaListMainView: View {
     
-    
     @Environment(MangaListVM.self) var vm
     @Environment(AccountVM.self) var accountVm
     @State var showAccountView = false
@@ -19,7 +18,6 @@ struct MangaListMainView: View {
     
     var body: some View {
         @Bindable var bvm = vm
-        
         NavigationStack {
             ScrollView {
                 LazyVStack {
@@ -29,9 +27,7 @@ struct MangaListMainView: View {
                         )
                     ) { genre in
                         NavigationLink(value: genre) {
-                            HStack {
-                                CategoryTitleView(genre: genre)
-                            }
+                            CategoryTitleView(title: genre.genre)
                         }
                         ScrollView(.horizontal) {
                             LazyHGrid(rows: [itemAdaptativeTypes], spacing: 20) {
@@ -43,18 +39,20 @@ struct MangaListMainView: View {
                                     NavigationLink(value: manga) {
                                         MangaListItemView(manga: manga)
                                     }
+                                    .buttonStyle(.plain)
                                 }
                             }
+                            
                         }
                     }
-                    
                 }
-                .tint(.black)
                 .padding()
             }
             .navigationDestination(for: MangaItem.self) { manga in
                 switch deviceIdiom {
                 case .pad:
+                    MangaDetailIpadView(manga: manga)
+                case .vision:
                     MangaDetailIpadView(manga: manga)
                 default:
                     MangaDetailView(manga: manga)
@@ -70,23 +68,29 @@ struct MangaListMainView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     if accountVm.isUserLogged {
-                        Image("userProfile")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 40, height: 40)
-                            .clipShape(Circle())
-                            .onTapGesture {
-                                showAccountView.toggle()
-                            }
+                        Button {
+                            showAccountView.toggle()
+                        } label: {
+                            Image("userProfile")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 40, height: 40)
+                                .clipShape(Circle())
+                        }
+                        .buttonStyle(.plain)
+                        .hoverEffect()
                     } else {
-                        Image(systemName: "person")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 40, height: 40)
-                            .font(.title)
-                            .onTapGesture {
-                                showAccountView.toggle()
-                            }
+                        Button {
+                            showAccountView.toggle()
+                        } label: {
+                            Image(systemName: "person")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 40, height: 40)
+                                .clipShape(Circle())
+                                .font(.title)
+                        }
+                        .hoverEffect()
                     }
                 }
             }
@@ -110,19 +114,4 @@ struct MangaListMainView: View {
         .environment(MangaListVM.test)
         .environment(AccountVM.testLogin)
         .environment(MangaDetailVM.test)
-}
-
-struct CategoryTitleView: View {
-    let genre: Genre
-    var body: some View {
-        HStack {
-            Text(genre.genre)
-                .font(.title2)
-                .bold()
-            Image(systemName: "chevron.right")
-                .fontWeight(.bold)
-                .foregroundStyle(.secondary)
-            Spacer()
-        }
-    }
 }

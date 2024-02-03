@@ -32,6 +32,7 @@ struct MangaTextField: View {
                     TextField("Enter the \(localized.lowercased())", text: $text)
                         .textContentType(keyType)
                         .autocorrectionDisabled()
+                        .buttonStyle(.plain)
                 }
                 if isSecureField {
                     Button {
@@ -57,9 +58,6 @@ struct MangaTextField: View {
           
             }
             .padding(10)
-            .background {
-                Color(white: 0.95)
-            }
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .overlay {
                 RoundedRectangle(cornerRadius: 10)

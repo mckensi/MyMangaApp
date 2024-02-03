@@ -31,8 +31,8 @@ struct MangasSearchView: View {
                                             .onAppear {
                                                 vm.searchMangaNextPage(idManga: manga.id)
                                             }
+                                            .hoverEffect()
                                     }
-                                    .tint(.primary)
                                 }
                             }
                         }
@@ -43,8 +43,8 @@ struct MangasSearchView: View {
                                 ForEach(vm.mangasLogic.authors) { author in
                                     NavigationLink(value: author) {
                                         AuthorSearchItemView(author: author)
+                                            .hoverEffect()
                                     }
-                                    .tint(.primary)
                                 }
                             }
                         }

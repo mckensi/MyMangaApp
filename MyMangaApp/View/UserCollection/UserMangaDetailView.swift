@@ -58,12 +58,20 @@ struct UserMangaDetailView: View {
         }
         .toolbar(content: {
             Menu {
-                Button("Borrar de la biblioteca", role: .destructive) {
+                Button(role: .destructive) {
                     Task {
                         vm.removeUserManga {
                             dismiss()
                             deleteComplation()
                         }
+                    }
+                } label: {
+                    HStack {
+                        Text("Borrar de la biblioteca")
+                            .foregroundStyle(.red)
+                        Spacer()
+                        Image(systemName: "trash")
+                            .foregroundStyle(.red)
                     }
                 }
             }

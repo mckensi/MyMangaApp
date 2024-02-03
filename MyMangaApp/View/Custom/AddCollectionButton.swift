@@ -14,16 +14,24 @@ struct AddCollectionButton: View {
         switch deviceIdiom {
         case .pad:
             Text("Agregar")
-             .foregroundStyle(.background)
              .fontWeight(.bold)
+             .foregroundStyle(.background)
+             .frame(width: 200, height: 52)
+             .background {
+                 RoundedRectangle(cornerRadius: 12)
+             }
+        case .vision:
+            Text("Agregar")
+             .fontWeight(.bold)
+             .foregroundStyle(.black)
              .frame(width: 200, height: 52)
              .background {
                  RoundedRectangle(cornerRadius: 12)
              }
         default:
             Text("Agregar")
-             .foregroundStyle(.background)
              .fontWeight(.bold)
+             .foregroundStyle(.background)
              .frame(width: 300, height: 52)
              .background {
                  RoundedRectangle(cornerRadius: 26)

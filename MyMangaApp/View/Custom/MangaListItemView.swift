@@ -39,7 +39,6 @@ struct MangaListItemView: View {
                         Spacer()
                     }
                 }
-           
             }
         }
         .frame(width: 160, height: 280)
