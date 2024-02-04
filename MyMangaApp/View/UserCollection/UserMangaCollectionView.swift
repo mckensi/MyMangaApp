@@ -29,23 +29,37 @@ struct UserMangaCollectionView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     if accountVm.isUserLogged {
-                        Image("userProfile")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 40, height: 40)
-                            .clipShape(Circle())
-                            .onTapGesture {
-                                showAccountView.toggle()
-                            }
+                        Button {
+                            showAccountView.toggle()
+                        } label: {
+                            Image("userProfile")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 40, height: 40)
+                                .clipShape(Circle())
+                                .shadow(radius: 4)
+                        }
+                        .buttonStyle(.plain)
+                        .hoverEffect()
+                        #if os(visionOS)
+                        .offset(z: 20)
+                        #endif
                     } else {
-                        Image(systemName: "person")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 40, height: 40)
-                            .font(.title)
-                            .onTapGesture {
-                                showAccountView.toggle()
-                            }
+                        Button {
+                            showAccountView.toggle()
+                        } label: {
+                            Image(systemName: "person")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 40, height: 40)
+                                .clipShape(Circle())
+                                .font(.title)
+                        }
+                        .buttonStyle(.plain)
+                        .hoverEffect()
+                        #if os(visionOS)
+                        .offset(z: 20)
+                        #endif
                     }
                 }
             }

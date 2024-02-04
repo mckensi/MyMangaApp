@@ -40,6 +40,7 @@ struct MangaListMainView: View {
                                 ) { manga in
                                     NavigationLink(value: manga) {
                                         MangaListItemView(manga: manga)
+                                   
                                     }
                                     .buttonStyle(.plain)
                                 }
@@ -77,9 +78,13 @@ struct MangaListMainView: View {
                                 .scaledToFit()
                                 .frame(width: 40, height: 40)
                                 .clipShape(Circle())
+                                .shadow(radius: 4)
                         }
                         .buttonStyle(.plain)
                         .hoverEffect()
+                        #if os(visionOS)
+                        .offset(z: 20)
+                        #endif
                     } else {
                         Button {
                             showAccountView.toggle()
@@ -91,10 +96,17 @@ struct MangaListMainView: View {
                                 .clipShape(Circle())
                                 .font(.title)
                         }
+                        .buttonStyle(.plain)
                         .hoverEffect()
+                        #if os(visionOS)
+                        .offset(z: 20)
+                        #endif
                     }
                 }
             }
+            #if os(visionOS)
+            .offset(z: 20)
+            #endif
             .navigationTitle(
                 "Librería"
             )

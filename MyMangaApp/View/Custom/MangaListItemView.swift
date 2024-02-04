@@ -27,6 +27,10 @@ struct MangaListItemView: View {
                     .frame(width: 160, height: 240)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
+            .hoverEffect()
+            #if os(visionOS)
+            .offset(z: 20)
+            #endif
             if showDescription {
                 VStack(alignment: .leading) {
                     Text(manga.title)
@@ -39,6 +43,9 @@ struct MangaListItemView: View {
                         Spacer()
                     }
                 }
+                #if os(visionOS)
+                .offset(z: 20)
+                #endif
             }
         }
         .frame(width: 160, height: 280)

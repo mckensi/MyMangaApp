@@ -20,6 +20,7 @@ struct AccountView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 100, height: 100)
+                                .shadow(radius: 4)
                             .clipShape(Circle())
                             Text(vm.getEmail())
                                 .font(.subheadline)
