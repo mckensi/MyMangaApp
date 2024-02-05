@@ -19,7 +19,7 @@ struct UserMangaCollectionView: View {
         NavigationStack {
             Group {
                 if accountVm.isUserLogged {
-                    MangaUserCollectionItems(mangas: vm.mangasLogic.mangas, deleteComplation: {
+                    MangaUserCollectionItemsView(mangas: vm.mangasLogic.mangas, deleteComplation: {
                         Task { await vm.getData() }
                     }, showAccountView: $showAccountView)
                 } else {
@@ -52,32 +52,4 @@ struct UserMangaCollectionView: View {
     UserMangaCollectionView()
         .environment(UserMangaCollectionVM.test)
         .environment(AccountVM.testLogin)
-}
-
-struct MangaUserCollectionItems: View {
-    var mangas: [MangaItem]
-    var deleteComplation: () -> Void
-    @Binding var showAccountView: Bool
-    let itemAdaptativeTypes = GridItem(.adaptive(minimum: 190), spacing: 8)
-    
-    
-    var body: some View {
-        ScrollView {
-            LazyVGrid(columns: [itemAdaptativeTypes], spacing: 8) {
-                ForEach(
-                    mangas
-                ) { manga in
-                    NavigationLink(value: manga) {
-                        MangaListItemView(manga: manga)
-                    }
-                    .buttonStyle(.plain)
-                }
-            }
-        }
-        .navigationDestination(for: MangaItem.self) { manga in
-            UserMangaDetailView(vm: UserMangaDetailVM(id: manga.id), deleteComplation: {
-                deleteComplation()
-            })
-        }
-    }
 }

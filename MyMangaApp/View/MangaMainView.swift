@@ -17,6 +17,7 @@ struct MangaMainView: View {
             ContentViewIPhone()
         default:
             ContentViewIPhone()
+                .tint(.black)
         }
     }
 }

@@ -21,19 +21,7 @@ struct MangaDetailView: View {
             LazyVStack {
                 BookImage(url: manga.mainPicture)
                 BookTitleRatingAuthorView(manga: manga)
-                Button {
-                    if manga.volumes != nil {
-                        showAccountView.toggle()
-                    } else {
-                        Task {
-                            await vm.addMangaToLibrary(manga: manga, volumesOwned: [1], readingVolume: 1)
-                        }
-                    }
-                } label: {
-                    AddCollectionButton()
-                }
-                .buttonStyle(.plain)
-                .hoverEffect()
+                AddButtonView(showAccountView: $showAccountView, manga: manga, vm: vm)
                 BookDescriptionView(manga: manga)
                 BookCollectionDetailsView(manga: manga)
                 MoreBooksAuthorsGridView(manga: manga)

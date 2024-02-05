@@ -27,6 +27,8 @@ public struct Network: DataInteractor {
     
     static let shared = Network()
     
+    let AK:[UInt8] = [0x3A+0x39,0x70-0x24,0x76-0x2F,0x4D-0x05,0x1F+0x14,0x35+0x03,0x8D-0x3F,0xC3-0x5B,0x20+0x25,0x21+0x29,0x05+0x2B,0xA2-0x43,0x24+0x3D,0x0A+0x64,0x17+0x55,0x72-0x29,0x1A+0x3D,0x83-0x0C,0x50+0x18,0x90-0x1D,0xE0-0x66,0x55-0x24,0x40-0x13,0x44+0x08,0x8E-0x2D,0x4A+0x28,0x72-0x2F,0xA7-0x3B,0x43+0x02,0x4A+0x25,0x9A-0x32,0x5E+0x0B,0x16+0x2B,0x11+0x37,0x3E+0x13,0x3B+0x36,0x12+0x4F,0xDE-0x65,0x8A-0x44,0x01+0x2F,0x7A-0x34,0x0A+0x4F]
+    
     func getJSON<JSON>(request: URLRequest, type: JSON.Type) async throws -> JSON where JSON: Codable {
         let (data, response) = try await URLSession.shared.getData(for: request)
         if response.statusCode == 200 {
@@ -153,7 +155,7 @@ public struct Network: DataInteractor {
     }
     
     func createUser(email: String, password: String)  async throws {
-        try await post(request: .post(url: .postCreateUser(), data: CreateUser(email: email, password: password), appToken: "sLGH38NhEJ0_anlIWwhsz1-LarClEohiAHQqayF0FY"), status: 201)
+        try await post(request: .post(url: .postCreateUser(), data: CreateUser(email: email, password: password), appToken: String(data: Data(AK), encoding: .utf8)!), status: 201)
     }
 
     
@@ -161,7 +163,7 @@ public struct Network: DataInteractor {
         let credentials = "\(email):\(password)"
         if let encodedCredentials = credentials.data(using: .utf8) {
             let auth = "Basic \(encodedCredentials.base64EncodedString())"
-            return try await postString(request: .post(url: .postLogin(), appToken: "sLGH38NhEJ0_anlIWwhsz1-LarClEohiAHQqayF0FY", credentials: auth), status: 200)
+            return try await postString(request: .post(url: .postLogin(), appToken: String(data: Data(AK), encoding: .utf8), credentials: auth), status: 200)
         } else {
             throw NetworkError.unknown
         }
@@ -169,16 +171,16 @@ public struct Network: DataInteractor {
     
     func renewUser() async throws -> String {
         guard let token = try User.shared.getToken() else { throw UserError.errorGetToken }
-        return try await postString(request: .post(url: .postRenew(), appToken: "sLGH38NhEJ0_anlIWwhsz1-LarClEohiAHQqayF0FY", token: token), status: 200)
+        return try await postString(request: .post(url: .postRenew(), appToken: String(data: Data(AK), encoding: .utf8), token: token), status: 200)
     }
     
     func postCollectionManga(token: String, manga: UserMangaCollectionRequest) async throws {
-        try await post(request: .post(url: .postCollectionManga(), data: manga, appToken: "sLGH38NhEJ0_anlIWwhsz1-LarClEohiAHQqayF0FY", token: token), status: 201)
+        try await post(request: .post(url: .postCollectionManga(), data: manga, appToken: String(data: Data(AK), encoding: .utf8), token: token), status: 201)
     }
     
     func getUserCollection() async throws -> [MangaItem] {
         guard let token = try User.shared.getToken() else { throw UserError.errorGetToken }
-        let userMangaCollection = try await getJSON(request: .get(url: .getUserMangaCollection(), appToken: "sLGH38NhEJ0_anlIWwhsz1-LarClEohiAHQqayF0FY", token: token), type: [UserCollectionListDto].self)
+        let userMangaCollection = try await getJSON(request: .get(url: .getUserMangaCollection(), appToken: String(data: Data(AK), encoding: .utf8), token: token), type: [UserCollectionListDto].self)
         
         var result: [MangaItem] = []
         for collection in userMangaCollection {
@@ -189,14 +191,14 @@ public struct Network: DataInteractor {
     
     func getUserManga(id: Int) async throws -> UserCollectionManga {
         guard let token = try User.shared.getToken() else { throw UserError.errorGetToken }
-        let userManga = try await getJSON(request: .get(url: .getUserManga(id: id), appToken: "sLGH38NhEJ0_anlIWwhsz1-LarClEohiAHQqayF0FY", token: token), type: UserCollectionMangaDto.self)
+        let userManga = try await getJSON(request: .get(url: .getUserManga(id: id), appToken: String(data: Data(AK), encoding: .utf8), token: token), type: UserCollectionMangaDto.self)
         
         return userManga.toPresentation
     }
     
     func deleteUserManga(id: Int) async throws {
         guard let token = try User.shared.getToken() else { throw UserError.errorGetToken }
-        try await get(request: .delete(url: .deleteUserManga(id: id), appToken: "sLGH38NhEJ0_anlIWwhsz1-LarClEohiAHQqayF0FY", token: token))
+        try await get(request: .delete(url: .deleteUserManga(id: id), appToken: String(data: Data(AK), encoding: .utf8), token: token))
     }
     
     func getMangasByAuthor(id: String, page: Int, per: Int) async throws -> ([MangaItem], Int){
