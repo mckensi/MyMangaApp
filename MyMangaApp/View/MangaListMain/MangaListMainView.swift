@@ -67,43 +67,7 @@ struct MangaListMainView: View {
             .navigationDestination(for: Genre.self) { genre in
                 MangasByCategoryView(vm: MangasByCategoryVM(network: Network(), genre: genre.genre))
             }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    if accountVm.isUserLogged {
-                        Button {
-                            showAccountView.toggle()
-                        } label: {
-                            Image("userProfile")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 40, height: 40)
-                                .clipShape(Circle())
-                                .shadow(radius: 4)
-                        }
-                        .buttonStyle(.plain)
-                        .hoverEffect()
-                        #if os(visionOS)
-                        .offset(z: 20)
-                        #endif
-                    } else {
-                        Button {
-                            showAccountView.toggle()
-                        } label: {
-                            Image(systemName: "person")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 40, height: 40)
-                                .clipShape(Circle())
-                                .font(.title)
-                        }
-                        .buttonStyle(.plain)
-                        .hoverEffect()
-                        #if os(visionOS)
-                        .offset(z: 20)
-                        #endif
-                    }
-                }
-            }
+            .profileToolBarItem(accountVM: accountVm, showAccountView: $showAccountView)
             #if os(visionOS)
             .offset(z: 20)
             #endif

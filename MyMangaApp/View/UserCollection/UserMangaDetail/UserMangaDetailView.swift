@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct UserMangaDetailView: View {
-    @Environment(\.dismiss) var dismiss
     var vm: UserMangaDetailVM
     var deleteComplation: () -> Void
     
@@ -37,30 +36,7 @@ struct UserMangaDetailView: View {
         message: {
             Text("El Manga ha sido agregado a tu colección.")
         }
-        .toolbar(content: {
-            Menu {
-                Button(role: .destructive) {
-                    Task {
-                        vm.removeUserManga {
-                            dismiss()
-                            deleteComplation()
-                        }
-                    }
-                } label: {
-                    HStack {
-                        Text("Borrar de la biblioteca")
-                            .foregroundStyle(.red)
-                        Spacer()
-                        Image(systemName: "trash")
-                            .foregroundStyle(.red)
-                    }
-                }
-            }
-        label: {
-            Image(systemName: "ellipsis.circle.fill")
-                .imageScale(.large)
-        }
-        })
+        .userMangaToolbar(userMangaDetailVM: vm, dismissCompletion: deleteComplation)
     }
 }
 
