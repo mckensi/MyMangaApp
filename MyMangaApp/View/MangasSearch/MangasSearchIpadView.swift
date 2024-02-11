@@ -11,7 +11,7 @@ struct MangasSearchIpadView: View {
     var vm: MangasSearchVM
     
     @Binding var textToSearch: String
-    let items = ["Mangas", "Autores"]
+    let items:[String] = ["Mangas", "Autores"]
     @State var selectedOption = 0
     
     var body: some View {

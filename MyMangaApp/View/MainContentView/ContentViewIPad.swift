@@ -13,14 +13,14 @@ struct ContentViewIPad: View {
     @State var textToSearch = ""
     @State var showSearchDetail = false
     let options: [NavigationSplit] = [
-        NavigationSplit(title: "Leer Ahora", id: 1),
-        NavigationSplit(title: "Libreria", id: 2)
+        NavigationSplit(title: "Leer ahora", id: 1),
+        NavigationSplit(title: "Librería", id: 2)
     ]
     var body: some View {
         NavigationSplitView {
             List(selection: $selection) {
                 ForEach(options) { option in
-                    Text(option.title)
+                    Text(LocalizedStringKey(option.title))
                 }
             }
             .searchable(text: $textToSearch)

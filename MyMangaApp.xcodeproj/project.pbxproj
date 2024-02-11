@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4E05ECCC2B790E6C00DB4D1A /* WithoutResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E05ECCB2B790E6C00DB4D1A /* WithoutResultsView.swift */; };
+		4E05ECCE2B793F6800DB4D1A /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4E05ECCD2B793F6800DB4D1A /* Localizable.xcstrings */; };
 		4E3255322B4B551B00A51A5D /* ErrorResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3255312B4B551B00A51A5D /* ErrorResponseDto.swift */; };
 		4E5674D22B3259F700CE7BF3 /* MetaDataDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5674D12B3259F700CE7BF3 /* MetaDataDto.swift */; };
 		4E5674D72B325CA700CE7BF3 /* MangaList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5674D62B325CA700CE7BF3 /* MangaList.swift */; };
@@ -113,6 +114,7 @@
 
 /* Begin PBXFileReference section */
 		4E05ECCB2B790E6C00DB4D1A /* WithoutResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithoutResultsView.swift; sourceTree = "<group>"; };
+		4E05ECCD2B793F6800DB4D1A /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		4E3255312B4B551B00A51A5D /* ErrorResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponseDto.swift; sourceTree = "<group>"; };
 		4E5674D12B3259F700CE7BF3 /* MetaDataDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataDto.swift; sourceTree = "<group>"; };
 		4E5674D62B325CA700CE7BF3 /* MangaList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaList.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 		4E75C5E32B3247D2001CACF4 /* MyMangaApp */ = {
 			isa = PBXGroup;
 			children = (
+				4E05ECCD2B793F6800DB4D1A /* Localizable.xcstrings */,
 				4E5675052B3B394B00CE7BF3 /* Utils */,
 				4E5674E52B339CD900CE7BF3 /* ModelLogic */,
 				4E5674D82B3262BE00CE7BF3 /* Interface */,
@@ -611,7 +614,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					4E75C5E02B3247D2001CACF4 = {
 						CreatedOnToolsVersion = 15.0.1;
@@ -653,6 +656,7 @@
 			files = (
 				4E5674F12B33B3AF00CE7BF3 /* listMangas.json in Resources */,
 				4EF0067E2B5C721000473889 /* searchMangaContains.json in Resources */,
+				4E05ECCE2B793F6800DB4D1A /* Localizable.xcstrings in Resources */,
 				4E75C5ED2B3247D3001CACF4 /* Preview Assets.xcassets in Resources */,
 				4E83D8C42B3F6C17004D7CEB /* userCollectionTest.json in Resources */,
 				4E75C5E92B3247D3001CACF4 /* Assets.xcassets in Resources */,
@@ -798,6 +802,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -827,6 +832,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -860,6 +866,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -889,6 +896,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -917,6 +925,7 @@
 				CODE_SIGN_ENTITLEMENTS = MyMangaApp/MyMangaApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"MyMangaApp/Preview Content\"";
 				DEVELOPMENT_TEAM = U76E4PGKS7;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -960,6 +969,7 @@
 				CODE_SIGN_ENTITLEMENTS = MyMangaApp/MyMangaApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"MyMangaApp/Preview Content\"";
 				DEVELOPMENT_TEAM = U76E4PGKS7;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1002,6 +1012,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = U76E4PGKS7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -1010,10 +1021,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.selvamatik.MyMangaAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyMangaApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MyMangaApp";
 			};
 			name = Debug;
@@ -1025,6 +1037,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = U76E4PGKS7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -1033,10 +1046,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.selvamatik.MyMangaAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyMangaApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MyMangaApp";
 			};
 			name = Release;
@@ -1047,6 +1061,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = U76E4PGKS7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -1055,10 +1070,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.selvamatik.MyMangaAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = MyMangaApp;
 			};
 			name = Debug;
@@ -1069,6 +1085,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = U76E4PGKS7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -1077,10 +1094,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.selvamatik.MyMangaAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = MyMangaApp;
 			};
 			name = Release;

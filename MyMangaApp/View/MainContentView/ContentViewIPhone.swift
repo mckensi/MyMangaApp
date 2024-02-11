@@ -12,11 +12,11 @@ struct ContentViewIPhone: View {
         TabView {
             MangaListMainView()
                 .tabItem {
-                    Label("Lee ahora", systemImage: "book")
+                    Label("Leer ahora", systemImage: "book")
                 }
             UserMangaCollectionView()
                 .tabItem {
-                    Label("Libreria", systemImage: "books.vertical")
+                    Label("Librería", systemImage: "books.vertical")
                 }
             MangasSearchView(vm: MangasSearchVM())
                 .tabItem {

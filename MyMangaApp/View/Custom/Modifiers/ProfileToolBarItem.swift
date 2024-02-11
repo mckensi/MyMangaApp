@@ -38,18 +38,26 @@ struct ProfileToolBarItem: ViewModifier {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 40, height: 40)
-                                .clipShape(Circle())
                                 .font(.title)
+                                .foregroundStyle(.secondary)
+                                .symbolVariant(.circle)
                         }
                         .buttonStyle(.plain)
-                        .hoverEffect()
                         #if os(visionOS)
                         .offset(z: 20)
+                        .hoverEffect()
                         #endif
                     }
                 }
             }
     }
+}
+
+#Preview {
+    MangaListMainView()
+        .environment(MangaListVM.test)
+        .environment(AccountVM.testAnonimous)
+        .environment(MangaDetailVM.test)
 }
 
 

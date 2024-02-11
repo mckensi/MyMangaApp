@@ -12,7 +12,7 @@ struct MangasSearchView: View {
     var vm: MangasSearchVM
     
     @State var textToSearch = ""
-    let items = ["Mangas", "Autores"]
+    let items:[String] = ["Mangas", "Autores"]
     @State var selectedOption = 0
     let deviceIdiom = UIDevice.current.userInterfaceIdiom
     

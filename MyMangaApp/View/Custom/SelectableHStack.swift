@@ -31,7 +31,7 @@ struct SelectableHStack: View {
                     Button {
                         self.selected = index
                     } label: {
-                        Text(items[index])
+                        Text(LocalizedStringKey(items[index]))
                             .frame(width: itemWidth, height: itemHeight)
                             .foregroundColor(selected == index ? .white : .primary)
                             .background(Color.clear)
