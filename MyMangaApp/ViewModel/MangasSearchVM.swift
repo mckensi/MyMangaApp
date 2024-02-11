@@ -14,6 +14,7 @@ final class MangasSearchVM {
     
     var alertMsg: String = ""
     var showAlert: Bool = false
+    var showWithoutResults: Bool = false
     private var textToSeach: String = ""
     
     init(network: DataInteractor = Network()) {
@@ -29,6 +30,7 @@ final class MangasSearchVM {
                     mangasLogic.mangas.removeAll()
                     mangasLogic.totalMangas = 0
                     mangasLogic.pageMangas = 1
+                    showWithoutResults = false
                 }
             }
         }
@@ -42,6 +44,7 @@ final class MangasSearchVM {
                 mangasLogic.mangas.append(contentsOf: filteredArray)
                 mangasLogic.totalMangas = mangas.1
                 mangasLogic.pageMangas += 1
+                showWithoutResults = filteredArray.isEmpty
             } catch {
                 alertMsg = error.localizedDescription
                 showAlert.toggle()
@@ -63,10 +66,12 @@ final class MangasSearchVM {
     
     func searchAuthors(text: String) {
         mangasLogic.authors.removeAll()
+        showWithoutResults = false
         Task {
             do {
                 let authors = try await network.searchAuthor(text: text)
                 mangasLogic.authors.append(contentsOf: authors)
+                showWithoutResults = authors.isEmpty
             } catch {
                 alertMsg = error.localizedDescription
                 showAlert.toggle()

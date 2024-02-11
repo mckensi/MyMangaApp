@@ -23,34 +23,44 @@ struct MangasSearchView: View {
                 SelectableHStack(items: items, selected: $selectedOption)
                     .padding(.horizontal)
                     if selectedOption == 0 {
-                        ScrollView {
-                            LazyVStack {
-                                ForEach(vm.mangasLogic.mangas) { manga in
-                                    NavigationLink(value: manga) {
-                                        MangaSearchItemView(manga: manga)
-                                            .onAppear {
-                                                vm.searchMangaNextPage(idManga: manga.id)
-                                            }
-                                            .hoverEffect()
+                        if vm.showWithoutResults {
+                            WithoutResultsView()
+                        } else {
+                            ScrollView {
+                                LazyVStack {
+                                    ForEach(vm.mangasLogic.mangas) { manga in
+                                        NavigationLink(value: manga) {
+                                            MangaSearchItemView(manga: manga)
+                                                .onAppear {
+                                                    vm.searchMangaNextPage(idManga: manga.id)
+                                                }
+                                                .hoverEffect()
+                                        }
+                                        .buttonStyle(.plain)
                                     }
-                                    .buttonStyle(.plain)
                                 }
                             }
+                            .padding()
                         }
-                        .padding()
+             
                     } else {
-                        ScrollView {
-                            LazyVStack {
-                                ForEach(vm.mangasLogic.authors) { author in
-                                    NavigationLink(value: author) {
-                                        AuthorSearchItemView(author: author)
-                                            .hoverEffect()
+                        if vm.showWithoutResults {
+                            WithoutResultsView()
+                        } else {
+                            ScrollView {
+                                LazyVStack {
+                                    ForEach(vm.mangasLogic.authors) { author in
+                                        NavigationLink(value: author) {
+                                            AuthorSearchItemView(author: author)
+                                                .hoverEffect()
+                                        }
+                                        .buttonStyle(.plain)
                                     }
-                                    .buttonStyle(.plain)
                                 }
                             }
+                            .padding()
                         }
-                        .padding()
+               
                     }
             }
             .navigationDestination(for: MangaItem.self) { manga in
@@ -70,6 +80,7 @@ struct MangasSearchView: View {
             .onChange(of: textToSearch) { oldValue, newValue in
                 if newValue.isEmpty {
                     vm.clearSearch()
+                    vm.showWithoutResults = false
                 }
             }
             .onChange(of: selectedOption) { oldValue, newValue in

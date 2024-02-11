@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E05ECCC2B790E6C00DB4D1A /* WithoutResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E05ECCB2B790E6C00DB4D1A /* WithoutResultsView.swift */; };
 		4E3255322B4B551B00A51A5D /* ErrorResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3255312B4B551B00A51A5D /* ErrorResponseDto.swift */; };
 		4E5674D22B3259F700CE7BF3 /* MetaDataDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5674D12B3259F700CE7BF3 /* MetaDataDto.swift */; };
 		4E5674D72B325CA700CE7BF3 /* MangaList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5674D62B325CA700CE7BF3 /* MangaList.swift */; };
@@ -111,6 +112,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E05ECCB2B790E6C00DB4D1A /* WithoutResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithoutResultsView.swift; sourceTree = "<group>"; };
 		4E3255312B4B551B00A51A5D /* ErrorResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponseDto.swift; sourceTree = "<group>"; };
 		4E5674D12B3259F700CE7BF3 /* MetaDataDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataDto.swift; sourceTree = "<group>"; };
 		4E5674D62B325CA700CE7BF3 /* MangaList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaList.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				4EA0AA312B7185F1009C70B8 /* VolumesSelectionListView.swift */,
 				4EA0AA332B718765009C70B8 /* MangaUserCollectionItemsView.swift */,
 				4EA0AA352B7188FF009C70B8 /* AddButtonView.swift */,
+				4E05ECCB2B790E6C00DB4D1A /* WithoutResultsView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -690,6 +693,7 @@
 				4E5674E22B3264F500CE7BF3 /* Network.swift in Sources */,
 				4E88DA002B715FB6004DE141 /* AuthorSearchItemView.swift in Sources */,
 				4E5674D22B3259F700CE7BF3 /* MetaDataDto.swift in Sources */,
+				4E05ECCC2B790E6C00DB4D1A /* WithoutResultsView.swift in Sources */,
 				4ED5A4262B530403002BF013 /* MangasByCategoryView.swift in Sources */,
 				4EF006742B5C4DF000473889 /* MangasSearchView.swift in Sources */,
 				4ED5A4282B530428002BF013 /* MangasByCategoryVM.swift in Sources */,

@@ -49,8 +49,9 @@ public struct Network: DataInteractor {
                 
                 let token = try await login(email: email, password: password)
                 try User.shared.updateToken(token: token, account: email)
-
-                return try await getJSON(request: request, type: type)
+                var retryRequest = request
+                retryRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+                return try await getJSON(request: retryRequest, type: type)
             } else {
                 throw NetworkError.status(response.statusCode)
             }
@@ -98,7 +99,9 @@ public struct Network: DataInteractor {
             let token = try await renewUser()
             let account = try User.shared.getEmail() ?? ""
             try User.shared.saveToken(token: token, account: account)
-            return try await postJSON(request: request, type: type, status: status)
+            var retryRequest = request
+            retryRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            return try await postJSON(request: retryRequest, type: type, status: status)
         } else {
             throw NetworkError.status(response.statusCode)
         }
