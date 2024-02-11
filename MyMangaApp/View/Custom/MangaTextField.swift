@@ -74,7 +74,7 @@ struct MangaTextField: View {
                     .transition(.opacity)
             }
         }
-        .onChange(of: text, initial: true) {
+        .onChange(of: text, initial: false) {
             if let errorMsg = validator(text) {
                 errorMessage = errorMsg
             } else {
@@ -86,5 +86,5 @@ struct MangaTextField: View {
 }
 
 #Preview {
-    MangaTextField(label: "First Name", text: .constant("Julio César"))
+    MangaTextField(label: "First Name", text: .constant("Daniel"))
 }
