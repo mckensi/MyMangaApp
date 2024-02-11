@@ -35,8 +35,12 @@ struct MangaDetailIpadView: View {
                         } label: {
                             AddCollectionButton()
                         }
+                        #if os(visionOS)
                         .hoverEffect()
                         .buttonStyle(.bordered)
+                        #else
+                        .buttonStyle(.plain)
+                        #endif
                     }
                 }
          
