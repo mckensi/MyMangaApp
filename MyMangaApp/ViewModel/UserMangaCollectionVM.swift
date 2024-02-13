@@ -12,7 +12,7 @@ import SwiftUI
 final class UserMangaCollectionVM {
     let network: DataInteractor
     let user: UserInteractor
-    let mangasLogic = MangasLogic()
+    let mangasLogic = UserMangasLogic()
     
     var alertMsg: String = ""
     var showAlert: Bool = false

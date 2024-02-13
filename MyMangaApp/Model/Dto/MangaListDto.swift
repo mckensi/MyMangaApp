@@ -79,6 +79,31 @@ extension MangaDto {
     }
 }
 
+extension MangaDto {
+    var toPresentationUserManga: UserMangaItem {
+        UserMangaItem(
+            volumes: volumes,
+            url: URL(string: url),
+            title: title,
+            endDate: endDate,
+            titleEnglish: titleEnglish,
+            themes: themes.map { Theme(id: $0.id, theme: $0.theme) },
+            score: score,
+            sypnosis: sypnosis,
+            background: background,
+            demographics: demographics.map { Demographic(id: $0.id, demographic: $0.demographic)},
+            startDate: startDate,
+            titleJapanese: titleJapanese,
+            status: status,
+            mainPicture: URL(string: mainPicture?.trimmingCharacters(in: CharacterSet(charactersIn: "\"")) ?? ""),
+            genres: genres.map { Genre(id: $0.id, genre: $0.genre) },
+            id: id,
+            chapters: chapters,
+            authors: authors.map { Author(id: $0.id, lastName: $0.lastName, firstName: $0.firstName, role: $0.role) }
+        )
+    }
+}
+
 extension AuthorDto {
     var toPresentation: Author {
         Author(id: id, lastName: lastName, firstName: firstName, role: role)

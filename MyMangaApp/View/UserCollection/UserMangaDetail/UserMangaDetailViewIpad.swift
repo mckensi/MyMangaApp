@@ -27,6 +27,7 @@ struct UserMangaDetailViewIpad: View {
                     }
                     BookDescriptionView(manga: manga)
                     BookCollectionDetailsView(manga: manga)
+                    MoreBooksAuthorsGridView(authorsAndBooks: vm.authorsAndBooks, manga: manga)
                 }
             }
         }

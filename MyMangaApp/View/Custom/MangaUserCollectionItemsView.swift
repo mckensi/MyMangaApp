@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MangaUserCollectionItemsView: View {
-    var mangas: [MangaItem]
+    var mangas: [UserMangaItem]
     var deleteComplation: () -> Void
     @Binding var showAccountView: Bool
     let itemAdaptativeTypes = GridItem(.adaptive(minimum: 190), spacing: 8)
@@ -22,13 +22,23 @@ struct MangaUserCollectionItemsView: View {
                     mangas
                 ) { manga in
                     NavigationLink(value: manga) {
-                        MangaListItemView(manga: manga)
+                        MangaListItemView(manga: manga.toMangaItem)
                     }
                     .buttonStyle(.plain)
                 }
             }
         }
         .navigationDestination(for: MangaItem.self) { manga in
+            switch deviceIdiom {
+            case .pad:
+                MangaDetailIpadView(vm: MangaDetailVM(manga: manga))
+            case .vision:
+                MangaDetailIpadView(vm: MangaDetailVM(manga: manga))
+            default:
+                MangaDetailView(vm: MangaDetailVM(manga: manga))
+            }
+        }
+        .navigationDestination(for: UserMangaItem.self) { manga in
             switch deviceIdiom {
             case .pad:
                 UserMangaDetailViewIpad(vm: UserMangaDetailVM(id: manga.id)) {
@@ -44,9 +54,12 @@ struct MangaUserCollectionItemsView: View {
                 })
             }
         }
+        .navigationDestination(for: Author.self) { author in
+            MangasByAuthorView(vm: MangasByAuthorVM(author: author))
+        }
     }
 }
 
 #Preview {
-    MangaUserCollectionItemsView(mangas: [MangaItem.test], deleteComplation: {}, showAccountView: .constant(false))
+    MangaUserCollectionItemsView(mangas: [.test], deleteComplation: {}, showAccountView: .constant(false))
 }

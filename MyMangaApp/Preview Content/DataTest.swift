@@ -70,14 +70,14 @@ struct DataTest: DataInteractor {
         return listRes.items.map { $0.toPresentation }
     }
     
-    func getUserCollection() async throws -> [MangaItem] {
+    func getUserCollection() async throws -> [UserMangaItem] {
         let url = Bundle.main.url(forResource: "userCollectionTest", withExtension: "json")!
         let data = try Data(contentsOf: url)
         let listRes = try JSONDecoder().decode([UserCollectionListDto].self, from: data)
-        var mangas: [MangaItem] = []
+        var mangas: [UserMangaItem] = []
         
         listRes.forEach { collection in
-            mangas.append(collection.manga.toPresentation)
+            mangas.append(collection.manga.toPresentationUserManga)
         }
         
         return mangas

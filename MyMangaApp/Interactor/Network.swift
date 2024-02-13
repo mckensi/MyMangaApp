@@ -13,7 +13,7 @@ protocol DataInteractor {
     func createUser(email: String, password: String) async throws
     func login(email: String, password: String) async throws -> String
     func postCollectionManga(token: String, manga: UserMangaCollectionRequest) async throws
-    func getUserCollection()  async throws -> [MangaItem]
+    func getUserCollection()  async throws -> [UserMangaItem]
     func getMangaListByGenre(page: Int, per: Int, genre: String) async throws -> ([MangaItem], Int)
     func getMangaDictionaryByGenre(page: Int, per: Int, genres: [String]) async throws -> [MangaItem]
     func getUserManga(id: Int) async throws -> UserCollectionManga
@@ -189,13 +189,13 @@ public struct Network: DataInteractor {
         try await post(request: .post(url: .postCollectionManga(), data: manga, appToken: String(data: Data(AK), encoding: .utf8), token: token), status: 201)
     }
     
-    func getUserCollection() async throws -> [MangaItem] {
+    func getUserCollection() async throws -> [UserMangaItem] {
         guard let token = try User.shared.getToken() else { throw UserError.errorGetToken }
         let userMangaCollection = try await getJSON(request: .get(url: .getUserMangaCollection(), appToken: String(data: Data(AK), encoding: .utf8), token: token), type: [UserCollectionListDto].self)
         
-        var result: [MangaItem] = []
+        var result: [UserMangaItem] = []
         for collection in userMangaCollection {
-            result.append(collection.manga.toPresentation)
+            result.append(collection.manga.toPresentationUserManga)
         }
         return result
     }

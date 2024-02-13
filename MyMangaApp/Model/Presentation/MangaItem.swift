@@ -1,5 +1,5 @@
 //
-//  MangaList.swift
+//  MangaItem.swift
 //  MyMangaApp
 //
 //  Created by Alex Murcia on 19/12/23.
@@ -53,3 +53,27 @@ struct Theme: Identifiable, Hashable {
     let id, theme: String
 }
 
+extension UserMangaItem {
+    var toMangaItem: MangaItem {
+        MangaItem(
+            volumes: volumes,
+            url: url,
+            title: title,
+            endDate: endDate,
+            titleEnglish: titleEnglish,
+            themes: themes,
+            score: score,
+            sypnosis: sypnosis,
+            background: background,
+            demographics: demographics,
+            startDate: startDate,
+            titleJapanese: titleJapanese,
+            status: status,
+            mainPicture: mainPicture,
+            genres: genres,
+            id: id,
+            chapters: chapters,
+            authors: authors
+        )
+    }
+}

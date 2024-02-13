@@ -31,6 +31,7 @@ final class UserMangaDetailVM {
         do {
             let manga = try await network.getUserManga(id: id)
             self.userManga = manga
+            getBooksAllAuthors(authors: manga.manga.authors)
         } catch {
             await MainActor.run {
                 alertMsg = error.localizedDescription
