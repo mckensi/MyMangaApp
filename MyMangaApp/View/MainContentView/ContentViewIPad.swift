@@ -62,6 +62,5 @@ struct NavigationSplit: Identifiable, Hashable {
     ContentViewIPad()
         .environment(MangaListVM.test)
         .environment(AccountVM.testLogin)
-        .environment(MangaDetailVM.test)
         .environment(UserMangaCollectionVM.test)
 }

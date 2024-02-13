@@ -42,9 +42,6 @@ struct UserMangaDetailViewIpad: View {
             Text("El Manga ha sido agregado a tu colección.")
         }
         .userMangaToolbar(userMangaDetailVM: vm, dismissCompletion: deleteComplation)
-        .navigationDestination(for: Author.self) { author in
-            MangasByAuthorView(vm: MangasByAuthorVM(author: author))
-        }
     }
 }
 

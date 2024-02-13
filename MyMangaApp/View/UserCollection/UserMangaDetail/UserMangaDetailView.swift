@@ -24,7 +24,6 @@ struct UserMangaDetailView: View {
                     }
                     BookDescriptionView(manga: manga)
                     BookCollectionDetailsView(manga: manga)
-                    //MoreBooksAuthorsGridView(vm: vm, manga: manga)
                 }
             }
         }

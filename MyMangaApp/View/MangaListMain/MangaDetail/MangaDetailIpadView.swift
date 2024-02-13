@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct MangaDetailIpadView: View {
-    
-    var manga: MangaItem
-    
-    @Environment(MangaDetailVM.self) var vm
+    var vm: MangaDetailVM
+
     @State var showAccountView = false
 
     
@@ -21,15 +19,15 @@ struct MangaDetailIpadView: View {
         ScrollView {
             LazyVStack(alignment: .leading) {
                 HStack(alignment: .top) {
-                    BookImage(url: manga.mainPicture)
+                    BookImage(url: vm.manga.mainPicture)
                     VStack(alignment: .leading) {
-                        BookTitleRatingAuthorIpadView(manga: manga, userManga: nil)
+                        BookTitleRatingAuthorIpadView(manga: vm.manga, userManga: nil)
                         Button {
-                            if manga.volumes != nil {
+                            if vm.manga.volumes != nil {
                                 showAccountView.toggle()
                             } else {
                                 Task {
-                                    await vm.addMangaToLibrary(manga: manga, volumesOwned: [1], readingVolume: 1)
+                                    await vm.addMangaToLibrary(volumesOwned: [1], readingVolume: 1)
                                 }
                             }
                         } label: {
@@ -44,9 +42,9 @@ struct MangaDetailIpadView: View {
                     }
                 }
          
-                BookDescriptionView(manga: manga)
-                BookCollectionDetailsView(manga: manga)
-                MoreBooksAuthorsGridView(authorsAndBooks: vm.authorsAndBooks, manga: manga)
+                BookDescriptionView(manga: vm.manga)
+                BookCollectionDetailsView(manga: vm.manga)
+                MoreBooksAuthorsGridView(authorsAndBooks: vm.authorsAndBooks, manga: vm.manga)
             }
         }
         .alert("App Alert", isPresented: $bvm.showAlert) {
@@ -60,16 +58,12 @@ struct MangaDetailIpadView: View {
     message: {
         Text("El Manga ha sido agregado a tu colección.")
     }
-    .onAppear {
-        vm.getBooksAllAuthors(authors: manga.authors)
-    }
     .sheet(isPresented: $showAccountView, content: {
-        MangasVolumeSelectionView(manga: manga)
+        MangasVolumeSelectionView(manga: vm.manga)
     })
     }
 }
 
 #Preview {
-    MangaDetailIpadView(manga: .test)
-        .environment(MangaDetailVM.test)
+    MangaDetailIpadView(vm: MangaDetailVM.test)
 }

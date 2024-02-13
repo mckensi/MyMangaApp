@@ -25,9 +25,7 @@ struct MangasVolumeSelectionView: View {
                 Button("Añadir", role: .none) {
                     if vm.isEnabledButton() {
                         Task {
-                            await detailVm.addMangaToLibrary(
-                                manga: manga,
-                                volumesOwned: vm.mangasLogic.mangasSelected, readingVolume: vm.mangasLogic.mangaReading ?? 1
+                            await detailVm.addMangaToLibrary(volumesOwned: vm.mangasLogic.mangasSelected, readingVolume: vm.mangasLogic.mangaReading ?? 1
                             )
                         }
                     }

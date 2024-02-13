@@ -45,7 +45,7 @@ extension MangaListVM {
 }
 
 extension MangaDetailVM {
-    static let test = MangaDetailVM(network: DataTest())
+    static let test = MangaDetailVM(network: DataTest(), manga: .test)
 }
 
 extension UserMangaCollectionVM {

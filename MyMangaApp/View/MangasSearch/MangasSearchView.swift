@@ -64,7 +64,7 @@ struct MangasSearchView: View {
                     }
             }
             .navigationDestination(for: MangaItem.self) { manga in
-                MangaDetailView(manga: manga)
+                MangaDetailView(vm: MangaDetailVM(manga: manga))
             }
             .navigationDestination(for: Author.self) { author in
                 MangasByAuthorView(vm: MangasByAuthorVM(author: author))

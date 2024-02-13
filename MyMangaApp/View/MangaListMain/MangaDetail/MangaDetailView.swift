@@ -9,9 +9,8 @@ import SwiftUI
 
 struct MangaDetailView: View {
     
-    var manga: MangaItem
+    var vm: MangaDetailVM
     
-    @Environment(MangaDetailVM.self) var vm
     @State var showAccountView = false
     
     var body: some View {
@@ -19,12 +18,12 @@ struct MangaDetailView: View {
         
         ScrollView {
             LazyVStack {
-                BookImage(url: manga.mainPicture)
-                BookTitleRatingAuthorView(manga: manga)
-                AddButtonView(showAccountView: $showAccountView, manga: manga, vm: vm)
-                BookDescriptionView(manga: manga)
-                BookCollectionDetailsView(manga: manga)
-                MoreBooksAuthorsGridView(authorsAndBooks: vm.authorsAndBooks, manga: manga)
+                BookImage(url: vm.manga.mainPicture)
+                BookTitleRatingAuthorView(manga: vm.manga)
+                AddButtonView(showAccountView: $showAccountView, manga: vm.manga, vm: vm)
+                BookDescriptionView(manga: vm.manga)
+                BookCollectionDetailsView(manga: vm.manga)
+                MoreBooksAuthorsGridView(authorsAndBooks: vm.authorsAndBooks, manga: vm.manga)
             }
         }
         .alert("App Alert", isPresented: $bvm.showAlert) {
@@ -38,16 +37,12 @@ struct MangaDetailView: View {
     message: {
         Text("El Manga ha sido agregado a tu colección.")
     }
-    .onAppear {
-        vm.getBooksAllAuthors(authors: manga.authors)
-    }
     .sheet(isPresented: $showAccountView, content: {
-        MangasVolumeSelectionView(manga: manga)
+        MangasVolumeSelectionView(manga: vm.manga)
     })
     }
 }
 
 #Preview {
-    MangaDetailView(manga: .test)
-        .environment(MangaDetailVM.test)
+    MangaDetailView(vm: .test)
 }

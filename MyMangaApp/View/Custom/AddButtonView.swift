@@ -18,7 +18,7 @@ struct AddButtonView: View {
                 showAccountView.toggle()
             } else {
                 Task {
-                    await vm.addMangaToLibrary(manga: manga, volumesOwned: [1], readingVolume: 1)
+                    await vm.addMangaToLibrary(volumesOwned: [1], readingVolume: 1)
                 }
             }
         } label: {

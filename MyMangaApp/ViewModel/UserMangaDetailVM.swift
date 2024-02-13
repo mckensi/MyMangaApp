@@ -17,7 +17,7 @@ final class UserMangaDetailVM {
     var showSuccessAddedMangaAlert: Bool = false
     var userManga: UserCollectionManga?
     var authorsAndBooks: [MangaAuthor] = []
-    
+
     init(id: Int, network: DataInteractor = Network()) {
         self.id = id
         self.network = network
@@ -30,7 +30,6 @@ final class UserMangaDetailVM {
     func getManga(id: Int) async {
         do {
             let manga = try await network.getUserManga(id: id)
-            getBooksAllAuthors(authors: manga.manga.authors)
             self.userManga = manga
         } catch {
             await MainActor.run {

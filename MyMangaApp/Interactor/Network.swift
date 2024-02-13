@@ -76,7 +76,7 @@ public struct Network: DataInteractor {
             try User.shared.saveToken(token: token, account: account)
             var retryRequest = request
             retryRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-            let (_, response) = try await URLSession.shared.getData(for: retryRequest)
+            try await post(request: retryRequest)
         } else if response.statusCode != status {
             throw NetworkError.status(response.statusCode)
         }

@@ -43,7 +43,6 @@ struct MangaUserCollectionItemsView: View {
                     deleteComplation()
                 })
             }
-       
         }
     }
 }

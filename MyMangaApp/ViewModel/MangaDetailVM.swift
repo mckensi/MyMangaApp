@@ -9,8 +9,8 @@ import Foundation
 
 @Observable
 final class MangaDetailVM {
+    let manga: MangaItem
     let network: DataInteractor
-    
     var alertMsg: String = ""
     var showAlert: Bool = false
     
@@ -18,11 +18,13 @@ final class MangaDetailVM {
     var authorBooks: [MangaItem] = []
     var authorsAndBooks: [MangaAuthor] = []
 
-    init(network: DataInteractor = Network()) {
+    init(network: DataInteractor = Network(), manga: MangaItem) {
         self.network = network
+        self.manga = manga
+        getBooksAllAuthors(authors: manga.authors)
     }
     
-    func addMangaToLibrary(manga: MangaItem, volumesOwned: [Int], readingVolume: Int) async {
+    func addMangaToLibrary(volumesOwned: [Int], readingVolume: Int) async {
         let mangaRequest = UserMangaCollectionRequest(
             manga: manga.id,
             completeCollection: false,
@@ -62,7 +64,7 @@ final class MangaDetailVM {
         }
     }
     
-    func getBooksAllAuthors(authors: [Author]) {
+    private func getBooksAllAuthors(authors: [Author]) {
         Task {
             let mangas = await withTaskGroup(of: MangaAuthor?.self, returning: [MangaAuthor].self) { group in
                 var result: [MangaAuthor] = []

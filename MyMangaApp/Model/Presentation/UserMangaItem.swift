@@ -27,4 +27,3 @@ struct UserMangaItem: Identifiable, Hashable {
     let chapters: Int?
     let authors: [Author]
 }
-
