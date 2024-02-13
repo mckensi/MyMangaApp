@@ -90,5 +90,4 @@ struct MangaListMainView: View {
     MangaListMainView()
         .environment(MangaListVM.test)
         .environment(AccountVM.testLogin)
-        .environment(MangaDetailVM.test)
 }

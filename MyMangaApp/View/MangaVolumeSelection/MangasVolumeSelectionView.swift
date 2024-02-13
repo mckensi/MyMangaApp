@@ -11,7 +11,7 @@ struct MangasVolumeSelectionView: View {
     let manga: MangaItem
     
     var vm: MangasVolumeSelectionVM = MangasVolumeSelectionVM()
-    @Environment(MangaDetailVM.self) var detailVm
+    var detailVm: MangaDetailVM
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -56,6 +56,5 @@ struct MangasVolumeSelectionView: View {
 }
 
 #Preview {
-    MangasVolumeSelectionView(manga: .test)
-        .environment(MangaDetailVM.test)
+    MangasVolumeSelectionView(manga: .test, detailVm: .test)
 }

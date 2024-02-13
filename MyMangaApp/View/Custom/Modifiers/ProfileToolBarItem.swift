@@ -57,7 +57,6 @@ struct ProfileToolBarItem: ViewModifier {
     MangaListMainView()
         .environment(MangaListVM.test)
         .environment(AccountVM.testAnonimous)
-        .environment(MangaDetailVM.test)
 }
 
 

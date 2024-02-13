@@ -10,8 +10,8 @@ import SwiftUI
 struct MangaDetailIpadView: View {
     var vm: MangaDetailVM
 
+    @State var showSelectVolumesView = false
     @State var showAccountView = false
-
     
     var body: some View {
         @Bindable var bvm = vm
@@ -22,17 +22,12 @@ struct MangaDetailIpadView: View {
                     BookImage(url: vm.manga.mainPicture)
                     VStack(alignment: .leading) {
                         BookTitleRatingAuthorIpadView(manga: vm.manga, userManga: nil)
-                        Button {
-                            if vm.manga.volumes != nil {
-                                showAccountView.toggle()
-                            } else {
-                                Task {
-                                    await vm.addMangaToLibrary(volumesOwned: [1], readingVolume: 1)
-                                }
-                            }
-                        } label: {
-                            AddCollectionButton()
-                        }
+                        AddButtonView(
+                            showSelectVolumesView: $showSelectVolumesView,
+                            showAccountView: $showAccountView,
+                            manga: vm.manga,
+                            vm: vm
+                        )
                         #if os(visionOS)
                         .hoverEffect()
                         .buttonStyle(.bordered)
@@ -58,12 +53,16 @@ struct MangaDetailIpadView: View {
     message: {
         Text("El Manga ha sido agregado a tu colección.")
     }
+    .sheet(isPresented: $showSelectVolumesView, content: {
+        MangasVolumeSelectionView(manga: vm.manga, detailVm: vm)
+    })
     .sheet(isPresented: $showAccountView, content: {
-        MangasVolumeSelectionView(manga: vm.manga)
+        AccountView()
     })
     }
 }
 
 #Preview {
     MangaDetailIpadView(vm: MangaDetailVM.test)
+        .environment(AccountVM.testAnonimous)
 }

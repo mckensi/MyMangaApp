@@ -47,6 +47,5 @@ struct UserMangaDetailView: View {
 #Preview {
     NavigationView(content: {
         UserMangaDetailView(vm: UserMangaDetailVM.test, deleteComplation: {})
-            .environment(MangaDetailVM.test)
     })
 }

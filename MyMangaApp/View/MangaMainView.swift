@@ -26,6 +26,5 @@ struct MangaMainView: View {
     MangaMainView()
         .environment(MangaListVM.test)
         .environment(AccountVM.testLogin)
-        .environment(MangaDetailVM.test)
         .environment(UserMangaCollectionVM.test)
 }

@@ -8,18 +8,24 @@
 import SwiftUI
 
 struct AddButtonView: View {
+    @Binding var showSelectVolumesView: Bool
     @Binding var showAccountView: Bool
     let manga: MangaItem
     let vm: MangaDetailVM
+    @Environment(AccountVM.self) var accountVm
 
     var body: some View {
         Button {
-            if manga.volumes != nil {
-                showAccountView.toggle()
-            } else {
-                Task {
-                    await vm.addMangaToLibrary(volumesOwned: [1], readingVolume: 1)
+            if accountVm.isUserLogged {
+                if manga.volumes != nil {
+                    showSelectVolumesView.toggle()
+                } else {
+                    Task {
+                        await vm.addMangaToLibrary(volumesOwned: [1], readingVolume: 1)
+                    }
                 }
+            } else {
+                showAccountView.toggle()
             }
         } label: {
             AddCollectionButton()
@@ -31,5 +37,11 @@ struct AddButtonView: View {
 
 
 #Preview {
-    AddButtonView(showAccountView: .constant(false), manga: .test, vm: MangaDetailVM.test)
+    AddButtonView(
+        showSelectVolumesView: .constant(false),
+        showAccountView: .constant(false),
+        manga: .test,
+        vm: MangaDetailVM.test
+    )
+    .environment(AccountVM.testLogin)
 }

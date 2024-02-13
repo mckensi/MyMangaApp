@@ -48,5 +48,4 @@ struct UserMangaDetailViewIpad: View {
 
 #Preview {
         UserMangaDetailViewIpad(vm: UserMangaDetailVM.test, deleteComplation: {})
-            .environment(MangaDetailVM.test)
 }

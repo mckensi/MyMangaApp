@@ -50,5 +50,4 @@ struct MoreBooksAuthorsGridView: View {
 
 #Preview {
     MoreBooksAuthorsGridView(authorsAndBooks: [], manga: .test)
-        .environment(MangaDetailVM.test)
 }

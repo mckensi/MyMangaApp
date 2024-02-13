@@ -11,6 +11,7 @@ struct MangaDetailView: View {
     
     var vm: MangaDetailVM
     
+    @State var showSelectVolumesView = false
     @State var showAccountView = false
     
     var body: some View {
@@ -20,7 +21,12 @@ struct MangaDetailView: View {
             LazyVStack {
                 BookImage(url: vm.manga.mainPicture)
                 BookTitleRatingAuthorView(manga: vm.manga)
-                AddButtonView(showAccountView: $showAccountView, manga: vm.manga, vm: vm)
+                AddButtonView(
+                    showSelectVolumesView: $showSelectVolumesView,
+                    showAccountView: $showAccountView,
+                    manga: vm.manga,
+                    vm: vm
+                )
                 BookDescriptionView(manga: vm.manga)
                 BookCollectionDetailsView(manga: vm.manga)
                 MoreBooksAuthorsGridView(authorsAndBooks: vm.authorsAndBooks, manga: vm.manga)
@@ -37,12 +43,16 @@ struct MangaDetailView: View {
     message: {
         Text("El Manga ha sido agregado a tu colección.")
     }
+    .sheet(isPresented: $showSelectVolumesView, content: {
+        MangasVolumeSelectionView(manga: vm.manga, detailVm: vm)
+    })
     .sheet(isPresented: $showAccountView, content: {
-        MangasVolumeSelectionView(manga: vm.manga)
+        AccountView()
     })
     }
 }
 
 #Preview {
     MangaDetailView(vm: .test)
+        .environment(AccountVM.testAnonimous)
 }
