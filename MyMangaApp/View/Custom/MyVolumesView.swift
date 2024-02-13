@@ -18,17 +18,15 @@ struct MyVolumesView: View {
                     .fontWeight(.bold)
                 Spacer()
             }
-                LazyVGrid(columns: [itemAdaptativeTypes], content: {
-                    ForEach(userManga.volumesOwned , id: \.self) { volume in
-                        Text("\(volume)")
-                            .fontWeight(volume == userManga.readingVolume ? .bold : .light)
-                            .foregroundStyle(.secondary)
-                            .font(.caption2)
-                            .frame(width: 20)
-                    }
-                })
-            
-          
+            LazyVGrid(columns: [itemAdaptativeTypes], content: {
+                ForEach(userManga.volumesOwned , id: \.self) { volume in
+                    Text("\(volume)")
+                        .fontWeight(volume == userManga.readingVolume ? .bold : .light)
+                        .foregroundStyle(.secondary)
+                        .font(.caption2)
+                        .frame(width: 20)
+                }
+            })
         }
     }
 }

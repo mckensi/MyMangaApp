@@ -21,6 +21,7 @@ struct UserMangaDetailView: View {
                     BookTitleRatingAuthorView(manga: manga)
                     if let userManga = vm.userManga {
                         MyVolumesView(userManga: userManga)
+                            .padding(.horizontal)
                     }
                     BookDescriptionView(manga: manga)
                     BookCollectionDetailsView(manga: manga)

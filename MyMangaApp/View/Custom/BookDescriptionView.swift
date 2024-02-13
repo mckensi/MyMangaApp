@@ -14,14 +14,21 @@ struct BookDescriptionView: View {
         VStack(alignment: .leading, spacing: 10) {
             switch deviceIdiom {
             case .pad:
-                Text("Descripción")
-                    .font(.title)
-                    .fontWeight(.bold)
+                HStack {
+                    Text("Descripción")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    Spacer()
+                }
+    
                 Text(manga.sypnosis ?? "")
                     .font(.callout)
             default:
-                Text("Descripción")
-                    .fontWeight(.bold)
+                HStack {
+                    Text("Descripción")
+                        .fontWeight(.bold)
+                    Spacer()
+                }
                 Text(manga.sypnosis ?? "")
                     .font(.caption)
             }
