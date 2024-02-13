@@ -34,7 +34,7 @@ final class MangasVolumeSelectionVM {
     
     func selectAllVolumes(volumes: Int) {
         for index in 1...volumes {
-            addVolume(volume: index)
+            mangasLogic.mangasSelected.append(index)
         }
     }
 }
