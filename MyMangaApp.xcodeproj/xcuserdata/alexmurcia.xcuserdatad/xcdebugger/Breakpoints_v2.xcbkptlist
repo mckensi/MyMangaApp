@@ -52,5 +52,177 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E99EEE2C-0B7D-4A2E-8D27-CE4F58215453"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMangaApp/Interactor/Network.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "post(request:status:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E99EEE2C-0B7D-4A2E-8D27-CE4F58215453 - 422688c9f5980652"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for MyMangaApp.Network.post(request: Foundation.URLRequest, status: Swift.Int) async throws -&gt; ()"
+                  moduleName = "MyMangaApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurcia/Documents/MyMangaApp/MyMangaApp/Interactor/Network.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "248">
+               </Location>
+               <Location
+                  uuid = "E99EEE2C-0B7D-4A2E-8D27-CE4F58215453 - b6526e7da0dd95ad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) await resume partial function for MyMangaApp.Network.post(request: Foundation.URLRequest, status: Swift.Int) async throws -&gt; ()"
+                  moduleName = "MyMangaApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurcia/Documents/MyMangaApp/MyMangaApp/Interactor/Network.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "E99EEE2C-0B7D-4A2E-8D27-CE4F58215453 - 90df0876949bda1c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for MyMangaApp.Network.post(request: Foundation.URLRequest, status: Swift.Int) async throws -&gt; ()"
+                  moduleName = "MyMangaApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurcia/Documents/MyMangaApp/MyMangaApp/Interactor/Network.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "E99EEE2C-0B7D-4A2E-8D27-CE4F58215453 - 35ec0695d6875398"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(9) suspend resume partial function for MyMangaApp.Network.post(request: Foundation.URLRequest, status: Swift.Int) async throws -&gt; ()"
+                  moduleName = "MyMangaApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurcia/Documents/MyMangaApp/MyMangaApp/Interactor/Network.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7DC75826-145D-484C-B6A1-D66CD940724F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMangaApp/ViewModel/MangaDetailVM.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "getBooksByAuthor(id:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7DC75826-145D-484C-B6A1-D66CD940724F - 14b07448d294de12"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in MyMangaApp.MangaDetailVM.getBooksByAuthor(id: Swift.String) -&gt; ()"
+                  moduleName = "MyMangaApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurcia/Documents/MyMangaApp/MyMangaApp/ViewModel/MangaDetailVM.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "7DC75826-145D-484C-B6A1-D66CD940724F - 3379b49f62c36914"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in MyMangaApp.MangaDetailVM.getBooksByAuthor(id: Swift.String) -&gt; ()"
+                  moduleName = "MyMangaApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurcia/Documents/MyMangaApp/MyMangaApp/ViewModel/MangaDetailVM.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "7DC75826-145D-484C-B6A1-D66CD940724F - 305cde9ee4ac1a1c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in MyMangaApp.MangaDetailVM.getBooksByAuthor(id: Swift.String) -&gt; ()"
+                  moduleName = "MyMangaApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurcia/Documents/MyMangaApp/MyMangaApp/ViewModel/MangaDetailVM.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "7DC75826-145D-484C-B6A1-D66CD940724F - e977716a11129218"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for closure #1 @Sendable () async -&gt; () in MyMangaApp.MangaDetailVM.getBooksByAuthor(id: Swift.String) -&gt; ()"
+                  moduleName = "MyMangaApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurcia/Documents/MyMangaApp/MyMangaApp/ViewModel/MangaDetailVM.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "120">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "65D1561C-F114-41DD-A2A9-3BE3F480850A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMangaApp/View/MangaListMain/MangaDetail/MangaDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

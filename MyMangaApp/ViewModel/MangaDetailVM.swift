@@ -85,9 +85,10 @@ final class MangaDetailVM {
                 
                 return result
             }
-            
-            authorsAndBooks = mangas
+            await MainActor.run {
+                authorsAndBooks = mangas
+            }
         }
-      
     }
+    
 }

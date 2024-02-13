@@ -18,7 +18,7 @@ struct MyVolumesViewIPad: View {
                     .fontWeight(.bold)
                 Spacer()
             }
-                LazyVGrid(columns: [itemAdaptativeTypes], content: {
+            LazyVGrid(columns: [itemAdaptativeTypes], alignment: .leading, content: {
                     ForEach(userManga.volumesOwned , id: \.self) { volume in
                         Text("\(volume)")
                             .fontWeight(volume == userManga.readingVolume ? .bold : .light)

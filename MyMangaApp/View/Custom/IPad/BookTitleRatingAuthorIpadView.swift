@@ -29,6 +29,7 @@ struct BookTitleRatingAuthorIpadView: View {
             if let userManga = userManga {
                 MyVolumesViewIPad(userManga: userManga)
                     .padding(.top, 8)
+                    .padding(.trailing, 8)
             }
    
         }

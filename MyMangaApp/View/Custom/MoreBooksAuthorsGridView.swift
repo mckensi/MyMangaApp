@@ -10,13 +10,13 @@ import SwiftUI
 struct MoreBooksAuthorsGridView: View {
     
     let gridItem = GridItem(.adaptive(minimum: 280))
-    @Environment(MangaDetailVM.self) var vm
+    var authorsAndBooks: [MangaAuthor]
     let manga: MangaItem
     let deviceIdiom = UIDevice.current.userInterfaceIdiom
     
     var body: some View {
         VStack(alignment: .leading) {
-            ForEach(vm.authorsAndBooks) { authorAndManga in
+            ForEach(authorsAndBooks) { authorAndManga in
                 NavigationLink(value: authorAndManga.author) {
                     HStack {
                         Text("Mas de \(authorAndManga.author.firstName) \(authorAndManga.author.lastName)")
@@ -43,14 +43,12 @@ struct MoreBooksAuthorsGridView: View {
                 }
                 .tint(.primary)
             }
-          
-   
         }
         .padding(.horizontal)
     }
 }
 
 #Preview {
-    MoreBooksAuthorsGridView(manga: .test)
+    MoreBooksAuthorsGridView(authorsAndBooks: [], manga: .test)
         .environment(MangaDetailVM.test)
 }

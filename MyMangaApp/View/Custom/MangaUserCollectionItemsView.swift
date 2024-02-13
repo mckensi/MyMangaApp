@@ -13,6 +13,7 @@ struct MangaUserCollectionItemsView: View {
     @Binding var showAccountView: Bool
     let itemAdaptativeTypes = GridItem(.adaptive(minimum: 190), spacing: 8)
     
+    let deviceIdiom = UIDevice.current.userInterfaceIdiom
     
     var body: some View {
         ScrollView {
@@ -28,9 +29,21 @@ struct MangaUserCollectionItemsView: View {
             }
         }
         .navigationDestination(for: MangaItem.self) { manga in
-            UserMangaDetailView(vm: UserMangaDetailVM(id: manga.id), deleteComplation: {
-                deleteComplation()
-            })
+            switch deviceIdiom {
+            case .pad:
+                UserMangaDetailViewIpad(vm: UserMangaDetailVM(id: manga.id)) {
+                    deleteComplation()
+                }
+            case .vision:
+                UserMangaDetailViewIpad(vm: UserMangaDetailVM(id: manga.id)) {
+                    deleteComplation()
+                }
+            default:
+                UserMangaDetailView(vm: UserMangaDetailVM(id: manga.id), deleteComplation: {
+                    deleteComplation()
+                })
+            }
+       
         }
     }
 }

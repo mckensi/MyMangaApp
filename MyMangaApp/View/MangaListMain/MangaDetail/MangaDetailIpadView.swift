@@ -46,7 +46,7 @@ struct MangaDetailIpadView: View {
          
                 BookDescriptionView(manga: manga)
                 BookCollectionDetailsView(manga: manga)
-                MoreBooksAuthorsGridView(manga: manga)
+                MoreBooksAuthorsGridView(authorsAndBooks: vm.authorsAndBooks, manga: manga)
             }
         }
         .alert("App Alert", isPresented: $bvm.showAlert) {
