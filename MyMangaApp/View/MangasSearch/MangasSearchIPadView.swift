@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MangasSearchIpadView: View {
+struct MangasSearchIPadView: View {
     var vm: MangasSearchVM
     
     @Binding var textToSearch: String
@@ -29,6 +29,10 @@ struct MangasSearchIpadView: View {
                                         vm.searchMangaNextPage(idManga: manga.id)
                                     }
                             }
+                            #if !os(visionOS)
+                            .buttonStyle(.plain)
+                            #endif
+                          
                         }
                     }
                 .padding()
@@ -41,6 +45,9 @@ struct MangasSearchIpadView: View {
                             NavigationLink(value: author) {
                                 AuthorSearchItemView(author: author)
                             }
+                            #if !os(visionOS)
+                            .buttonStyle(.plain)
+                            #endif
                         }
                     }
         
@@ -75,14 +82,19 @@ struct MangasSearchIpadView: View {
     }
     .onAppear {
         if selectedOption == 0 {
-            vm.searchMangas(text: textToSearch, removeAll: true)
+            if !textToSearch.isEmpty {
+                vm.searchMangas(text: textToSearch, removeAll: true)
+            }
+     
         } else {
-            vm.searchAuthors(text: textToSearch)
+            if !textToSearch.isEmpty {
+                vm.searchAuthors(text: textToSearch)
+            }
         }
     }
     }
 }
 
 #Preview {
-    MangasSearchIpadView(vm: MangasSearchVM(network: DataTest()), textToSearch: .constant("s"))
+    MangasSearchIPadView(vm: MangasSearchVM(network: DataTest()), textToSearch: .constant("s"))
 }

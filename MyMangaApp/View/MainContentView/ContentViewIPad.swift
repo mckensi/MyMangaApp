@@ -13,6 +13,7 @@ struct ContentViewIPad: View {
     @State var textToSearch = ""
     @State var showSearchDetail = false
     let options: [NavigationSplit] = [
+        NavigationSplit(title: "Busqueda", id: 0),
         NavigationSplit(title: "Leer ahora", id: 1),
         NavigationSplit(title: "Librería", id: 2)
     ]
@@ -20,35 +21,34 @@ struct ContentViewIPad: View {
         NavigationSplitView {
             List(selection: $selection) {
                 ForEach(options) { option in
-                    Text(LocalizedStringKey(option.title))
+                    if option.id != 0 {
+                        Text(LocalizedStringKey(option.title))
+                    }
                 }
             }
             .searchable(text: $textToSearch)
             .onSubmit(of: .search) {
                 if !textToSearch.isEmpty {
-                    showSearchDetail.toggle()
+                    selection = 0
                 }
             }
             .onChange(of: textToSearch) { oldValue, newValue in
                 if newValue.isEmpty {
-                    showSearchDetail.toggle()
+                    selection = 1
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
         } detail: {
-            if showSearchDetail {
-                MangasSearchIpadView(vm: MangasSearchVM(), textToSearch: $textToSearch)
-            } else {
-                switch selection {
-                case 1:
-                    MangaListMainView()
-                case 2:
-                    UserMangaCollectionView()
-                default:
-                    MangaListMainView()
-                }
+            switch selection {
+            case 0:
+                MangasSearchIPadView(vm: MangasSearchVM(), textToSearch: $textToSearch)
+            case 1:
+                MangaListMainView()
+            case 2:
+                UserMangaCollectionView()
+            default:
+                MangaListMainView()
             }
-
         }
     }
 }
