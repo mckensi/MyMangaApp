@@ -20,40 +20,46 @@ struct MangasSearchIPadView: View {
             SelectableHStack(items: items, selected: $selectedOption)
                 .padding(.horizontal)
             if selectedOption == 0 {
-                ScrollView {
-                    LazyVStack {
-                        ForEach(vm.mangasLogic.mangas) { manga in
-                            NavigationLink(value: manga) {
-                                MangaSearchItemIpadView(manga: manga)
-                                    .onAppear {
-                                        vm.searchMangaNextPage(idManga: manga.id)
-                                    }
+                if vm.mangasLogic.mangas.isEmpty {
+                    WithoutResultsView()
+                } else {
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(vm.mangasLogic.mangas) { manga in
+                                NavigationLink(value: manga) {
+                                    MangaSearchItemIpadView(manga: manga)
+                                        .onAppear {
+                                            vm.searchMangaNextPage(idManga: manga.id)
+                                        }
+                                }
+                                #if !os(visionOS)
+                                .buttonStyle(.plain)
+                                #endif
+                              
                             }
-                            #if !os(visionOS)
-                            .buttonStyle(.plain)
-                            #endif
-                          
                         }
+                    .padding()
                     }
-                .padding()
-    
                 }
+                
             } else {
-                ScrollView {
-                    LazyVStack {
-                        ForEach(vm.mangasLogic.authors) { author in
-                            NavigationLink(value: author) {
-                                AuthorSearchItemView(author: author)
+                if vm.mangasLogic.authors.isEmpty {
+                    WithoutResultsView()
+                } else {
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(vm.mangasLogic.authors) { author in
+                                NavigationLink(value: author) {
+                                    AuthorSearchItemView(author: author)
+                                }
+                                #if !os(visionOS)
+                                .buttonStyle(.plain)
+                                #endif
                             }
-                            #if !os(visionOS)
-                            .buttonStyle(.plain)
-                            #endif
                         }
                     }
-        
+                    .padding()
                 }
-                .padding()
-           
             }
         }
         .onChange(of: textToSearch) { oldValue, newValue in
