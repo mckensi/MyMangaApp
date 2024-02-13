@@ -19,6 +19,9 @@ struct UserMangaDetailView: View {
                 LazyVStack {
                     BookImage(url: manga.mainPicture)
                     BookTitleRatingAuthorView(manga: manga)
+                    if let userManga = vm.userManga {
+                        MyVolumesView(userManga: userManga)
+                    }
                     BookDescriptionView(manga: manga)
                     BookCollectionDetailsView(manga: manga)
                     MoreBooksAuthorsGridView(manga: manga)
