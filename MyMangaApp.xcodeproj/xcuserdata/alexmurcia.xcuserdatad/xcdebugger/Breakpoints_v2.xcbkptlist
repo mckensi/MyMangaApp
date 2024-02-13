@@ -96,6 +96,38 @@
             endingLineNumber = "174"
             landmarkName = "updateToken(token:account:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "62542355-7170-4D60-A278-741C50834B4F - 504bb8d65b7e1fe6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMangaApp.User.updateToken(token: Swift.String, account: Swift.String) throws -&gt; ()"
+                  moduleName = "MyMangaApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurcia/Documents/MyMangaApp/MyMangaApp/Interactor/User.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "174"
+                  endingLineNumber = "174"
+                  offsetFromSymbolStart = "1412">
+               </Location>
+               <Location
+                  uuid = "62542355-7170-4D60-A278-741C50834B4F - 504bb8d65b7e1fe6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMangaApp.User.updateToken(token: Swift.String, account: Swift.String) throws -&gt; ()"
+                  moduleName = "MyMangaApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurcia/Documents/MyMangaApp/MyMangaApp/Interactor/User.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "174"
+                  endingLineNumber = "174"
+                  offsetFromSymbolStart = "1436">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

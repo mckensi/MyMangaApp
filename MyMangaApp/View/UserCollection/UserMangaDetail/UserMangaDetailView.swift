@@ -48,6 +48,4 @@ struct UserMangaDetailView: View {
         UserMangaDetailView(vm: UserMangaDetailVM.test, deleteComplation: {})
             .environment(MangaDetailVM.test)
     })
-    
-    
 }

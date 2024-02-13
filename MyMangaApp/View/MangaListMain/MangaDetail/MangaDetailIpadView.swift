@@ -23,7 +23,7 @@ struct MangaDetailIpadView: View {
                 HStack(alignment: .top) {
                     BookImage(url: manga.mainPicture)
                     VStack(alignment: .leading) {
-                        BookTitleRatingAuthorIpadView(manga: manga)
+                        BookTitleRatingAuthorIpadView(manga: manga, userManga: nil)
                         Button {
                             if manga.volumes != nil {
                                 showAccountView.toggle()

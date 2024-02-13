@@ -30,7 +30,6 @@ struct MyVolumesView: View {
             
           
         }
-        .padding(.horizontal)
     }
 }
 
