@@ -46,10 +46,11 @@ final class MangasSearchVM {
                 mangasLogic.pageMangas += 1
                 showWithoutResults = filteredArray.isEmpty
             } catch {
-                alertMsg = error.localizedDescription
-                showAlert.toggle()
+                await MainActor.run {
+                    alertMsg = error.localizedDescription
+                    showAlert.toggle()
+                }
             }
-     
         }
     }
     
@@ -73,8 +74,10 @@ final class MangasSearchVM {
                 mangasLogic.authors.append(contentsOf: authors)
                 showWithoutResults = authors.isEmpty
             } catch {
-                alertMsg = error.localizedDescription
-                showAlert.toggle()
+                await MainActor.run {
+                    alertMsg = error.localizedDescription
+                    showAlert.toggle()
+                }
             }
         }
     }

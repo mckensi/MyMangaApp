@@ -34,8 +34,10 @@ final class UserMangaDetailVM {
             let manga = try await network.getUserManga(id: id)
             self.userManga = manga
         } catch {
-            alertMsg = error.localizedDescription
-            showAlert.toggle()
+            await MainActor.run {
+                alertMsg = error.localizedDescription
+                showAlert.toggle()
+            }
         }
     }
     
@@ -47,8 +49,10 @@ final class UserMangaDetailVM {
                     success()
                 }
             } catch {
-                alertMsg = error.localizedDescription
-                showAlert.toggle()
+                await MainActor.run {
+                    alertMsg = error.localizedDescription
+                    showAlert.toggle()
+                }
             }
         }
    

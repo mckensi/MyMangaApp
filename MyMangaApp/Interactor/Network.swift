@@ -69,7 +69,15 @@ public struct Network: DataInteractor {
     
     func post(request: URLRequest, status: Int = 200) async throws {
         let (_, response) = try await URLSession.shared.getData(for: request)
-        if response.statusCode != status {
+        
+        if response.statusCode == 401 {
+            let token = try await renewUser()
+            let account = try User.shared.getEmail() ?? ""
+            try User.shared.saveToken(token: token, account: account)
+            var retryRequest = request
+            retryRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            let (_, response) = try await URLSession.shared.getData(for: retryRequest)
+        } else if response.statusCode != status {
             throw NetworkError.status(response.statusCode)
         }
     }
@@ -224,8 +232,6 @@ public struct Network: DataInteractor {
         return (mangas, mangaList.metadata.total)
     }
 
-    
-    
     func searchAuthor(text: String) async throws -> [Author] {
         let authorList = try await getJSON(request: .get(url: .searchAuthor(search: text)), type: [AuthorDto].self)
         var authors:[Author] = []
@@ -236,6 +242,5 @@ public struct Network: DataInteractor {
         
         return authors
     }
-    
     
 }
