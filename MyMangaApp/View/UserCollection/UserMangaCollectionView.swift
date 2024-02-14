@@ -22,13 +22,17 @@ struct UserMangaCollectionView: View {
                     MangaUserCollectionItemsView(mangas: vm.mangasLogic.mangas, deleteComplation: {
                         Task { await vm.getData() }
                     }, showAccountView: $showAccountView)
+                    #if os(visionOS)
+                    .padding(.horizontal)
+                    #endif
                 } else {
                     Text("Inicia sesión para ver tu biblioteca")
                 }
             }
             .profileToolBarItem(accountVM: accountVm, showAccountView: $showAccountView)
+            .navigationTitle("Librería")
         }
-        .navigationTitle("Librería")
+     
         .alert("App Alert", isPresented: $bvm.showAlert) {}
         message: {
             Text(vm.alertMsg)

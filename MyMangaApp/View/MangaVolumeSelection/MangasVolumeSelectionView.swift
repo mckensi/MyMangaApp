@@ -52,6 +52,14 @@ struct MangasVolumeSelectionView: View {
                 dismiss()
             }
         }
+        .alert("Error", isPresented: $bvm.showAlert) {
+            Button("Aceptar", role: .none) {
+                dismiss()
+            }
+        } message: {
+            Text(vm.alertMsg)
+        }
+
     }
 }
 

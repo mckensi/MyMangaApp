@@ -31,9 +31,9 @@ struct MangaUserCollectionItemsView: View {
         .navigationDestination(for: MangaItem.self) { manga in
             switch deviceIdiom {
             case .pad:
-                MangaDetailIpadView(vm: MangaDetailVM(manga: manga))
+                MangaDetailIPadView(vm: MangaDetailVM(manga: manga))
             case .vision:
-                MangaDetailIpadView(vm: MangaDetailVM(manga: manga))
+                MangaDetailIPadView(vm: MangaDetailVM(manga: manga))
             default:
                 MangaDetailView(vm: MangaDetailVM(manga: manga))
             }

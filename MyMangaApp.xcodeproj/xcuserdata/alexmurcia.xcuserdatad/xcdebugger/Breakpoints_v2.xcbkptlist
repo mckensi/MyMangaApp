@@ -130,5 +130,84 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9083DED0-FD15-4838-9D4B-219DCACE47EA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMangaApp/View/Custom/MangaUserCollectionItemsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FDD91414-1B59-4921-A7DC-00492C505E31"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMangaApp/View/MangasSearch/MangasSearchView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "FDD91414-1B59-4921-A7DC-00492C505E31 - 2b10298ed4734b1b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in MyMangaApp.MangasSearchView.body.getter : some"
+                  moduleName = "MyMangaApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurcia/Documents/MyMangaApp/MyMangaApp/View/MangasSearch/MangasSearchView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "1140">
+               </Location>
+               <Location
+                  uuid = "FDD91414-1B59-4921-A7DC-00492C505E31 - 5b82877b1ccaaa9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (MyMangaApp.MangaItem) -&gt; MyMangaApp.MangaDetailView in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in MyMangaApp.MangasSearchView.body.getter : some"
+                  moduleName = "MyMangaApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurcia/Documents/MyMangaApp/MyMangaApp/View/MangasSearch/MangasSearchView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  uuid = "FDD91414-1B59-4921-A7DC-00492C505E31 - 83d547a59718e787"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (MyMangaApp.MangaItem) -&gt; SwiftUI._ConditionalContent&lt;SwiftUI._ConditionalContent&lt;MyMangaApp.MangaDetailIPadView, MyMangaApp.MangaDetailIPadView&gt;, MyMangaApp.MangaDetailView&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in MyMangaApp.MangasSearchView.body.getter : some"
+                  moduleName = "MyMangaApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurcia/Documents/MyMangaApp/MyMangaApp/View/MangasSearch/MangasSearchView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "260">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

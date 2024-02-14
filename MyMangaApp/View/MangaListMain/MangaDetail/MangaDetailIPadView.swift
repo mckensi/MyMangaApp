@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MangaDetailIpadView: View {
+struct MangaDetailIPadView: View {
     var vm: MangaDetailVM
 
     @State var showSelectVolumesView = false
@@ -63,6 +63,6 @@ struct MangaDetailIpadView: View {
 }
 
 #Preview {
-    MangaDetailIpadView(vm: MangaDetailVM.test)
+    MangaDetailIPadView(vm: MangaDetailVM.test)
         .environment(AccountVM.testAnonimous)
 }

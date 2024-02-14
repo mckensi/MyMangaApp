@@ -64,7 +64,14 @@ struct MangasSearchView: View {
                     }
             }
             .navigationDestination(for: MangaItem.self) { manga in
-                MangaDetailView(vm: MangaDetailVM(manga: manga))
+                switch deviceIdiom {
+                case .pad:
+                    MangaDetailIPadView(vm: MangaDetailVM(manga: manga))
+                case .vision:
+                    MangaDetailIPadView(vm: MangaDetailVM(manga: manga))
+                default:
+                    MangaDetailView(vm: MangaDetailVM(manga: manga))
+                }
             }
             .navigationDestination(for: Author.self) { author in
                 MangasByAuthorView(vm: MangasByAuthorVM(author: author))

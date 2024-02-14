@@ -23,9 +23,7 @@ struct MangasByAuthorView: View {
                                 vm.getNextPage(idManga: manga.id)
                             }
                     }
-                    #if !os(visionOS)
                     .buttonStyle(.plain)
-                    #endif
                 }
             }
         }

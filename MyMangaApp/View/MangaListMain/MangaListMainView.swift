@@ -48,14 +48,17 @@ struct MangaListMainView: View {
                         }
                     }
                 }
+                #if os(visionOS)
+                .padding(.horizontal)
+                #endif
                 .padding()
             }
             .navigationDestination(for: MangaItem.self) { manga in
                 switch deviceIdiom {
                 case .pad:
-                    MangaDetailIpadView(vm: MangaDetailVM(manga: manga))
+                    MangaDetailIPadView(vm: MangaDetailVM(manga: manga))
                 case .vision:
-                    MangaDetailIpadView(vm: MangaDetailVM(manga: manga))
+                    MangaDetailIPadView(vm: MangaDetailVM(manga: manga))
                 default:
                     MangaDetailView(vm: MangaDetailVM(manga: manga))
                 }
@@ -72,7 +75,7 @@ struct MangaListMainView: View {
             .offset(z: 20)
             #endif
             .navigationTitle(
-                "Librería"
+                "Leer ahora"
             )
         }
         .alert("App Alert", isPresented: $bvm.showAlert) {}

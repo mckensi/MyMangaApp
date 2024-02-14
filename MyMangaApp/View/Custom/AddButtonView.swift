@@ -30,8 +30,12 @@ struct AddButtonView: View {
         } label: {
             AddCollectionButton()
         }
-        .buttonStyle(.plain)
+        #if os(visionOS)
         .hoverEffect()
+        .buttonStyle(.bordered)
+        #else
+        .buttonStyle(.plain)
+        #endif
     }
 }
 
